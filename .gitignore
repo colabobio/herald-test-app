@@ -1,0 +1,12 @@
+# Android Studio config
+**/.gradle
+**/.idea
+**/*.iml
+
+# Device-specific config files
+**/.DS_Store
+**/local.properties
+**/UserInterfaceState.xcuserstate
+
+# Ephemeral build metadata
+**/build
