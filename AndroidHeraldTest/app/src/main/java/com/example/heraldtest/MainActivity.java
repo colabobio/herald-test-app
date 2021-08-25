@@ -19,14 +19,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Context context = getApplicationContext();
-        Intent startIntent = new Intent(context, TestService.class);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.startForegroundService(startIntent);
-        } else {
-            context.startService(startIntent);
-        }
     }
 
     @Override
@@ -36,6 +28,14 @@ public class MainActivity extends AppCompatActivity {
         final LocalBroadcastManager broadcast = LocalBroadcastManager.getInstance(this);
         broadcast.registerReceiver(statusChangedReceiver, TestBroadcast.statusChangeFilter());
         broadcast.registerReceiver(statusDetectedReceiver, TestBroadcast.peerDetectFilter());
+
+        Context context = TestApplication.instance;
+        Intent startIntent = new Intent(context, TestService.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(startIntent);
+        } else {
+            context.startService(startIntent);
+        }
     }
 
     @Override

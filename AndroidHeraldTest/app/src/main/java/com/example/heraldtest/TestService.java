@@ -5,6 +5,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -12,7 +13,8 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import java.util.UUID;
 
 public class TestService extends Service {
-    private static final String TAG = "TestService";
+    private static final String tag = "TestService";
+
     public static final String SERVICE_CHANNEL_ID = "com.example.heraldtest.service_notifications";
     private static final int FOREGROUND_NOTIFICATION_ID = 133;
     private static final int TIME_STEP = 2;
@@ -21,6 +23,8 @@ public class TestService extends Service {
 
     public String id;
     public String state;
+
+    private int time0;
 
     private Handler handler = new Handler(); // @Edison: Handler is marked as deprecated, what's the replacement for this?
     private Runnable runnable;
@@ -32,7 +36,8 @@ public class TestService extends Service {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        goToForeground();
+//        goToForeground();
+        initState();
         updateLoop();
     }
 
@@ -54,9 +59,14 @@ public class TestService extends Service {
         return new TestServiceBinder(this);
     }
 
-    private void updateState() {
+    private void initState() {
         id = UUID.randomUUID().toString();
-        state = id + ":" + System.currentTimeMillis() / 1000;
+        time0 = (int)(System.currentTimeMillis() / 1000);
+        state = id + ":0";
+    }
+
+    private void updateState() {
+        state = id + ":" + (System.currentTimeMillis() / 1000 - time0);
 
         updatePayload();
 
@@ -69,6 +79,8 @@ public class TestService extends Service {
 
     private void updateLoop() {
         updateState();
+
+        Log.i(tag, "in update loop");
 
         runnable = () -> handler.post(TestService.this::updateLoop);
         handler.postDelayed(runnable, TIME_STEP * 1000);
