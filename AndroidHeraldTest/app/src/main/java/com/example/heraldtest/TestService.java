@@ -25,7 +25,7 @@ public class TestService extends Service {
 
     private int time0;
 
-    private Handler handler = new Handler(); // @Edison: Handler is marked as deprecated, what's the replacement for this?
+    private Handler handler = new Handler();
     private Runnable runnable;
 
     public TestService() {

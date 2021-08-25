@@ -43,6 +43,7 @@ public class TestApplication extends Application implements SensorDelegate {
         super.onCreate();
         instance = this;
 
+        // @edison: here we should create an instance of our custom payload supplier
         // Initialise sensor array for given payload data supplier
         final PayloadDataSupplier payloadDataSupplier = new TestPayloadDataSupplier(0);
         sensor = new SensorArray(getApplicationContext(), payloadDataSupplier);
