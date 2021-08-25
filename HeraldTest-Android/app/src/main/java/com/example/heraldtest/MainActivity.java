@@ -84,13 +84,13 @@ public class MainActivity extends AppCompatActivity {
 
     protected void updateStatus() {
         if (TestService.instance != null) {
-            TextView information = findViewById(R.id.status);
-            information.setText(TestService.instance.state);
+            TextView status = findViewById(R.id.status);
+            status.setText(TestService.instance.state);
         }
     }
 
     protected void updatePeers() {
-        if (TestService.instance != null) {
+        if (TestApplication.instance != null) {
             EditText peers = findViewById(R.id.peers);
             for (String peer: TestApplication.instance.peerStatus) {
                 peers.setText(peer + "\n");
