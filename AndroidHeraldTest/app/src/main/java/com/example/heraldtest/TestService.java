@@ -15,7 +15,6 @@ import java.util.UUID;
 public class TestService extends Service {
     private static final String tag = "TestService";
 
-    public static final String SERVICE_CHANNEL_ID = "com.example.heraldtest.service_notifications";
     private static final int FOREGROUND_NOTIFICATION_ID = 133;
     private static final int TIME_STEP = 2;
 
@@ -36,13 +35,15 @@ public class TestService extends Service {
     public void onCreate() {
         super.onCreate();
         instance = this;
-//        goToForeground();
+        goToForeground();
         initState();
         updateLoop();
     }
 
     private void goToForeground() {
-        Notification notification = new NotificationCompat.Builder(this, SERVICE_CHANNEL_ID)
+        Notification notification = new NotificationCompat.Builder(this, MainActivity.SERVICE_CHANNEL_ID)
+                .setContentTitle("Listening to peers")
+                .setContentText("Background process to listen to peers")
                 .setOngoing(true)
                 .build();
 
