@@ -72,7 +72,13 @@ class TestService {
     }
     
     private func updatePayload() {
-        // @Edison: need to update Herald payload here.
+        // @Edison: need to update Herald payload here...
+        
+        // and broacast it, I guess with
+        
+        // sensor!.immediateSendAll(data: d)
+        
+        // but sensor is defined in the AppDelegate
     }
     
     private func updateLoop() {

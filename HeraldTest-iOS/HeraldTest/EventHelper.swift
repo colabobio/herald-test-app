@@ -10,6 +10,7 @@ import UIKit
 
 protocol EventHelperDelegate: AnyObject {
     func updateStatus()
+    func updatePeers()
 }
 
 enum EventHelper {
@@ -17,5 +18,9 @@ enum EventHelper {
 
     static func triggerStatusChange() {
         delegate?.updateStatus()
+    }
+    
+    static func triggerPeerDetect() {
+        delegate?.updatePeers()
     }
 }
