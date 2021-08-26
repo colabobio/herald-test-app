@@ -115,7 +115,7 @@
 		7131E5BA1EB06DA9C4CEEF5F82A4C580 /* Herald-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Herald-prefix.pch"; sourceTree = "<group>"; };
 		720D5E504494869B085FF7A405652F4A /* StatisticsLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StatisticsLog.swift; path = Herald/Herald/Sensor/Data/StatisticsLog.swift; sourceTree = "<group>"; };
 		74F2E9324297A5B8533FD0A1DC4E466D /* Pods-HeraldTest-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-HeraldTest-acknowledgements.markdown"; sourceTree = "<group>"; };
-		79F1FAF9C04FD0A67ECBED121B581F8B /* libPods-HeraldTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-HeraldTest.a"; path = "libPods-HeraldTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		79F1FAF9C04FD0A67ECBED121B581F8B /* libPods-HeraldTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HeraldTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB86CD689C1F01702B9A0C7A012784A /* SimplePayloadDataMatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SimplePayloadDataMatcher.swift; path = Herald/Herald/Sensor/Payload/Simple/SimplePayloadDataMatcher.swift; sourceTree = "<group>"; };
 		7FB52F810D14E97731C380DD95F6D004 /* Pods-HeraldTest-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-HeraldTest-umbrella.h"; sourceTree = "<group>"; };
 		80E65AA9885FCA92E57DDD93A6A3CBEB /* PseudoRandomFunction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PseudoRandomFunction.swift; path = Herald/Herald/Sensor/Data/Security/PseudoRandomFunction.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 		9BDC85FC4CF039E9E5D45BC2598BD88B /* Filter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = Herald/Herald/Sensor/Analysis/Sampling/Filter.swift; sourceTree = "<group>"; };
 		9C2A0DF3B5BE46EBADF62D970787058E /* BLETransmitter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BLETransmitter.swift; path = Herald/Herald/Sensor/BLE/BLETransmitter.swift; sourceTree = "<group>"; };
 		9CFF89BD7E2119F4586DEEC3584CF457 /* TestPayloadDataSupplier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TestPayloadDataSupplier.swift; path = Herald/Herald/Sensor/Payload/Test/TestPayloadDataSupplier.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9F1BBCABF9FC00A9E54757D77F7BF979 /* ListManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ListManager.swift; path = Herald/Herald/Sensor/Analysis/Sampling/ListManager.swift; sourceTree = "<group>"; };
 		A4042AF86B0E8FE6A8687BE30D1F7D4C /* SensorArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SensorArray.swift; path = Herald/Herald/Sensor/SensorArray.swift; sourceTree = "<group>"; };
 		A5547BBAB50B87520FDEEBAE32ADDF24 /* Device.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Device.swift; path = Herald/Herald/Sensor/Device.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 		F13F9A4138AD0FDBE4A9B9EE7E463E62 /* DoubleValue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DoubleValue.swift; path = Herald/Herald/Sensor/Datatype/DoubleValue.swift; sourceTree = "<group>"; };
 		F1723561C00F1BFC82A0E02D3BC4AD0E /* SensorDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SensorDelegate.swift; path = Herald/Herald/Sensor/SensorDelegate.swift; sourceTree = "<group>"; };
 		F339C308B50E8A5ACB4B5FD910029404 /* DataExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataExtensions.swift; path = Herald/Herald/Sensor/Extensions/DataExtensions.swift; sourceTree = "<group>"; };
-		F636616F2AB77B45B43D1A4B3CDB69B3 /* libHerald.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libHerald.a; path = libHerald.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F636616F2AB77B45B43D1A4B3CDB69B3 /* libHerald.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHerald.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F64720B8EEA59009F39A99CD0B14D849 /* XXH3.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = XXH3.swift; path = Herald/Herald/Sensor/Payload/Simple/XXH3.swift; sourceTree = "<group>"; };
 		F7EA5D76C6360DA7784D91E471E92BC9 /* RiskAggregationBasic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RiskAggregationBasic.swift; path = Herald/Herald/Sensor/Analysis/Algorithms/Risk/RiskAggregationBasic.swift; sourceTree = "<group>"; };
 		F81298E52A70EBB1D0BA0453C38EBD23 /* Herald.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Herald.modulemap; sourceTree = "<group>"; };
@@ -314,7 +314,6 @@
 				F64720B8EEA59009F39A99CD0B14D849 /* XXH3.swift */,
 				D2F7FC44F447218B2932C8E47F256B6B /* Support Files */,
 			);
-			name = Herald;
 			path = Herald;
 			sourceTree = "<group>";
 		};
@@ -384,7 +383,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1250;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 9.3";
@@ -527,7 +526,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/Herald/Herald-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MODULEMAP_FILE = Headers/Public/Herald/Herald.modulemap;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -551,7 +550,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/Herald/Herald-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MODULEMAP_FILE = Headers/Public/Herald/Herald.modulemap;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
