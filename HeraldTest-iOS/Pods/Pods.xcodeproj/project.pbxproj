@@ -1,0 +1,777 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		062183E93B8EB2735935E0791F061B5A /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D711B3582D3F73B0AADD6D4A4646B8 /* Sensor.swift */; };
+		080A4CC18EB4BAAB354FBA84BD46F5ED /* Pods-HeraldTest-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FB52F810D14E97731C380DD95F6D004 /* Pods-HeraldTest-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		091E14E0731D09C9257E31941583E44F /* DetectionLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE29004E6E8F6BE093E0424CC2711CC /* DetectionLog.swift */; };
+		0AEFA368F6C757DFDF659CA37B3AD0E5 /* FowlerBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E48F87A178ABF41CB51170323843F0 /* FowlerBasic.swift */; };
+		109D75E85A46491DDE915C759E654F68 /* Mobility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1596CD6BE6E4DD7FA76F54FBD5EF247A /* Mobility.swift */; };
+		12BE9237E6DFE13D354EE01B7862D579 /* DoubleValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13F9A4138AD0FDBE4A9B9EE7E463E62 /* DoubleValue.swift */; };
+		1B9E66D009E1FADB831888EBB6235B21 /* MobilitySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B45C82689E1B2C187D8692B3E589B2B /* MobilitySensor.swift */; };
+		1F62BDC56A16DA8561B314D52BCB9A29 /* BeaconPayloadDataSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A7FDF09843EC3ED2B6C55E3BBC6429 /* BeaconPayloadDataSupplier.swift */; };
+		22672E0129DDF1E868526D605E75AB90 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5547BBAB50B87520FDEEBAE32ADDF24 /* Device.swift */; };
+		23BFCA66DEFC19C9D563607FEAA584AE /* BatteryLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F833148FAB7D315879283BFA11EEF7 /* BatteryLog.swift */; };
+		27EDCEF18202C49120C42D9D90D40EBC /* BLESensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D14E5E263217FED4C44BAE4A3604 /* BLESensor.swift */; };
+		2CEC290E325B14161ACEAFAAA3AAFF2E /* Integrity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C43F961E03C09D3470FBB9EFDD516D /* Integrity.swift */; };
+		2D82D4558F8D0B6E494ADF9700A39299 /* PayloadDataSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFF13DEA871C6CEAFD7391EAD82E9927 /* PayloadDataSupplier.swift */; };
+		32E44B0ACE5BEC8B8E329FC403B48DD0 /* BloomFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09188363EFA379CB25BFCEFB0F4A13B7 /* BloomFilter.swift */; };
+		33F192ED1E50E5CEACB762134E8920A1 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43CA51CB1AF7C79B80EEB74A7C62D26 /* RingBuffer.swift */; };
+		44C1328B9DFC467CFB20FC2E0701D072 /* EventLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571F78BE36523B419495541D3018A097 /* EventLog.swift */; };
+		46A85267A7E01A6D2E2BC6AF7A74D1C1 /* SocialDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68BE8F32130BE8C57B37AA681BE59E9 /* SocialDistance.swift */; };
+		472638D72996B40C7D0A172E1B7FE1CB /* EventTimeIntervalLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58112FB623D93A8AD64FBAB791EB6099 /* EventTimeIntervalLog.swift */; };
+		531665ADB968DB71A2BEADF3FCC3C896 /* PayloadDataMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867F34CBDCB94F73E12B441D0394E980 /* PayloadDataMatcher.swift */; };
+		541E3423E2FCC5861C5A0F025A85F9A4 /* VariantSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1795F46FB7D0BDF74360C976C76F7209 /* VariantSet.swift */; };
+		541EFAAE351E74CBEAAD900BC6DE44F2 /* BLETransmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2A0DF3B5BE46EBADF62D970787058E /* BLETransmitter.swift */; };
+		54710E759A91EBF8E19C254C6CE1877F /* BLEUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2185322053A50FB9F2D55C989B8B9841 /* BLEUtilities.swift */; };
+		59B43151B0D9D1B66EA26F1CE381AB51 /* AnalysisProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1FEA9C917FDD15692448FE857AA2FF /* AnalysisProvider.swift */; };
+		5AE202C7ED22C7C336E35071049D5BBB /* AnalysisDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4543B96D728FF9524C81C6F463364881 /* AnalysisDelegate.swift */; };
+		6D7C148F57D24A3AD11D87294C4EF1B2 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDC85FC4CF039E9E5D45BC2598BD88B /* Filter.swift */; };
+		750C17096B2557BC9F1443A5DFE0C6F9 /* Interactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821F49DB4D75149C419FD4FE9B273D5 /* Interactions.swift */; };
+		77CB960E65D5484EC4740B75D364BF41 /* XXH3.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64720B8EEA59009F39A99CD0B14D849 /* XXH3.swift */; };
+		7B23DAE3E671DBBA93A5B95EEFB76502 /* TestPayloadDataSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF89BD7E2119F4586DEEC3584CF457 /* TestPayloadDataSupplier.swift */; };
+		7EB2C24DF82B7F254536E99DA4F1C3ED /* SmoothedLinearModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FDDBA198D07B339A204476873B0193 /* SmoothedLinearModel.swift */; };
+		8678F4426214C67DF00009CBD397889C /* CalibrationLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A53AC1D29943396E090531311FA7BA /* CalibrationLog.swift */; };
+		89ACD429A32E9A2586EAC1C331C6CD32 /* BLEReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FD49A85FE201E88C4580E8D044F852 /* BLEReceiver.swift */; };
+		8E08DD07926F4297A3699B922471771C /* ContactLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA0064BA6F9A4D5C6C8802925A0151B /* ContactLog.swift */; };
+		91D247FC782FF4FA91F91426ABFEB25D /* SampleStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B2F1425343C64E8E93965650674A1E /* SampleStatistics.swift */; };
+		923ECE32F2F933C93F4D32B33ADEF6EF /* Herald-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EACE56C8BA29EC0ABDC3986FED14A5A /* Herald-dummy.m */; };
+		96F4FC5178D79FFA1161595F6BF54939 /* BLEDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8643DA83FEEEE61A58DB33F771281382 /* BLEDatabase.swift */; };
+		9785C48A40A60D11B99AB8C2364E4E17 /* ListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1BBCABF9FC00A9E54757D77F7BF979 /* ListManager.swift */; };
+		9B0189135AC80AC4785D5D6588C718B0 /* VenueDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF07BAB06086C322856A4BA54F3B200F /* VenueDiary.swift */; };
+		A2BA2744004B771D02389FE2B1E3EE19 /* UIntBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFDF4695B3FE708360F5CE79809F16F /* UIntBig.swift */; };
+		B190E1997D30EBD956E8F9077AE7EB5B /* DataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F339C308B50E8A5ACB4B5FD910029404 /* DataExtensions.swift */; };
+		B1C7ED2B781736D453EAA171ACD24CEF /* SimplePayloadDataMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB86CD689C1F01702B9A0C7A012784A /* SimplePayloadDataMatcher.swift */; };
+		B3CBFE951AB05858CEB5C25794D5E0EC /* Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCB63D5AC6FDED72FEAB6443D571C9D /* Encryption.swift */; };
+		B5118C79F6678856CF3C485423FD0C5D /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA94CD2E06B51608AC5321A23756462C /* DateExtensions.swift */; };
+		B62C4A2D6C96C626C56FD374E3EE1905 /* ExtendedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8414E8BEE49ACC2DA923F7055B8CC9D0 /* ExtendedData.swift */; };
+		BD22D3EBBA51D692845A6344F423AFF5 /* Pods-HeraldTest-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 411A511B3827B67A3A53FAE3CC55F3C0 /* Pods-HeraldTest-dummy.m */; };
+		C809FCE7D08F773ACA69F1CABAAFE24B /* TextFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F84EA024116F805EE29735403A613E /* TextFile.swift */; };
+		C8A99C01A84FE1A9E9565CDD5CFBED8A /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5532195E16956E1E298BACAC5D2C9973 /* Sample.swift */; };
+		C99FC024854402A6182A30C13BC9A6C6 /* PseudoRandomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E65AA9885FCA92E57DDD93A6A3CBEB /* PseudoRandomFunction.swift */; };
+		CC847F90ED678E2C253C2DD3BBBCCDB1 /* KeyExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1507E0AF740A519318A1761B97440FF2 /* KeyExchange.swift */; };
+		CF0D5CA01D2C75AD84E4C4E4E0747B0C /* PayloadDataFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8C7D09D6E0EB3A102E2EAC580B4B73 /* PayloadDataFormatter.swift */; };
+		CF310F695F982B90DCED4058C47F9616 /* SensorArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4042AF86B0E8FE6A8687BE30D1F7D4C /* SensorArray.swift */; };
+		D32AB21DB3DB138762C28E907C407B7F /* StatisticsLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720D5E504494869B085FF7A405652F4A /* StatisticsLog.swift */; };
+		D352C6BAD42BBCEB4209FB5BE34399ED /* BLEAdvertParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9A7036DC9D0C7B0B88BC70A3A7E1B4 /* BLEAdvertParser.swift */; };
+		D46CFE5BE9C7AC5BD7B9CED117B335BF /* Herald-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1133C56FD16433F9CB6C657E33C380F3 /* Herald-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D970EF66B0D2825237F99B35292E90E6 /* SimplePayloadDataSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13CD8D4ED58D69AC58E41AF5DAEB50F5 /* SimplePayloadDataSupplier.swift */; };
+		DA38B4E5CBA30BFAF180EB5040F16DAF /* RiskAggregationBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EA5D76C6360DA7784D91E471E92BC9 /* RiskAggregationBasic.swift */; };
+		DA86E516685AC9DED55AC8015A635D17 /* herald.h in Headers */ = {isa = PBXBuildFile; fileRef = E8D3DE1F196BAA79C28AD07C693F15C6 /* herald.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E0A39E57B25068CD1B09C18EF2DA25BB /* SampleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D2852EB829BCB78F3B147D41E6299BB /* SampleList.swift */; };
+		E1C1011B1F87172CC95854A3170A2031 /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7EFC97E66B0E72A4AA2AB53D7FD57C /* Aggregate.swift */; };
+		E3AC1C7920E4D1DBCCFCBE87FEB88BC5 /* SensorLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6578221BF556A5976C3409B1272104 /* SensorLogger.swift */; };
+		E5120E4AEA8E8AD87CC17BC1C5B3476F /* InertiaSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138918D5DC20E1AC3FE175A17A68DFB4 /* InertiaSensor.swift */; };
+		ED39F74EF391C914FECAD1F410595C27 /* AnalysisRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FA68B43C8969CEAD3BA74A20D01D2E /* AnalysisRunner.swift */; };
+		F213C7048B6FFC45934E7C4DCA58DEA7 /* SelfCalibratedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CD917AD0C863485236EECD9F7E606B2 /* SelfCalibratedModel.swift */; };
+		F4DE9A7F0D94230616BAB38C21F41B1C /* SensorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1723561C00F1BFC82A0E02D3BC4AD0E /* SensorDelegate.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		600CCCB5588D0257EE866AD3ECC07BF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 90C4532E7943ACC1C205C763A87FADA2;
+			remoteInfo = Herald;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		09188363EFA379CB25BFCEFB0F4A13B7 /* BloomFilter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BloomFilter.swift; path = Herald/Herald/Sensor/Payload/Simple/BloomFilter.swift; sourceTree = "<group>"; };
+		0D2852EB829BCB78F3B147D41E6299BB /* SampleList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SampleList.swift; path = Herald/Herald/Sensor/Analysis/Sampling/SampleList.swift; sourceTree = "<group>"; };
+		10FA68B43C8969CEAD3BA74A20D01D2E /* AnalysisRunner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnalysisRunner.swift; path = Herald/Herald/Sensor/Analysis/Sampling/AnalysisRunner.swift; sourceTree = "<group>"; };
+		1133C56FD16433F9CB6C657E33C380F3 /* Herald-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Herald-umbrella.h"; sourceTree = "<group>"; };
+		11A7FDF09843EC3ED2B6C55E3BBC6429 /* BeaconPayloadDataSupplier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeaconPayloadDataSupplier.swift; path = Herald/Herald/Sensor/Payload/Beacon/BeaconPayloadDataSupplier.swift; sourceTree = "<group>"; };
+		138918D5DC20E1AC3FE175A17A68DFB4 /* InertiaSensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InertiaSensor.swift; path = Herald/Herald/Sensor/Motion/InertiaSensor.swift; sourceTree = "<group>"; };
+		13CD8D4ED58D69AC58E41AF5DAEB50F5 /* SimplePayloadDataSupplier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SimplePayloadDataSupplier.swift; path = Herald/Herald/Sensor/Payload/Simple/SimplePayloadDataSupplier.swift; sourceTree = "<group>"; };
+		13FDDBA198D07B339A204476873B0193 /* SmoothedLinearModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SmoothedLinearModel.swift; path = Herald/Herald/Sensor/Analysis/Algorithms/Distance/SmoothedLinearModel.swift; sourceTree = "<group>"; };
+		1507E0AF740A519318A1761B97440FF2 /* KeyExchange.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeyExchange.swift; path = Herald/Herald/Sensor/Data/Security/KeyExchange.swift; sourceTree = "<group>"; };
+		1596CD6BE6E4DD7FA76F54FBD5EF247A /* Mobility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Mobility.swift; path = Herald/Herald/Sensor/Analysis/Mobility.swift; sourceTree = "<group>"; };
+		1795F46FB7D0BDF74360C976C76F7209 /* VariantSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VariantSet.swift; path = Herald/Herald/Sensor/Analysis/Sampling/VariantSet.swift; sourceTree = "<group>"; };
+		1B7EFC97E66B0E72A4AA2AB53D7FD57C /* Aggregate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Aggregate.swift; path = Herald/Herald/Sensor/Analysis/Sampling/Aggregate.swift; sourceTree = "<group>"; };
+		1CD917AD0C863485236EECD9F7E606B2 /* SelfCalibratedModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SelfCalibratedModel.swift; path = Herald/Herald/Sensor/Analysis/Algorithms/Distance/SelfCalibratedModel.swift; sourceTree = "<group>"; };
+		1E7A54E6A9098577D1505009D8627346 /* Pods-HeraldTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HeraldTest.release.xcconfig"; sourceTree = "<group>"; };
+		2185322053A50FB9F2D55C989B8B9841 /* BLEUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BLEUtilities.swift; path = Herald/Herald/Sensor/BLE/BLEUtilities.swift; sourceTree = "<group>"; };
+		32C43F961E03C09D3470FBB9EFDD516D /* Integrity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Integrity.swift; path = Herald/Herald/Sensor/Data/Security/Integrity.swift; sourceTree = "<group>"; };
+		3E1FEA9C917FDD15692448FE857AA2FF /* AnalysisProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnalysisProvider.swift; path = Herald/Herald/Sensor/Analysis/Sampling/AnalysisProvider.swift; sourceTree = "<group>"; };
+		3FCB63D5AC6FDED72FEAB6443D571C9D /* Encryption.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Encryption.swift; path = Herald/Herald/Sensor/Data/Security/Encryption.swift; sourceTree = "<group>"; };
+		40FD49A85FE201E88C4580E8D044F852 /* BLEReceiver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BLEReceiver.swift; path = Herald/Herald/Sensor/BLE/BLEReceiver.swift; sourceTree = "<group>"; };
+		411A511B3827B67A3A53FAE3CC55F3C0 /* Pods-HeraldTest-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-HeraldTest-dummy.m"; sourceTree = "<group>"; };
+		4543B96D728FF9524C81C6F463364881 /* AnalysisDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnalysisDelegate.swift; path = Herald/Herald/Sensor/Analysis/Sampling/AnalysisDelegate.swift; sourceTree = "<group>"; };
+		4A8C7D09D6E0EB3A102E2EAC580B4B73 /* PayloadDataFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PayloadDataFormatter.swift; path = Herald/Herald/Sensor/Data/PayloadDataFormatter.swift; sourceTree = "<group>"; };
+		4EFDF4695B3FE708360F5CE79809F16F /* UIntBig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIntBig.swift; path = Herald/Herald/Sensor/Datatype/UIntBig.swift; sourceTree = "<group>"; };
+		5532195E16956E1E298BACAC5D2C9973 /* Sample.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sample.swift; path = Herald/Herald/Sensor/Analysis/Sampling/Sample.swift; sourceTree = "<group>"; };
+		571F78BE36523B419495541D3018A097 /* EventLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EventLog.swift; path = Herald/Herald/Sensor/Data/EventLog.swift; sourceTree = "<group>"; };
+		57E48F87A178ABF41CB51170323843F0 /* FowlerBasic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FowlerBasic.swift; path = Herald/Herald/Sensor/Analysis/Algorithms/Distance/FowlerBasic.swift; sourceTree = "<group>"; };
+		58112FB623D93A8AD64FBAB791EB6099 /* EventTimeIntervalLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EventTimeIntervalLog.swift; path = Herald/Herald/Sensor/Data/EventTimeIntervalLog.swift; sourceTree = "<group>"; };
+		64F833148FAB7D315879283BFA11EEF7 /* BatteryLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BatteryLog.swift; path = Herald/Herald/Sensor/Data/BatteryLog.swift; sourceTree = "<group>"; };
+		6EACE56C8BA29EC0ABDC3986FED14A5A /* Herald-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Herald-dummy.m"; sourceTree = "<group>"; };
+		7131E5BA1EB06DA9C4CEEF5F82A4C580 /* Herald-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Herald-prefix.pch"; sourceTree = "<group>"; };
+		720D5E504494869B085FF7A405652F4A /* StatisticsLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StatisticsLog.swift; path = Herald/Herald/Sensor/Data/StatisticsLog.swift; sourceTree = "<group>"; };
+		74F2E9324297A5B8533FD0A1DC4E466D /* Pods-HeraldTest-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-HeraldTest-acknowledgements.markdown"; sourceTree = "<group>"; };
+		79F1FAF9C04FD0A67ECBED121B581F8B /* libPods-HeraldTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-HeraldTest.a"; path = "libPods-HeraldTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DB86CD689C1F01702B9A0C7A012784A /* SimplePayloadDataMatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SimplePayloadDataMatcher.swift; path = Herald/Herald/Sensor/Payload/Simple/SimplePayloadDataMatcher.swift; sourceTree = "<group>"; };
+		7FB52F810D14E97731C380DD95F6D004 /* Pods-HeraldTest-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-HeraldTest-umbrella.h"; sourceTree = "<group>"; };
+		80E65AA9885FCA92E57DDD93A6A3CBEB /* PseudoRandomFunction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PseudoRandomFunction.swift; path = Herald/Herald/Sensor/Data/Security/PseudoRandomFunction.swift; sourceTree = "<group>"; };
+		82441552A5016ECDAEF386A089ABEE8B /* Pods-HeraldTest.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-HeraldTest.modulemap"; sourceTree = "<group>"; };
+		8414E8BEE49ACC2DA923F7055B8CC9D0 /* ExtendedData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExtendedData.swift; path = Herald/Herald/Sensor/Payload/Extended/ExtendedData.swift; sourceTree = "<group>"; };
+		8643DA83FEEEE61A58DB33F771281382 /* BLEDatabase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BLEDatabase.swift; path = Herald/Herald/Sensor/BLE/BLEDatabase.swift; sourceTree = "<group>"; };
+		867F34CBDCB94F73E12B441D0394E980 /* PayloadDataMatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PayloadDataMatcher.swift; path = Herald/Herald/Sensor/PayloadDataMatcher.swift; sourceTree = "<group>"; };
+		8B45C82689E1B2C187D8692B3E589B2B /* MobilitySensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MobilitySensor.swift; path = Herald/Herald/Sensor/Location/MobilitySensor.swift; sourceTree = "<group>"; };
+		90A53AC1D29943396E090531311FA7BA /* CalibrationLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CalibrationLog.swift; path = Herald/Herald/Sensor/Data/CalibrationLog.swift; sourceTree = "<group>"; };
+		9BDC85FC4CF039E9E5D45BC2598BD88B /* Filter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = Herald/Herald/Sensor/Analysis/Sampling/Filter.swift; sourceTree = "<group>"; };
+		9C2A0DF3B5BE46EBADF62D970787058E /* BLETransmitter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BLETransmitter.swift; path = Herald/Herald/Sensor/BLE/BLETransmitter.swift; sourceTree = "<group>"; };
+		9CFF89BD7E2119F4586DEEC3584CF457 /* TestPayloadDataSupplier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TestPayloadDataSupplier.swift; path = Herald/Herald/Sensor/Payload/Test/TestPayloadDataSupplier.swift; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9F1BBCABF9FC00A9E54757D77F7BF979 /* ListManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ListManager.swift; path = Herald/Herald/Sensor/Analysis/Sampling/ListManager.swift; sourceTree = "<group>"; };
+		A4042AF86B0E8FE6A8687BE30D1F7D4C /* SensorArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SensorArray.swift; path = Herald/Herald/Sensor/SensorArray.swift; sourceTree = "<group>"; };
+		A5547BBAB50B87520FDEEBAE32ADDF24 /* Device.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Device.swift; path = Herald/Herald/Sensor/Device.swift; sourceTree = "<group>"; };
+		AFF13DEA871C6CEAFD7391EAD82E9927 /* PayloadDataSupplier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PayloadDataSupplier.swift; path = Herald/Herald/Sensor/PayloadDataSupplier.swift; sourceTree = "<group>"; };
+		B821F49DB4D75149C419FD4FE9B273D5 /* Interactions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Interactions.swift; path = Herald/Herald/Sensor/Analysis/Interactions.swift; sourceTree = "<group>"; };
+		BA94CD2E06B51608AC5321A23756462C /* DateExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateExtensions.swift; path = Herald/Herald/Sensor/Extensions/DateExtensions.swift; sourceTree = "<group>"; };
+		BCA481AAD6DFFFFEAD42737010DFF8EC /* Pods-HeraldTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HeraldTest.debug.xcconfig"; sourceTree = "<group>"; };
+		C0F84EA024116F805EE29735403A613E /* TextFile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextFile.swift; path = Herald/Herald/Sensor/Data/TextFile.swift; sourceTree = "<group>"; };
+		C2F5392A9673CBEA455EFF4D697FF564 /* Herald.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Herald.release.xcconfig; sourceTree = "<group>"; };
+		C68BE8F32130BE8C57B37AA681BE59E9 /* SocialDistance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SocialDistance.swift; path = Herald/Herald/Sensor/Analysis/SocialDistance.swift; sourceTree = "<group>"; };
+		C935D14E5E263217FED4C44BAE4A3604 /* BLESensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BLESensor.swift; path = Herald/Herald/Sensor/BLE/BLESensor.swift; sourceTree = "<group>"; };
+		D43CA51CB1AF7C79B80EEB74A7C62D26 /* RingBuffer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RingBuffer.swift; path = Herald/Herald/Sensor/Datatype/RingBuffer.swift; sourceTree = "<group>"; };
+		DAA0064BA6F9A4D5C6C8802925A0151B /* ContactLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContactLog.swift; path = Herald/Herald/Sensor/Data/ContactLog.swift; sourceTree = "<group>"; };
+		DDE29004E6E8F6BE093E0424CC2711CC /* DetectionLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DetectionLog.swift; path = Herald/Herald/Sensor/Data/DetectionLog.swift; sourceTree = "<group>"; };
+		E1D711B3582D3F73B0AADD6D4A4646B8 /* Sensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sensor.swift; path = Herald/Herald/Sensor/Sensor.swift; sourceTree = "<group>"; };
+		E8D3DE1F196BAA79C28AD07C693F15C6 /* herald.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = herald.h; path = Herald/Herald/herald.h; sourceTree = "<group>"; };
+		EE3FDF4579429542820A769E3B839A23 /* Herald.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Herald.debug.xcconfig; sourceTree = "<group>"; };
+		F0B2F1425343C64E8E93965650674A1E /* SampleStatistics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SampleStatistics.swift; path = Herald/Herald/Sensor/Analysis/SampleStatistics.swift; sourceTree = "<group>"; };
+		F13F9A4138AD0FDBE4A9B9EE7E463E62 /* DoubleValue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DoubleValue.swift; path = Herald/Herald/Sensor/Datatype/DoubleValue.swift; sourceTree = "<group>"; };
+		F1723561C00F1BFC82A0E02D3BC4AD0E /* SensorDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SensorDelegate.swift; path = Herald/Herald/Sensor/SensorDelegate.swift; sourceTree = "<group>"; };
+		F339C308B50E8A5ACB4B5FD910029404 /* DataExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataExtensions.swift; path = Herald/Herald/Sensor/Extensions/DataExtensions.swift; sourceTree = "<group>"; };
+		F636616F2AB77B45B43D1A4B3CDB69B3 /* libHerald.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libHerald.a; path = libHerald.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F64720B8EEA59009F39A99CD0B14D849 /* XXH3.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = XXH3.swift; path = Herald/Herald/Sensor/Payload/Simple/XXH3.swift; sourceTree = "<group>"; };
+		F7EA5D76C6360DA7784D91E471E92BC9 /* RiskAggregationBasic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RiskAggregationBasic.swift; path = Herald/Herald/Sensor/Analysis/Algorithms/Risk/RiskAggregationBasic.swift; sourceTree = "<group>"; };
+		F81298E52A70EBB1D0BA0453C38EBD23 /* Herald.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Herald.modulemap; sourceTree = "<group>"; };
+		FC8702DB6AD3034FF4A0B1A9E0527B6A /* Pods-HeraldTest-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-HeraldTest-acknowledgements.plist"; sourceTree = "<group>"; };
+		FD6578221BF556A5976C3409B1272104 /* SensorLogger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SensorLogger.swift; path = Herald/Herald/Sensor/Data/SensorLogger.swift; sourceTree = "<group>"; };
+		FD9A7036DC9D0C7B0B88BC70A3A7E1B4 /* BLEAdvertParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BLEAdvertParser.swift; path = Herald/Herald/Sensor/BLE/BLEAdvertParser.swift; sourceTree = "<group>"; };
+		FF07BAB06086C322856A4BA54F3B200F /* VenueDiary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VenueDiary.swift; path = Herald/Herald/Sensor/Analysis/VenueDiary.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		352EAA5AAC1A3A769161F06F54CD6886 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBA08FA8D96E6434AB48E976C7279457 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1CC07B1BFC7821403EA232CEFA74F04F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DA538631C80D8879C2E757C611D12E59 /* Herald */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		64026AF0207C9543474D124701A8DC6C /* Pods-HeraldTest */ = {
+			isa = PBXGroup;
+			children = (
+				82441552A5016ECDAEF386A089ABEE8B /* Pods-HeraldTest.modulemap */,
+				74F2E9324297A5B8533FD0A1DC4E466D /* Pods-HeraldTest-acknowledgements.markdown */,
+				FC8702DB6AD3034FF4A0B1A9E0527B6A /* Pods-HeraldTest-acknowledgements.plist */,
+				411A511B3827B67A3A53FAE3CC55F3C0 /* Pods-HeraldTest-dummy.m */,
+				7FB52F810D14E97731C380DD95F6D004 /* Pods-HeraldTest-umbrella.h */,
+				BCA481AAD6DFFFFEAD42737010DFF8EC /* Pods-HeraldTest.debug.xcconfig */,
+				1E7A54E6A9098577D1505009D8627346 /* Pods-HeraldTest.release.xcconfig */,
+			);
+			name = "Pods-HeraldTest";
+			path = "Target Support Files/Pods-HeraldTest";
+			sourceTree = "<group>";
+		};
+		C372DFBB65FADC1D238B5AB7CF66BF88 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				64026AF0207C9543474D124701A8DC6C /* Pods-HeraldTest */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				1CC07B1BFC7821403EA232CEFA74F04F /* Pods */,
+				D091CE6207A85EB8727D976B87973BD7 /* Products */,
+				C372DFBB65FADC1D238B5AB7CF66BF88 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D091CE6207A85EB8727D976B87973BD7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F636616F2AB77B45B43D1A4B3CDB69B3 /* libHerald.a */,
+				79F1FAF9C04FD0A67ECBED121B581F8B /* libPods-HeraldTest.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2F7FC44F447218B2932C8E47F256B6B /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F81298E52A70EBB1D0BA0453C38EBD23 /* Herald.modulemap */,
+				6EACE56C8BA29EC0ABDC3986FED14A5A /* Herald-dummy.m */,
+				7131E5BA1EB06DA9C4CEEF5F82A4C580 /* Herald-prefix.pch */,
+				1133C56FD16433F9CB6C657E33C380F3 /* Herald-umbrella.h */,
+				EE3FDF4579429542820A769E3B839A23 /* Herald.debug.xcconfig */,
+				C2F5392A9673CBEA455EFF4D697FF564 /* Herald.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Herald";
+			sourceTree = "<group>";
+		};
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA538631C80D8879C2E757C611D12E59 /* Herald */ = {
+			isa = PBXGroup;
+			children = (
+				1B7EFC97E66B0E72A4AA2AB53D7FD57C /* Aggregate.swift */,
+				4543B96D728FF9524C81C6F463364881 /* AnalysisDelegate.swift */,
+				3E1FEA9C917FDD15692448FE857AA2FF /* AnalysisProvider.swift */,
+				10FA68B43C8969CEAD3BA74A20D01D2E /* AnalysisRunner.swift */,
+				64F833148FAB7D315879283BFA11EEF7 /* BatteryLog.swift */,
+				11A7FDF09843EC3ED2B6C55E3BBC6429 /* BeaconPayloadDataSupplier.swift */,
+				FD9A7036DC9D0C7B0B88BC70A3A7E1B4 /* BLEAdvertParser.swift */,
+				8643DA83FEEEE61A58DB33F771281382 /* BLEDatabase.swift */,
+				40FD49A85FE201E88C4580E8D044F852 /* BLEReceiver.swift */,
+				C935D14E5E263217FED4C44BAE4A3604 /* BLESensor.swift */,
+				9C2A0DF3B5BE46EBADF62D970787058E /* BLETransmitter.swift */,
+				2185322053A50FB9F2D55C989B8B9841 /* BLEUtilities.swift */,
+				09188363EFA379CB25BFCEFB0F4A13B7 /* BloomFilter.swift */,
+				90A53AC1D29943396E090531311FA7BA /* CalibrationLog.swift */,
+				DAA0064BA6F9A4D5C6C8802925A0151B /* ContactLog.swift */,
+				F339C308B50E8A5ACB4B5FD910029404 /* DataExtensions.swift */,
+				BA94CD2E06B51608AC5321A23756462C /* DateExtensions.swift */,
+				DDE29004E6E8F6BE093E0424CC2711CC /* DetectionLog.swift */,
+				A5547BBAB50B87520FDEEBAE32ADDF24 /* Device.swift */,
+				F13F9A4138AD0FDBE4A9B9EE7E463E62 /* DoubleValue.swift */,
+				3FCB63D5AC6FDED72FEAB6443D571C9D /* Encryption.swift */,
+				571F78BE36523B419495541D3018A097 /* EventLog.swift */,
+				58112FB623D93A8AD64FBAB791EB6099 /* EventTimeIntervalLog.swift */,
+				8414E8BEE49ACC2DA923F7055B8CC9D0 /* ExtendedData.swift */,
+				9BDC85FC4CF039E9E5D45BC2598BD88B /* Filter.swift */,
+				57E48F87A178ABF41CB51170323843F0 /* FowlerBasic.swift */,
+				E8D3DE1F196BAA79C28AD07C693F15C6 /* herald.h */,
+				138918D5DC20E1AC3FE175A17A68DFB4 /* InertiaSensor.swift */,
+				32C43F961E03C09D3470FBB9EFDD516D /* Integrity.swift */,
+				B821F49DB4D75149C419FD4FE9B273D5 /* Interactions.swift */,
+				1507E0AF740A519318A1761B97440FF2 /* KeyExchange.swift */,
+				9F1BBCABF9FC00A9E54757D77F7BF979 /* ListManager.swift */,
+				1596CD6BE6E4DD7FA76F54FBD5EF247A /* Mobility.swift */,
+				8B45C82689E1B2C187D8692B3E589B2B /* MobilitySensor.swift */,
+				4A8C7D09D6E0EB3A102E2EAC580B4B73 /* PayloadDataFormatter.swift */,
+				867F34CBDCB94F73E12B441D0394E980 /* PayloadDataMatcher.swift */,
+				AFF13DEA871C6CEAFD7391EAD82E9927 /* PayloadDataSupplier.swift */,
+				80E65AA9885FCA92E57DDD93A6A3CBEB /* PseudoRandomFunction.swift */,
+				D43CA51CB1AF7C79B80EEB74A7C62D26 /* RingBuffer.swift */,
+				F7EA5D76C6360DA7784D91E471E92BC9 /* RiskAggregationBasic.swift */,
+				5532195E16956E1E298BACAC5D2C9973 /* Sample.swift */,
+				0D2852EB829BCB78F3B147D41E6299BB /* SampleList.swift */,
+				F0B2F1425343C64E8E93965650674A1E /* SampleStatistics.swift */,
+				1CD917AD0C863485236EECD9F7E606B2 /* SelfCalibratedModel.swift */,
+				E1D711B3582D3F73B0AADD6D4A4646B8 /* Sensor.swift */,
+				A4042AF86B0E8FE6A8687BE30D1F7D4C /* SensorArray.swift */,
+				F1723561C00F1BFC82A0E02D3BC4AD0E /* SensorDelegate.swift */,
+				FD6578221BF556A5976C3409B1272104 /* SensorLogger.swift */,
+				7DB86CD689C1F01702B9A0C7A012784A /* SimplePayloadDataMatcher.swift */,
+				13CD8D4ED58D69AC58E41AF5DAEB50F5 /* SimplePayloadDataSupplier.swift */,
+				13FDDBA198D07B339A204476873B0193 /* SmoothedLinearModel.swift */,
+				C68BE8F32130BE8C57B37AA681BE59E9 /* SocialDistance.swift */,
+				720D5E504494869B085FF7A405652F4A /* StatisticsLog.swift */,
+				9CFF89BD7E2119F4586DEEC3584CF457 /* TestPayloadDataSupplier.swift */,
+				C0F84EA024116F805EE29735403A613E /* TextFile.swift */,
+				4EFDF4695B3FE708360F5CE79809F16F /* UIntBig.swift */,
+				1795F46FB7D0BDF74360C976C76F7209 /* VariantSet.swift */,
+				FF07BAB06086C322856A4BA54F3B200F /* VenueDiary.swift */,
+				F64720B8EEA59009F39A99CD0B14D849 /* XXH3.swift */,
+				D2F7FC44F447218B2932C8E47F256B6B /* Support Files */,
+			);
+			name = Herald;
+			path = Herald;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		02FB5E4B73FF80303274F860043A8865 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D46CFE5BE9C7AC5BD7B9CED117B335BF /* Herald-umbrella.h in Headers */,
+				DA86E516685AC9DED55AC8015A635D17 /* herald.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4072A3EAD16532525CA6EE47AE52E93F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				080A4CC18EB4BAAB354FBA84BD46F5ED /* Pods-HeraldTest-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		90C4532E7943ACC1C205C763A87FADA2 /* Herald */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F11FF799CEE4781A63E61CEAFE925DC /* Build configuration list for PBXNativeTarget "Herald" */;
+			buildPhases = (
+				02FB5E4B73FF80303274F860043A8865 /* Headers */,
+				0E6F31F41CACB442322981DD29AE9971 /* Sources */,
+				BBA08FA8D96E6434AB48E976C7279457 /* Frameworks */,
+				8F0099C619C8AA34CA35898E6135E57A /* Copy generated compatibility header */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Herald;
+			productName = Herald;
+			productReference = F636616F2AB77B45B43D1A4B3CDB69B3 /* libHerald.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		E06C9B705FBB35744C0163D5AF384C3F /* Pods-HeraldTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 911C609A6A407B904D2F9F66F762A65D /* Build configuration list for PBXNativeTarget "Pods-HeraldTest" */;
+			buildPhases = (
+				4072A3EAD16532525CA6EE47AE52E93F /* Headers */,
+				0EC3899DD3DF5C221E573DA38A7DA465 /* Sources */,
+				352EAA5AAC1A3A769161F06F54CD6886 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5A69054490170E11B48AFCF15BF2DC84 /* PBXTargetDependency */,
+			);
+			name = "Pods-HeraldTest";
+			productName = "Pods-HeraldTest";
+			productReference = 79F1FAF9C04FD0A67ECBED121B581F8B /* libPods-HeraldTest.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = D091CE6207A85EB8727D976B87973BD7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				90C4532E7943ACC1C205C763A87FADA2 /* Herald */,
+				E06C9B705FBB35744C0163D5AF384C3F /* Pods-HeraldTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8F0099C619C8AA34CA35898E6135E57A /* Copy generated compatibility header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h",
+				"${PODS_ROOT}/Headers/Public/Herald/Herald.modulemap",
+				"${PODS_ROOT}/Headers/Public/Herald/Herald-umbrella.h",
+			);
+			name = "Copy generated compatibility header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap",
+				"${BUILT_PRODUCTS_DIR}/Herald-umbrella.h",
+				"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/Herald/Herald.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/Herald/Herald-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0E6F31F41CACB442322981DD29AE9971 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1C1011B1F87172CC95854A3170A2031 /* Aggregate.swift in Sources */,
+				5AE202C7ED22C7C336E35071049D5BBB /* AnalysisDelegate.swift in Sources */,
+				59B43151B0D9D1B66EA26F1CE381AB51 /* AnalysisProvider.swift in Sources */,
+				ED39F74EF391C914FECAD1F410595C27 /* AnalysisRunner.swift in Sources */,
+				23BFCA66DEFC19C9D563607FEAA584AE /* BatteryLog.swift in Sources */,
+				1F62BDC56A16DA8561B314D52BCB9A29 /* BeaconPayloadDataSupplier.swift in Sources */,
+				D352C6BAD42BBCEB4209FB5BE34399ED /* BLEAdvertParser.swift in Sources */,
+				96F4FC5178D79FFA1161595F6BF54939 /* BLEDatabase.swift in Sources */,
+				89ACD429A32E9A2586EAC1C331C6CD32 /* BLEReceiver.swift in Sources */,
+				27EDCEF18202C49120C42D9D90D40EBC /* BLESensor.swift in Sources */,
+				541EFAAE351E74CBEAAD900BC6DE44F2 /* BLETransmitter.swift in Sources */,
+				54710E759A91EBF8E19C254C6CE1877F /* BLEUtilities.swift in Sources */,
+				32E44B0ACE5BEC8B8E329FC403B48DD0 /* BloomFilter.swift in Sources */,
+				8678F4426214C67DF00009CBD397889C /* CalibrationLog.swift in Sources */,
+				8E08DD07926F4297A3699B922471771C /* ContactLog.swift in Sources */,
+				B190E1997D30EBD956E8F9077AE7EB5B /* DataExtensions.swift in Sources */,
+				B5118C79F6678856CF3C485423FD0C5D /* DateExtensions.swift in Sources */,
+				091E14E0731D09C9257E31941583E44F /* DetectionLog.swift in Sources */,
+				22672E0129DDF1E868526D605E75AB90 /* Device.swift in Sources */,
+				12BE9237E6DFE13D354EE01B7862D579 /* DoubleValue.swift in Sources */,
+				B3CBFE951AB05858CEB5C25794D5E0EC /* Encryption.swift in Sources */,
+				44C1328B9DFC467CFB20FC2E0701D072 /* EventLog.swift in Sources */,
+				472638D72996B40C7D0A172E1B7FE1CB /* EventTimeIntervalLog.swift in Sources */,
+				B62C4A2D6C96C626C56FD374E3EE1905 /* ExtendedData.swift in Sources */,
+				6D7C148F57D24A3AD11D87294C4EF1B2 /* Filter.swift in Sources */,
+				0AEFA368F6C757DFDF659CA37B3AD0E5 /* FowlerBasic.swift in Sources */,
+				923ECE32F2F933C93F4D32B33ADEF6EF /* Herald-dummy.m in Sources */,
+				E5120E4AEA8E8AD87CC17BC1C5B3476F /* InertiaSensor.swift in Sources */,
+				2CEC290E325B14161ACEAFAAA3AAFF2E /* Integrity.swift in Sources */,
+				750C17096B2557BC9F1443A5DFE0C6F9 /* Interactions.swift in Sources */,
+				CC847F90ED678E2C253C2DD3BBBCCDB1 /* KeyExchange.swift in Sources */,
+				9785C48A40A60D11B99AB8C2364E4E17 /* ListManager.swift in Sources */,
+				109D75E85A46491DDE915C759E654F68 /* Mobility.swift in Sources */,
+				1B9E66D009E1FADB831888EBB6235B21 /* MobilitySensor.swift in Sources */,
+				CF0D5CA01D2C75AD84E4C4E4E0747B0C /* PayloadDataFormatter.swift in Sources */,
+				531665ADB968DB71A2BEADF3FCC3C896 /* PayloadDataMatcher.swift in Sources */,
+				2D82D4558F8D0B6E494ADF9700A39299 /* PayloadDataSupplier.swift in Sources */,
+				C99FC024854402A6182A30C13BC9A6C6 /* PseudoRandomFunction.swift in Sources */,
+				33F192ED1E50E5CEACB762134E8920A1 /* RingBuffer.swift in Sources */,
+				DA38B4E5CBA30BFAF180EB5040F16DAF /* RiskAggregationBasic.swift in Sources */,
+				C8A99C01A84FE1A9E9565CDD5CFBED8A /* Sample.swift in Sources */,
+				E0A39E57B25068CD1B09C18EF2DA25BB /* SampleList.swift in Sources */,
+				91D247FC782FF4FA91F91426ABFEB25D /* SampleStatistics.swift in Sources */,
+				F213C7048B6FFC45934E7C4DCA58DEA7 /* SelfCalibratedModel.swift in Sources */,
+				062183E93B8EB2735935E0791F061B5A /* Sensor.swift in Sources */,
+				CF310F695F982B90DCED4058C47F9616 /* SensorArray.swift in Sources */,
+				F4DE9A7F0D94230616BAB38C21F41B1C /* SensorDelegate.swift in Sources */,
+				E3AC1C7920E4D1DBCCFCBE87FEB88BC5 /* SensorLogger.swift in Sources */,
+				B1C7ED2B781736D453EAA171ACD24CEF /* SimplePayloadDataMatcher.swift in Sources */,
+				D970EF66B0D2825237F99B35292E90E6 /* SimplePayloadDataSupplier.swift in Sources */,
+				7EB2C24DF82B7F254536E99DA4F1C3ED /* SmoothedLinearModel.swift in Sources */,
+				46A85267A7E01A6D2E2BC6AF7A74D1C1 /* SocialDistance.swift in Sources */,
+				D32AB21DB3DB138762C28E907C407B7F /* StatisticsLog.swift in Sources */,
+				7B23DAE3E671DBBA93A5B95EEFB76502 /* TestPayloadDataSupplier.swift in Sources */,
+				C809FCE7D08F773ACA69F1CABAAFE24B /* TextFile.swift in Sources */,
+				A2BA2744004B771D02389FE2B1E3EE19 /* UIntBig.swift in Sources */,
+				541E3423E2FCC5861C5A0F025A85F9A4 /* VariantSet.swift in Sources */,
+				9B0189135AC80AC4785D5D6588C718B0 /* VenueDiary.swift in Sources */,
+				77CB960E65D5484EC4740B75D364BF41 /* XXH3.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0EC3899DD3DF5C221E573DA38A7DA465 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD22D3EBBA51D692845A6344F423AFF5 /* Pods-HeraldTest-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5A69054490170E11B48AFCF15BF2DC84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Herald;
+			target = 90C4532E7943ACC1C205C763A87FADA2 /* Herald */;
+			targetProxy = 600CCCB5588D0257EE866AD3ECC07BF7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4F129C25FAF281E4E44A2C938B8A6968 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE3FDF4579429542820A769E3B839A23 /* Herald.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/Herald/Herald-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MODULEMAP_FILE = Headers/Public/Herald/Herald.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = Herald;
+				PRODUCT_NAME = Herald;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		744FD21FFDB64B58D972A765DD914BC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2F5392A9673CBEA455EFF4D697FF564 /* Herald.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/Herald/Herald-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MODULEMAP_FILE = Headers/Public/Herald/Herald.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = Herald;
+				PRODUCT_NAME = Herald;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7453FA31200AAE7A984838427E888572 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E7A54E6A9098577D1505009D8627346 /* Pods-HeraldTest.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-HeraldTest/Pods-HeraldTest.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BC01E0B73776AF6B58DC318A9BE988D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		C605C363CC9F26F9FF97DBB1D5C6E25C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		EF64E117A84D76BC1B4568E1B872FFEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCA481AAD6DFFFFEAD42737010DFF8EC /* Pods-HeraldTest.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-HeraldTest/Pods-HeraldTest.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC01E0B73776AF6B58DC318A9BE988D7 /* Debug */,
+				C605C363CC9F26F9FF97DBB1D5C6E25C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F11FF799CEE4781A63E61CEAFE925DC /* Build configuration list for PBXNativeTarget "Herald" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F129C25FAF281E4E44A2C938B8A6968 /* Debug */,
+				744FD21FFDB64B58D972A765DD914BC8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		911C609A6A407B904D2F9F66F762A65D /* Build configuration list for PBXNativeTarget "Pods-HeraldTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF64E117A84D76BC1B4568E1B872FFEA /* Debug */,
+				7453FA31200AAE7A984838427E888572 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
