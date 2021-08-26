@@ -9,13 +9,25 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var status: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
-        print(TestService.shared)
+        TestService.shared.start()
+        
+        EventHelper.delegate = self
     }
-
 
 }
 
+extension ViewController: EventHelperDelegate {
+    
+    func updateStatus() {
+        DispatchQueue.main.async {
+            let service = TestService.shared
+            self.status.text = service.state
+        }
+    }
+    
+}

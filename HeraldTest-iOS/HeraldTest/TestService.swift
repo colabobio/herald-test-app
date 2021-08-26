@@ -28,17 +28,17 @@ class TestService {
         return service
     }
     
-    init() {
+    func start() {
         initState()
         startTimer()
     }
     
     private func startTimer() {
         let queue = DispatchQueue(label: "com.example.HeraldTest.timer", attributes: .concurrent)
-        dispatch?.cancel() // cancel previous timer if any
+        dispatch?.cancel()
         dispatch = DispatchSource.makeTimerSource(queue: queue)
         dispatch?.schedule(deadline: .now(), repeating: .seconds(TestService.TIME_STEP), leeway: .seconds(1))
-        dispatch?.setEventHandler { [weak self] in // `[weak self]` only needed if you reference `self` in this closure and you want to prevent strong reference cycle
+        dispatch?.setEventHandler { [weak self] in
             self?.updateLoop()
         }
         dispatch?.resume()
@@ -52,14 +52,23 @@ class TestService {
     }
     
     private func initState() {
-        id = UUID().uuidString
+        id = randomID()
         time0 = Int(Date().timeIntervalSince1970)
         state = id + ":0"
     }
     
     private func updateState() {
         state = id + ": \((Int(Date().timeIntervalSince1970) - time0))"
+        
         updatePayload()
+        
+        EventHelper.triggerStatusChange()
+    }
+    
+    func randomID() -> String {
+      let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+      let digits = "0123456789"
+      return String((0..<2).map{ _ in letters.randomElement()! }) + String((0..<2).map{ _ in digits.randomElement()! })
     }
     
     private func updatePayload() {
@@ -69,6 +78,6 @@ class TestService {
     private func updateLoop() {
         updateState()
         
-        print("in update loop", state)
+        print("in update loop")
     }
 }
