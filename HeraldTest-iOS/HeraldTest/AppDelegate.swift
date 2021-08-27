@@ -13,7 +13,8 @@ import Herald
 // to add them to the service class...
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
-
+    var window : UIWindow?
+    
     var payloadDataSupplier: PayloadDataSupplier?
     var sensor: SensorArray?
     
@@ -30,12 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     }
 
     // MARK: UISceneSession Lifecycle
-
+    
+    @available(iOS 13.0, *)
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
 
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
+    @available(iOS 13.0, *)
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
 
     }
