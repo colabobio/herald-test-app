@@ -15,12 +15,15 @@ import Herald
 class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     var window : UIWindow?
     
+    public static var instance: AppDelegate?
+    
     var payloadDataSupplier: PayloadDataSupplier?
     var sensor: SensorArray?
     
     var peerStatus: [String] = []
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        AppDelegate.instance = self
         
         // @Edison: I'm following the herald-for-ios example code, where they have all init
         // in a startPhone() function, but that funciton is not called from anywhere. So
@@ -102,6 +105,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
         let info = payloadData.base64EncodedString()
         
         peerStatus.append(info)
+        print("RECEIVED PAYLOAD ------>", info)
+        // @Edison, I run a few tests and I see this printout, while having the Android app running on another device, but because the
+        // android device does not seem to be broadcasting anything (see the comments in the Android code), maybe is picking up some
+        // other BLE device I have nearby? This leads to the observation that we need to only allow exchange of payloads only beteen
+        // devices running the same simulation
         
         EventHelper.triggerPeerDetect()
     }

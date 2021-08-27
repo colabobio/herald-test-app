@@ -81,6 +81,7 @@ public class TestApplication extends Application implements SensorDelegate {
     @Override
     public void sensor(@NonNull @NotNull SensorType sensorType, @NonNull @NotNull ImmediateSendData immediateSendData, @NonNull @NotNull TargetIdentifier targetIdentifier) {
         Log.i(tag, sensorType.name() + ",immediateSendData=" + immediateSendData.toString() + ",targetIdentifier=" + targetIdentifier);
+        // @Edison, what's ImmediateSendData, the iOS implementation does not seem to have these methods, but maybe it's incomplete?
     }
 
     @Override
@@ -134,6 +135,9 @@ public class TestApplication extends Application implements SensorDelegate {
                 parsedPayload = payloadData.hexEncodedString();
             }
             peerStatus.add(parsedPayload);
+            // @Edison: I never go to this point in my tests, seems that parsePayload() never gets called
+            // on Android
+            Log.i(tag, "RECEIVED PAYLOAD ------> " + parsedPayload);
             TestBroadcast.triggerPeerDetect();
         }
     }
