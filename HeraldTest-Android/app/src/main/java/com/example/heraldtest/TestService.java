@@ -8,9 +8,10 @@ import android.os.IBinder;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import java.util.UUID;
+import java.util.Random;
+
+import io.heraldprox.herald.sensor.datatype.Data;
 
 public class TestService extends Service {
     private static final String tag = "TestService";
@@ -61,9 +62,18 @@ public class TestService extends Service {
     }
 
     private void initState() {
-        id = UUID.randomUUID().toString();
+        String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String digits = "0123456789";
+        id = generateRandomString(letters, 2) + generateRandomString(digits, 2);
         time0 = (int)(System.currentTimeMillis() / 1000);
         state = id + ":0";
+    }
+
+    private String generateRandomString(String chars, int length) {
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < length; i++) sb.append(chars.charAt(random.nextInt(chars.length())));
+        return sb.toString();
     }
 
     private void updateState() {
@@ -76,6 +86,11 @@ public class TestService extends Service {
 
     private void updatePayload() {
         // @Edison: need to update Herald payload here.
+
+        // Maybe something like this?
+        if (TestApplication.instance.sensor.immediateSendAll(new Data(state))) {
+            Log.i(tag, "data sent succesfully (?)");
+        }
     }
 
     private void updateLoop() {

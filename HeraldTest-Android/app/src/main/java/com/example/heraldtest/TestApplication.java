@@ -34,7 +34,7 @@ public class TestApplication extends Application implements SensorDelegate {
     public static TestApplication instance;
     private static boolean activityVisible = false;
 
-    private SensorArray sensor = null;
+    public SensorArray sensor = null;
 
     public ArrayList<String> peerStatus = null;
 
