@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
@@ -31,7 +32,7 @@ public class TestApplication extends Application implements SensorDelegate {
 
     public static TestApplication instance;
     private static boolean activityVisible = false;
-    public static PayloadDataSupplier payloadDataSupplier = new TestPayloadDataSupplier((int)(Math.random() * 2 + 10));
+    public static PayloadDataSupplier payloadDataSupplier = new TestPayloadDataSupplier(new Random().nextInt((10 - 1) + 1) + 1);
 
     public SensorArray sensor = null;
 
