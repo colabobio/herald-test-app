@@ -38,6 +38,7 @@ class TestService {
         let queue = DispatchQueue(label: "com.example.HeraldTest.timer", attributes: .concurrent)
         dispatch?.cancel()
         dispatch = DispatchSource.makeTimerSource(queue: queue)
+        
         dispatch?.schedule(deadline: .now(), repeating: .seconds(TestService.TIME_STEP), leeway: .seconds(1))
         dispatch?.setEventHandler { [weak self] in
             self?.updateLoop()

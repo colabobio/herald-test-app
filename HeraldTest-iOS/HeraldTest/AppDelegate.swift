@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     func startPhone() {
         let identifier = Int.random(in: 1...10)
         payloadDataSupplier = ConcreteTestPayloadDataSupplier(identifier: Int32(Int(identifier)))
-        
+        BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minute
         sensor = SensorArray(payloadDataSupplier!)
         sensor?.add(delegate: self)
         sensor?.start()
