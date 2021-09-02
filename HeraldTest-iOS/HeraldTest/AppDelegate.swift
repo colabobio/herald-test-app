@@ -41,7 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     }
 
     func startPhone() {
-        payloadDataSupplier = ConcreteTestPayloadDataSupplier(identifier: 0)
+        let identifier = Int.random(in: 1...10)
+        payloadDataSupplier = ConcreteTestPayloadDataSupplier(identifier: Int32(Int(identifier)))
+        
         sensor = SensorArray(payloadDataSupplier!)
         sensor?.add(delegate: self)
         sensor?.start()
@@ -74,9 +76,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     }
     
     // TODO: Gets us proximity
-    ["1": message]
-    
-    ["1": proximity value]
     func sensor(_ sensor: SensorType, didMeasure: Proximity, fromTarget: TargetIdentifier) {
         print(sensor.rawValue + ",didMeasure=" + didMeasure.description + ",fromTarget=" + fromTarget.description)
         
@@ -103,7 +102,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     func parsePayload(_ source: String, _ sensor: SensorType, _ payloadData: PayloadData, _ fromTarget: TargetIdentifier) {
         let info = payloadData.base64EncodedString()
         
-        peerStatus.append(info)
         print("RECEIVED PAYLOAD ------>", info)
         
         EventHelper.triggerPeerDetect()

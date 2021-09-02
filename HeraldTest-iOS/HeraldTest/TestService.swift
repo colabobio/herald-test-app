@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Herald
 
 class TestService {
     static let TIME_STEP: Int = 2
@@ -82,11 +83,8 @@ class TestService {
 //        if res {
 //            print("data sent suscesfully (?)")
 //        }
-        
-        for (index i .. peerStatus) {
-            
-            AppDelegate.instance?.sensor!.immediateSend(data: Data(state.utf8), "0");
-        }
+    
+        AppDelegate.instance?.payloadDataSupplier?.payload(Data(state.utf8))
         
     }
     
