@@ -1,13 +1,13 @@
 package com.example.heraldtest;
 
 import android.app.Application;
+import android.os.Build;
 import android.util.Log;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
@@ -32,7 +32,13 @@ public class TestApplication extends Application implements SensorDelegate {
 
     public static TestApplication instance;
     private static boolean activityVisible = false;
-    public static PayloadDataSupplier payloadDataSupplier = new TestPayloadDataSupplier(new Random().nextInt((10 - 1) + 1) + 1);
+
+    private int identifier() {
+        final String text = Build.MODEL + ":" + Build.BRAND;
+        return text.hashCode();
+    }
+
+    public static PayloadDataSupplier payloadDataSupplier = new TestPayloadDataSupplier(instance.identifier());
 
     public SensorArray sensor = null;
 
@@ -46,6 +52,7 @@ public class TestApplication extends Application implements SensorDelegate {
         BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minutes(1);
 
         sensor = new SensorArray(getApplicationContext(), payloadDataSupplier);
+
 
         // Add appDelegate as listener for detection events for logging and start sensor
         sensor.add(this);
