@@ -26,13 +26,12 @@ import io.heraldprox.herald.sensor.datatype.TargetIdentifier;
 import io.heraldprox.herald.sensor.datatype.TimeInterval;
 import io.heraldprox.herald.sensor.payload.test.TestPayloadDataSupplier;
 
-//@Edison: I'm following the pattern in the demo Herald app for Android, where all callbacks are defined in the main app,
-// but I think it would make more sense to add them to the service class...
 public class TestApplication extends Application implements SensorDelegate {
     private final static String tag = TestApplication.class.getName();
 
     public static TestApplication instance;
     private static boolean activityVisible = false;
+    public static PayloadDataSupplier payloadDataSupplier = new TestPayloadDataSupplier((int)(Math.random() * 2 + 10));
 
     public SensorArray sensor = null;
 
@@ -43,7 +42,6 @@ public class TestApplication extends Application implements SensorDelegate {
         super.onCreate();
         instance = this;
 
-        final PayloadDataSupplier payloadDataSupplier = new TestPayloadDataSupplier(0);
         BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minutes(1);
 
         sensor = new SensorArray(getApplicationContext(), payloadDataSupplier);

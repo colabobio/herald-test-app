@@ -115,7 +115,7 @@
 		7131E5BA1EB06DA9C4CEEF5F82A4C580 /* Herald-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Herald-prefix.pch"; sourceTree = "<group>"; };
 		720D5E504494869B085FF7A405652F4A /* StatisticsLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StatisticsLog.swift; path = Herald/Herald/Sensor/Data/StatisticsLog.swift; sourceTree = "<group>"; };
 		74F2E9324297A5B8533FD0A1DC4E466D /* Pods-HeraldTest-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-HeraldTest-acknowledgements.markdown"; sourceTree = "<group>"; };
-		79F1FAF9C04FD0A67ECBED121B581F8B /* libPods-HeraldTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HeraldTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		79F1FAF9C04FD0A67ECBED121B581F8B /* libPods-HeraldTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-HeraldTest.a"; path = "libPods-HeraldTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DB86CD689C1F01702B9A0C7A012784A /* SimplePayloadDataMatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SimplePayloadDataMatcher.swift; path = Herald/Herald/Sensor/Payload/Simple/SimplePayloadDataMatcher.swift; sourceTree = "<group>"; };
 		7FB52F810D14E97731C380DD95F6D004 /* Pods-HeraldTest-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-HeraldTest-umbrella.h"; sourceTree = "<group>"; };
 		80E65AA9885FCA92E57DDD93A6A3CBEB /* PseudoRandomFunction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PseudoRandomFunction.swift; path = Herald/Herald/Sensor/Data/Security/PseudoRandomFunction.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 		9BDC85FC4CF039E9E5D45BC2598BD88B /* Filter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = Herald/Herald/Sensor/Analysis/Sampling/Filter.swift; sourceTree = "<group>"; };
 		9C2A0DF3B5BE46EBADF62D970787058E /* BLETransmitter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BLETransmitter.swift; path = Herald/Herald/Sensor/BLE/BLETransmitter.swift; sourceTree = "<group>"; };
 		9CFF89BD7E2119F4586DEEC3584CF457 /* TestPayloadDataSupplier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TestPayloadDataSupplier.swift; path = Herald/Herald/Sensor/Payload/Test/TestPayloadDataSupplier.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9F1BBCABF9FC00A9E54757D77F7BF979 /* ListManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ListManager.swift; path = Herald/Herald/Sensor/Analysis/Sampling/ListManager.swift; sourceTree = "<group>"; };
 		A4042AF86B0E8FE6A8687BE30D1F7D4C /* SensorArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SensorArray.swift; path = Herald/Herald/Sensor/SensorArray.swift; sourceTree = "<group>"; };
 		A5547BBAB50B87520FDEEBAE32ADDF24 /* Device.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Device.swift; path = Herald/Herald/Sensor/Device.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 		F13F9A4138AD0FDBE4A9B9EE7E463E62 /* DoubleValue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DoubleValue.swift; path = Herald/Herald/Sensor/Datatype/DoubleValue.swift; sourceTree = "<group>"; };
 		F1723561C00F1BFC82A0E02D3BC4AD0E /* SensorDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SensorDelegate.swift; path = Herald/Herald/Sensor/SensorDelegate.swift; sourceTree = "<group>"; };
 		F339C308B50E8A5ACB4B5FD910029404 /* DataExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataExtensions.swift; path = Herald/Herald/Sensor/Extensions/DataExtensions.swift; sourceTree = "<group>"; };
-		F636616F2AB77B45B43D1A4B3CDB69B3 /* libHerald.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHerald.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F636616F2AB77B45B43D1A4B3CDB69B3 /* libHerald.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libHerald.a; path = libHerald.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F64720B8EEA59009F39A99CD0B14D849 /* XXH3.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = XXH3.swift; path = Herald/Herald/Sensor/Payload/Simple/XXH3.swift; sourceTree = "<group>"; };
 		F7EA5D76C6360DA7784D91E471E92BC9 /* RiskAggregationBasic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RiskAggregationBasic.swift; path = Herald/Herald/Sensor/Analysis/Algorithms/Risk/RiskAggregationBasic.swift; sourceTree = "<group>"; };
 		F81298E52A70EBB1D0BA0453C38EBD23 /* Herald.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Herald.modulemap; sourceTree = "<group>"; };
@@ -314,6 +314,7 @@
 				F64720B8EEA59009F39A99CD0B14D849 /* XXH3.swift */,
 				D2F7FC44F447218B2932C8E47F256B6B /* Support Files */,
 			);
+			name = Herald;
 			path = Herald;
 			sourceTree = "<group>";
 		};
@@ -383,7 +384,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1100;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 9.3";
@@ -518,79 +519,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		4F129C25FAF281E4E44A2C938B8A6968 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE3FDF4579429542820A769E3B839A23 /* Herald.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/Herald/Herald-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MODULEMAP_FILE = Headers/Public/Herald/Herald.modulemap;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = Herald;
-				PRODUCT_NAME = Herald;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		744FD21FFDB64B58D972A765DD914BC8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2F5392A9673CBEA455EFF4D697FF564 /* Herald.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/Herald/Herald-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				MODULEMAP_FILE = Headers/Public/Herald/Herald.modulemap;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = Herald;
-				PRODUCT_NAME = Herald;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		7453FA31200AAE7A984838427E888572 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E7A54E6A9098577D1505009D8627346 /* Pods-HeraldTest.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-HeraldTest/Pods-HeraldTest.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		BC01E0B73776AF6B58DC318A9BE988D7 /* Debug */ = {
+		2B9E26EAE2CD392AD762421F663075A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -643,7 +572,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -656,7 +585,54 @@
 			};
 			name = Debug;
 		};
-		C605C363CC9F26F9FF97DBB1D5C6E25C /* Release */ = {
+		47E3D2A266CA049E61FDD4AAF5B8C31D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E7A54E6A9098577D1505009D8627346 /* Pods-HeraldTest.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-HeraldTest/Pods-HeraldTest.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4F129C25FAF281E4E44A2C938B8A6968 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE3FDF4579429542820A769E3B839A23 /* Herald.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/Herald/Herald-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MODULEMAP_FILE = Headers/Public/Herald/Herald.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = Herald;
+				PRODUCT_NAME = Herald;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -706,7 +682,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -718,7 +694,7 @@
 			};
 			name = Release;
 		};
-		EF64E117A84D76BC1B4568E1B872FFEA /* Debug */ = {
+		674A5FDB26288555C3CBE0BCFBB9598E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCA481AAD6DFFFFEAD42737010DFF8EC /* Pods-HeraldTest.debug.xcconfig */;
 			buildSettings = {
@@ -727,7 +703,7 @@
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-HeraldTest/Pods-HeraldTest.modulemap";
 				OTHER_LDFLAGS = "";
@@ -740,14 +716,39 @@
 			};
 			name = Debug;
 		};
+		744FD21FFDB64B58D972A765DD914BC8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2F5392A9673CBEA455EFF4D697FF564 /* Herald.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/Herald/Herald-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MODULEMAP_FILE = Headers/Public/Herald/Herald.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = Herald;
+				PRODUCT_NAME = Herald;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BC01E0B73776AF6B58DC318A9BE988D7 /* Debug */,
-				C605C363CC9F26F9FF97DBB1D5C6E25C /* Release */,
+				2B9E26EAE2CD392AD762421F663075A1 /* Debug */,
+				63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -764,8 +765,8 @@
 		911C609A6A407B904D2F9F66F762A65D /* Build configuration list for PBXNativeTarget "Pods-HeraldTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EF64E117A84D76BC1B4568E1B872FFEA /* Debug */,
-				7453FA31200AAE7A984838427E888572 /* Release */,
+				674A5FDB26288555C3CBE0BCFBB9598E /* Debug */,
+				47E3D2A266CA049E61FDD4AAF5B8C31D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

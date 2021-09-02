@@ -7,11 +7,10 @@ import android.content.IntentFilter;
 
 import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import io.heraldprox.herald.BuildConfig;
 
 public class TestBroadcast {
-    public static final String STATUS_CHANGED = BuildConfig.APPLICATION_ID + ".STATUS_CHANGED";
-    public static final String PEER_DETECTED = BuildConfig.APPLICATION_ID + ".PEER_DETECTED";
+    public static final String STATUS_CHANGED = "com.example.heraldtest.STATUS_CHANGED";
+    public static final String PEER_DETECTED = "com.example.heraldtest.PEER_DETECTED";
 
     @NonNull
     public static BroadcastReceiver statusChangeReceived(@NonNull Runnable callback) {

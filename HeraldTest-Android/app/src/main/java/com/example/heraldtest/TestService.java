@@ -84,13 +84,7 @@ public class TestService extends Service {
     }
 
     private void updatePayload() {
-        // Maybe something like this?
-        if (TestApplication.instance.sensor.immediateSendAll(new Data(state))) {
-            Log.i(tag, "data sent succesfully (?)");
-            // In my tests, immediateSendAll() gets called and gets here, but does not seem to be sending
-            // anything because if you step trace into the function, it looks like there are no BLE devices
-            // even the phone has bluetooth turned on.
-        }
+        TestApplication.payloadDataSupplier.payload(new Data(state));
     }
 
     private void updateLoop() {

@@ -82,6 +82,12 @@ class TestService {
 //        if res {
 //            print("data sent suscesfully (?)")
 //        }
+        
+        for (index i .. peerStatus) {
+            
+            AppDelegate.instance?.sensor!.immediateSend(data: Data(state.utf8), "0");
+        }
+        
     }
     
     private func updateLoop() {

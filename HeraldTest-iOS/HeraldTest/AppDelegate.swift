@@ -8,9 +8,6 @@
 import UIKit
 import Herald
 
-//@Edison: Same as in Android, I'm following the pattern in the demo Herald app for iOS,
-// where all callbacks are defined in the main app, but I think it would make more sense
-// to add them to the service class...
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     var window : UIWindow?
@@ -20,14 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     var payloadDataSupplier: PayloadDataSupplier?
     var sensor: SensorArray?
     
-    var peerStatus: [String] = []
+    var peerStatus: [String: String] = [:]
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         AppDelegate.instance = self
-        
-        // @Edison: I'm following the herald-for-ios example code, where they have all init
-        // in a startPhone() function, but that funciton is not called from anywhere. So
-        // I'm explicitly calling it here, not sure if this is correct.
+    
         startPhone()
         
         return true
@@ -59,11 +53,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
         print(sensor.rawValue + ",didDetect=" + didDetect.description)
     }
     
+    // TODO: Get Message
     func sensor(_ sensor: SensorType, didRead: PayloadData, fromTarget: TargetIdentifier) {
         print(sensor.rawValue + ",didRead=" + didRead.shortName + ",fromTarget=" + fromTarget.description)
         parsePayload("didRead", sensor, didRead, fromTarget)
+        peerStatus[fromTarget] = "";
     }
     
+    // Get Message
     func sensor(_ sensor: SensorType, didReceive: Data, fromTarget: TargetIdentifier) {
         print(sensor.rawValue + ",didReceive=" + didReceive.base64EncodedString() + ",fromTarget=" + fromTarget.description)
     }
@@ -76,12 +73,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
         }
     }
     
+    // TODO: Gets us proximity
+    ["1": message]
+    
+    ["1": proximity value]
     func sensor(_ sensor: SensorType, didMeasure: Proximity, fromTarget: TargetIdentifier) {
         print(sensor.rawValue + ",didMeasure=" + didMeasure.description + ",fromTarget=" + fromTarget.description)
         
         let prox = didMeasure.value
-        
-        // @Edison: proximity info but no payload?
+        sensor.rawValue
     }
     
     func sensor(_ sensor: SensorType, didVisit: Location?) {
@@ -101,15 +101,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     }
     
     func parsePayload(_ source: String, _ sensor: SensorType, _ payloadData: PayloadData, _ fromTarget: TargetIdentifier) {
-        // @Edison: not really complete... just some ideas of what should be done here...
         let info = payloadData.base64EncodedString()
         
         peerStatus.append(info)
         print("RECEIVED PAYLOAD ------>", info)
-        // @Edison, I run a few tests and I see this printout, while having the Android app running on another device, but because the
-        // android device does not seem to be broadcasting anything (see the comments in the Android code), maybe is picking up some
-        // other BLE device I have nearby? This leads to the observation that we need to only allow exchange of payloads only beteen
-        // devices running the same simulation
         
         EventHelper.triggerPeerDetect()
     }
