@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 
 import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import io.heraldprox.herald.BuildConfig;
 
 public class TestBroadcast {
     public static final String STATUS_CHANGED = BuildConfig.APPLICATION_ID + ".STATUS_CHANGED";

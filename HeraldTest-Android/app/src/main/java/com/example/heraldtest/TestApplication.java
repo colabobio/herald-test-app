@@ -3,15 +3,14 @@ package com.example.heraldtest;
 import android.app.Application;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.OnLifecycleEvent;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.OnLifecycleEvent;
 import io.heraldprox.herald.sensor.PayloadDataSupplier;
 import io.heraldprox.herald.sensor.SensorArray;
 import io.heraldprox.herald.sensor.SensorDelegate;
@@ -24,6 +23,7 @@ import io.heraldprox.herald.sensor.datatype.Proximity;
 import io.heraldprox.herald.sensor.datatype.SensorState;
 import io.heraldprox.herald.sensor.datatype.SensorType;
 import io.heraldprox.herald.sensor.datatype.TargetIdentifier;
+import io.heraldprox.herald.sensor.datatype.TimeInterval;
 import io.heraldprox.herald.sensor.payload.test.TestPayloadDataSupplier;
 
 //@Edison: I'm following the pattern in the demo Herald app for Android, where all callbacks are defined in the main app,
@@ -43,10 +43,11 @@ public class TestApplication extends Application implements SensorDelegate {
         super.onCreate();
         instance = this;
 
-        // @edison: here we should create an instance of our custom payload supplier
-        // Initialise sensor array for given payload data supplier
         final PayloadDataSupplier payloadDataSupplier = new TestPayloadDataSupplier(0);
+        BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minutes(1);
+
         sensor = new SensorArray(getApplicationContext(), payloadDataSupplier);
+
         // Add appDelegate as listener for detection events for logging and start sensor
         sensor.add(this);
 
@@ -81,7 +82,7 @@ public class TestApplication extends Application implements SensorDelegate {
     @Override
     public void sensor(@NonNull @NotNull SensorType sensorType, @NonNull @NotNull ImmediateSendData immediateSendData, @NonNull @NotNull TargetIdentifier targetIdentifier) {
         Log.i(tag, sensorType.name() + ",immediateSendData=" + immediateSendData.toString() + ",targetIdentifier=" + targetIdentifier);
-        // @Edison, what's ImmediateSendData, the iOS implementation does not seem to have these methods, but maybe it's incomplete?
+        parsePayload("didShare", sensorType, sensor.payloadData(), targetIdentifier);
     }
 
     @Override
@@ -116,6 +117,7 @@ public class TestApplication extends Application implements SensorDelegate {
         Log.i(tag, sensorType.name() + ",sensorState=" + sensorState.toString());
     }
 
+
     private void parsePayload(String source, SensorType sensor, PayloadData payloadData, TargetIdentifier fromTarget) {
         String service = "herald";
         String parsedPayload = payloadData.shortName();
@@ -135,8 +137,6 @@ public class TestApplication extends Application implements SensorDelegate {
                 parsedPayload = payloadData.hexEncodedString();
             }
             peerStatus.add(parsedPayload);
-            // @Edison: I never go to this point in my tests, seems that parsePayload() never gets called
-            // on Android
             Log.i(tag, "RECEIVED PAYLOAD ------> " + parsedPayload);
             TestBroadcast.triggerPeerDetect();
         }

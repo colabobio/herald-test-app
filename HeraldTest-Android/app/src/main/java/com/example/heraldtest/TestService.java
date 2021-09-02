@@ -7,10 +7,9 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
-import androidx.core.app.NotificationCompat;
-
 import java.util.Random;
 
+import androidx.core.app.NotificationCompat;
 import io.heraldprox.herald.sensor.datatype.Data;
 
 public class TestService extends Service {
@@ -85,8 +84,6 @@ public class TestService extends Service {
     }
 
     private void updatePayload() {
-        // @Edison: need to update Herald payload here.
-
         // Maybe something like this?
         if (TestApplication.instance.sensor.immediateSendAll(new Data(state))) {
             Log.i(tag, "data sent succesfully (?)");
