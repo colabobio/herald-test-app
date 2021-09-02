@@ -39,11 +39,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
 
     }
+    
+    private func identifier() -> Int32 {
+           let text = UIDevice.current.name + ":" + UIDevice.current.model + ":" + UIDevice.current.systemName + ":" + UIDevice.current.systemVersion
+           var hash = UInt64 (5381)
+           let buf = [UInt8](text.utf8)
+           for b in buf {
+               hash = 127 * (hash & 0x00ffffffffffffff) + UInt64(b)
+           }
+           let value = Int32(hash.remainderReportingOverflow(dividingBy: UInt64(Int32.max)).partialValue)
+        
+           return value
+       }
 
     func startPhone() {
-        let identifier = Int.random(in: 1...10)
-        payloadDataSupplier = ConcreteTestPayloadDataSupplier(identifier: Int32(Int(identifier)))
+        payloadDataSupplier = ConcreteTestPayloadDataSupplier(identifier: identifier())
         BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minute
+        BLESensorConfiguration.logLevel = .debug
         sensor = SensorArray(payloadDataSupplier!)
         sensor?.add(delegate: self)
         sensor?.start()
