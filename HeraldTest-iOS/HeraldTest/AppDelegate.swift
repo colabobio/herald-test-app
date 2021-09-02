@@ -55,6 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     func startPhone() {
         payloadDataSupplier = ConcreteTestPayloadDataSupplier(identifier: identifier())
         BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minute
+        BLESensorConfiguration.interopOpenTraceEnabled = true
+        BLESensorConfiguration.interopOpenTracePayloadDataUpdateTimeInterval = TimeInterval.minute
         BLESensorConfiguration.logLevel = .debug
         sensor = SensorArray(payloadDataSupplier!)
         sensor?.add(delegate: self)
