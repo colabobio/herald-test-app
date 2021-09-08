@@ -50,8 +50,6 @@ public class TestApplication extends Application implements SensorDelegate {
         instance = this;
 
         BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.seconds(1);
-        BLESensorConfiguration.interopOpenTraceEnabled = true;
-        BLESensorConfiguration.interopOpenTracePayloadDataUpdateTimeInterval = TimeInterval.minutes(1);
 
         sensor = new SensorArray(getApplicationContext(), payloadDataSupplier);
 

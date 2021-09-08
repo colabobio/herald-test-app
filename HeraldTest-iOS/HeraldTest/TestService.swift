@@ -74,19 +74,7 @@ class TestService {
     }
     
     private func updatePayload() {
-        // @Edison: need to update Herald payload here...
-        
-        // ...something like this?
-        // I tried it, run a few times but at some point the immediateSendAll call crashes with a
-        // "Fatal error: Unexpectedly found nil while unwrapping an Optional value"
-        // So commented it out for now.
-//        guard let res = AppDelegate.instance?.sensor!.immediateSendAll(data: Data(state.utf8)) else { return }
-//        if res {
-//            print("data sent suscesfully (?)")
-//        }
-    
         AppDelegate.instance?.payloadDataSupplier?.payload(Data(state.utf8))
-        
     }
     
     private func updateLoop() {
