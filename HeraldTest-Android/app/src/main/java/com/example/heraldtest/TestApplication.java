@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
@@ -34,11 +35,15 @@ public class TestApplication extends Application implements SensorDelegate {
     private static boolean activityVisible = false;
 
     private int identifier() {
-        final String text = Build.MODEL + ":" + Build.BRAND;
+        // TODO for persistence between app restarts, make the 'random' section a check
+        //      for a text file value. If no text file, generate random and use. If file
+        //      exists, load the value. Otherwise the ID will change on phone restart!
+        final String text = Build.MODEL + ":" + Build.BRAND + ":" + (new Random()).nextInt();
         return text.hashCode();
     }
 
-    public static PayloadDataSupplier payloadDataSupplier = new TestPayloadDataSupplier(instance.identifier());
+    public static IllnessStatusPayloadDataSupplier payloadDataSupplier =
+            new IllnessStatusPayloadDataSupplier(instance.identifier());
 
     public SensorArray sensor = null;
 
@@ -49,7 +54,9 @@ public class TestApplication extends Application implements SensorDelegate {
         super.onCreate();
         instance = this;
 
-        BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.seconds(1);
+        // The more frequent this is, the more Bluetooth payload transfer failures will result
+        // This value DOES NOT slow down INITIAL / new in range payload exchange! That's always ASAP.
+        BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minutes(1);
 
         sensor = new SensorArray(getApplicationContext(), payloadDataSupplier);
 
@@ -145,6 +152,19 @@ public class TestApplication extends Application implements SensorDelegate {
             peerStatus.add(parsedPayload);
             Log.i(tag, "RECEIVED PAYLOAD ------> " + parsedPayload);
             TestBroadcast.triggerPeerDetect();
+        } else {
+            // Likely an Illness payload
+            try {
+                int identifier = IllnessStatusPayloadDataSupplier.getIdentifierFromPayload(payloadData);
+                IllnessStatus status = IllnessStatusPayloadDataSupplier.getIllnessStatusFromPayload(payloadData);
+                Log.i(tag, "Status of individual with ID: " + identifier + " is " + status.toString());
+
+                // TODO other stuff with IllnessStatus and identifier here. E.g. display on the UI
+
+                TestBroadcast.triggerPeerDetect();
+            } catch (Exception e) {
+                Log.e(tag, "Error parsing payload data", e);
+            }
         }
     }
 }
