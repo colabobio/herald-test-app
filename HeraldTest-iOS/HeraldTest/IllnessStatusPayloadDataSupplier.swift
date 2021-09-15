@@ -48,7 +48,7 @@ class IllnessDataPayloadSupplier: PayloadDataSupplier {
     }
 
     static func getIdentifierFromPayload(illnessPayload: PayloadData) -> Int {
-        return illnessPayload.data.uint64(0).hashValue; // use first 8 bytes only
+        return Int(illnessPayload.data.uint64(0)!); // use first 8 bytes only
     }
 
     static func getIllnessStatusFromPayload(illnessPayload: PayloadData) -> IllnessStatus {

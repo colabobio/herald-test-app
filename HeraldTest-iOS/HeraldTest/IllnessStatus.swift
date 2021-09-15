@@ -35,9 +35,9 @@ class IllnessStatus {
         return "Status: \(status.rawValue), since (epoch): \(date.hashValue)"
     }
     
-//    static func fromPayload(raw: Data) -> IllnessStatus {
-//        return IllnessStatus(status: IllnessStatusCode(rawValue: Int(raw.uint8(8)!))!, dateSince: Date(from: Int(raw.uint64(0)!)))
-//    }
+    static func fromPayload(raw: Data) -> IllnessStatus {
+        return IllnessStatus(status: IllnessStatusCode(rawValue: Int(raw.uint8(8)!))!, dateSince: Date(timeIntervalSince1970: Double(raw.uint64(0)!)))
+    }
     
     
     
