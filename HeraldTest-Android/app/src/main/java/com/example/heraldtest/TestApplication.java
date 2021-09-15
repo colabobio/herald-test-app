@@ -8,11 +8,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.OnLifecycleEvent;
-import io.heraldprox.herald.sensor.PayloadDataSupplier;
 import io.heraldprox.herald.sensor.SensorArray;
 import io.heraldprox.herald.sensor.SensorDelegate;
 import io.heraldprox.herald.sensor.ble.BLESensorConfiguration;
@@ -25,7 +25,6 @@ import io.heraldprox.herald.sensor.datatype.SensorState;
 import io.heraldprox.herald.sensor.datatype.SensorType;
 import io.heraldprox.herald.sensor.datatype.TargetIdentifier;
 import io.heraldprox.herald.sensor.datatype.TimeInterval;
-import io.heraldprox.herald.sensor.payload.test.TestPayloadDataSupplier;
 
 public class TestApplication extends Application implements SensorDelegate {
     private final static String tag = TestApplication.class.getName();
@@ -34,11 +33,12 @@ public class TestApplication extends Application implements SensorDelegate {
     private static boolean activityVisible = false;
 
     private int identifier() {
-        final String text = Build.MODEL + ":" + Build.BRAND;
+        final String text = Build.MODEL + ":" + Build.BRAND + ":" + (new Random()).nextInt();
         return text.hashCode();
     }
 
-    public static PayloadDataSupplier payloadDataSupplier = new TestPayloadDataSupplier(instance.identifier());
+    public static IllnessStatusPayloadDataSupplier payloadDataSupplier =
+            new IllnessStatusPayloadDataSupplier(instance.identifier());
 
     public SensorArray sensor = null;
 
@@ -49,7 +49,7 @@ public class TestApplication extends Application implements SensorDelegate {
         super.onCreate();
         instance = this;
 
-        BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.seconds(1);
+        BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minutes(1);
 
         sensor = new SensorArray(getApplicationContext(), payloadDataSupplier);
 
@@ -145,6 +145,20 @@ public class TestApplication extends Application implements SensorDelegate {
             peerStatus.add(parsedPayload);
             Log.i(tag, "RECEIVED PAYLOAD ------> " + parsedPayload);
             TestBroadcast.triggerPeerDetect();
+        }
+        else {
+            // Likely an Illness payload
+            try {
+                int identifier = IllnessStatusPayloadDataSupplier.getIdentifierFromPayload(payloadData);
+                IllnessStatus status = IllnessStatusPayloadDataSupplier.getIllnessStatusFromPayload(payloadData);
+                Log.i(tag, "Status of individual with ID: " + identifier + " is " + status.toString());
+
+                // TODO other stuff with IllnessStatus and identifier here. E.g. display on the UI
+
+                TestBroadcast.triggerPeerDetect();
+            } catch (Exception e) {
+                Log.e(tag, "Error parsing payload data", e);
+            }
         }
     }
 }

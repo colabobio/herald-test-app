@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
        }
 
     func startPhone() {
-        payloadDataSupplier = ConcreteTestPayloadDataSupplier(identifier: identifier())
+        payloadDataSupplier = IllnessDataPayloadSupplier(identifier: Int(identifier()))
         BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minute
         BLESensorConfiguration.logLevel = .debug
         sensor = SensorArray(payloadDataSupplier!)
@@ -112,11 +112,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     }
     
     func parsePayload(_ source: String, _ sensor: SensorType, _ payloadData: PayloadData, _ fromTarget: TargetIdentifier) {
-        let info = payloadData.base64EncodedString()
         
-        print("RECEIVED PAYLOAD ------>", info)
+        let identifer = IllnessDataPayloadSupplier.getIdentifierFromPayload(illnessPayload: payloadData)
+        let status = IllnessDataPayloadSupplier.getIllnessStatusFromPayload(illnessPayload: payloadData)
+    
+        print("RECEIVED PAYLOAD IDENTIFIER: ", identifer)
+        print("RECEIVED STATUS: ", status)
         
         EventHelper.triggerPeerDetect()
+        
     }
 }
 
