@@ -18,6 +18,9 @@
 		4138AB7C26D6C94B008044FC /* HeraldTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4138AB7B26D6C94B008044FC /* HeraldTestTests.swift */; };
 		4138AB8726D6C94B008044FC /* HeraldTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4138AB8626D6C94B008044FC /* HeraldTestUITests.swift */; };
 		41A3505326D75DB8003AAAFC /* TestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A3505226D75DB8003AAAFC /* TestService.swift */; };
+		B71C0E7626F1903E008E924B /* IllnessStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71C0E7526F1903E008E924B /* IllnessStatus.swift */; };
+		B71C0E7826F190C9008E924B /* IllnessStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71C0E7726F190C9008E924B /* IllnessStatusCode.swift */; };
+		B71C0E7A26F19113008E924B /* IllnessStatusPayloadDataSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71C0E7926F19113008E924B /* IllnessStatusPayloadDataSupplier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,9 @@
 		4138AB8626D6C94B008044FC /* HeraldTestUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeraldTestUITests.swift; sourceTree = "<group>"; };
 		4138AB8826D6C94B008044FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41A3505226D75DB8003AAAFC /* TestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestService.swift; sourceTree = "<group>"; };
+		B71C0E7526F1903E008E924B /* IllnessStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IllnessStatus.swift; sourceTree = "<group>"; };
+		B71C0E7726F190C9008E924B /* IllnessStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IllnessStatusCode.swift; sourceTree = "<group>"; };
+		B71C0E7926F19113008E924B /* IllnessStatusPayloadDataSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IllnessStatusPayloadDataSupplier.swift; sourceTree = "<group>"; };
 		B988EE0B9AA2EE4BB3B54094 /* libPods-HeraldTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HeraldTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -127,6 +133,9 @@
 				4138AB7226D6C94B008044FC /* Info.plist */,
 				41A3505226D75DB8003AAAFC /* TestService.swift */,
 				411D8FC726D831C9005B4B49 /* EventHelper.swift */,
+				B71C0E7526F1903E008E924B /* IllnessStatus.swift */,
+				B71C0E7726F190C9008E924B /* IllnessStatusCode.swift */,
+				B71C0E7926F19113008E924B /* IllnessStatusPayloadDataSupplier.swift */,
 			);
 			path = HeraldTest;
 			sourceTree = "<group>";
@@ -316,9 +325,12 @@
 			files = (
 				4138AB6926D6C949008044FC /* ViewController.swift in Sources */,
 				41A3505326D75DB8003AAAFC /* TestService.swift in Sources */,
+				B71C0E7626F1903E008E924B /* IllnessStatus.swift in Sources */,
 				4138AB6526D6C949008044FC /* AppDelegate.swift in Sources */,
+				B71C0E7826F190C9008E924B /* IllnessStatusCode.swift in Sources */,
 				4138AB6726D6C949008044FC /* SceneDelegate.swift in Sources */,
 				411D8FC826D831C9005B4B49 /* EventHelper.swift in Sources */,
+				B71C0E7A26F19113008E924B /* IllnessStatusPayloadDataSupplier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
