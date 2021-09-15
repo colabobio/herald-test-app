@@ -74,7 +74,7 @@ class TestService {
     }
     
     private func updatePayload() {
-        AppDelegate.instance?.payloadDataSupplier?.payload(Data(state.utf8))
+//        AppDelegate.instance?.payloadDataSupplier?.payload(Data(state.utf8))
     }
     
     private func updateLoop() {
