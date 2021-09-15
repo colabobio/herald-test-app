@@ -33,6 +33,11 @@ public class TestApplication extends Application implements SensorDelegate {
     private static boolean activityVisible = false;
 
     private int identifier() {
+        // TODO for persistence between app restarts, make the 'random' section a check
+        //      for a text file value. If no text file, generate random and use. If file
+        //      exists, load the value. Otherwise the ID will change on phone restart!
+        // Unique UUID from app
+        // iOS: https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor
         final String text = Build.MODEL + ":" + Build.BRAND + ":" + (new Random()).nextInt();
         return text.hashCode();
     }
@@ -49,7 +54,11 @@ public class TestApplication extends Application implements SensorDelegate {
         super.onCreate();
         instance = this;
 
+        // The more frequent this is, the more Bluetooth payload transfer failures will result
+        // This value DOES NOT slow down INITIAL / new in range payload exchange! That's always ASAP.
         BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minutes(1);
+        //        BLESensorConfiguration.serviceUUID = // any valid id... this allow us to have multiple teams playing in tghe same area
+                                                       // and not interfering each other
 
         sensor = new SensorArray(getApplicationContext(), payloadDataSupplier);
 
@@ -80,6 +89,7 @@ public class TestApplication extends Application implements SensorDelegate {
     }
 
     @Override
+    // called every time there is a new payload from the peer
     public void sensor(@NonNull @NotNull SensorType sensorType, @NonNull @NotNull PayloadData payloadData, @NonNull @NotNull TargetIdentifier targetIdentifier) {
         Log.i(tag, sensorType.name() + ",payloadData=" + payloadData.shortName() + ",targetIdentifier=" + targetIdentifier);
         parsePayload("didRead", sensorType, payloadData, targetIdentifier);
@@ -88,19 +98,19 @@ public class TestApplication extends Application implements SensorDelegate {
     @Override
     public void sensor(@NonNull @NotNull SensorType sensorType, @NonNull @NotNull ImmediateSendData immediateSendData, @NonNull @NotNull TargetIdentifier targetIdentifier) {
         Log.i(tag, sensorType.name() + ",immediateSendData=" + immediateSendData.toString() + ",targetIdentifier=" + targetIdentifier);
-        parsePayload("didShare", sensorType, sensor.payloadData(), targetIdentifier);
+//        parsePayload("didShare", sensorType, sensor.payloadData(), targetIdentifier);
     }
 
     @Override
     public void sensor(@NonNull @NotNull SensorType sensorType, @NonNull @NotNull List<PayloadData> list, @NonNull @NotNull TargetIdentifier targetIdentifier) {
-        final List<String> payloads = new ArrayList<>(list.size());
-        for (PayloadData payloadData : list) {
-            payloads.add(payloadData.shortName());
-        }
-        Log.i(tag, sensorType.name() + ",list=" + payloads.toString() + ",targetIdentifier=" + targetIdentifier);
-        for (PayloadData payloadData : list) {
-            parsePayload("didShare", sensorType, payloadData, targetIdentifier);
-        }
+//        final List<String> payloads = new ArrayList<>(list.size());
+//        for (PayloadData payloadData : list) {
+//            payloads.add(payloadData.shortName());
+//        }
+//        Log.i(tag, sensorType.name() + ",list=" + payloads.toString() + ",targetIdentifier=" + targetIdentifier);
+//        for (PayloadData payloadData : list) {
+//            parsePayload("didShare", sensorType, payloadData, targetIdentifier);
+//        }
     }
 
     @Override
@@ -114,7 +124,9 @@ public class TestApplication extends Application implements SensorDelegate {
     }
 
     @Override
+    // When there is payload and there is a proximity leading :-)
     public void sensor(@NonNull @NotNull SensorType sensorType, @NonNull @NotNull Proximity proximity, @NonNull @NotNull TargetIdentifier targetIdentifier, @NonNull @NotNull PayloadData payloadData) {
+        // proximity.value = this is RSSI (signed integer, int8)! 25 values for a standard model...
         Log.i(tag, sensorType.name() + ",proximity=" + proximity.toString() + ",targetIdentifier=" + targetIdentifier + ",payloadData=" + payloadData.shortName());
     }
 
@@ -145,6 +157,19 @@ public class TestApplication extends Application implements SensorDelegate {
             peerStatus.add(parsedPayload);
             Log.i(tag, "RECEIVED PAYLOAD ------> " + parsedPayload);
             TestBroadcast.triggerPeerDetect();
+        } else {
+            // Likely an Illness payload
+            try {
+                int identifier = IllnessStatusPayloadDataSupplier.getIdentifierFromPayload(payloadData);
+                IllnessStatus status = IllnessStatusPayloadDataSupplier.getIllnessStatusFromPayload(payloadData);
+                Log.i(tag, "Status of individual with ID: " + identifier + " is " + status.toString());
+
+                // TODO other stuff with IllnessStatus and identifier here. E.g. display on the UI
+
+                TestBroadcast.triggerPeerDetect();
+            } catch (Exception e) {
+                Log.e(tag, "Error parsing payload data", e);
+            }
         }
         else {
             // Likely an Illness payload
