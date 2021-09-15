@@ -32,7 +32,7 @@ public class TestApplication extends Application implements SensorDelegate {
     public static TestApplication instance;
     private static boolean activityVisible = false;
 
-    private int identifier() {
+    public static int identifier() {
         // TODO for persistence between app restarts, make the 'random' section a check
         //      for a text file value. If no text file, generate random and use. If file
         //      exists, load the value. Otherwise the ID will change on phone restart!
@@ -42,8 +42,7 @@ public class TestApplication extends Application implements SensorDelegate {
         return text.hashCode();
     }
 
-    public static IllnessStatusPayloadDataSupplier payloadDataSupplier =
-            new IllnessStatusPayloadDataSupplier(instance.identifier());
+    public static IllnessStatusPayloadDataSupplier payloadDataSupplier = new IllnessStatusPayloadDataSupplier(identifier());
 
     public SensorArray sensor = null;
 
@@ -158,20 +157,6 @@ public class TestApplication extends Application implements SensorDelegate {
             Log.i(tag, "RECEIVED PAYLOAD ------> " + parsedPayload);
             TestBroadcast.triggerPeerDetect();
         } else {
-            // Likely an Illness payload
-            try {
-                int identifier = IllnessStatusPayloadDataSupplier.getIdentifierFromPayload(payloadData);
-                IllnessStatus status = IllnessStatusPayloadDataSupplier.getIllnessStatusFromPayload(payloadData);
-                Log.i(tag, "Status of individual with ID: " + identifier + " is " + status.toString());
-
-                // TODO other stuff with IllnessStatus and identifier here. E.g. display on the UI
-
-                TestBroadcast.triggerPeerDetect();
-            } catch (Exception e) {
-                Log.e(tag, "Error parsing payload data", e);
-            }
-        }
-        else {
             // Likely an Illness payload
             try {
                 int identifier = IllnessStatusPayloadDataSupplier.getIdentifierFromPayload(payloadData);
