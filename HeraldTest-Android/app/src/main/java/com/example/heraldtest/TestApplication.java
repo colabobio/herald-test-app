@@ -7,6 +7,7 @@ import android.util.Log;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -49,7 +50,7 @@ public class TestApplication extends Application implements SensorDelegate {
 
     public SensorArray sensor = null;
 
-    public ArrayList<String> peerStatus = null;
+    public HashMap<Integer, PeerInfo> peerStatus = null;
 
     @Override
     public void onCreate() {
@@ -94,7 +95,7 @@ public class TestApplication extends Application implements SensorDelegate {
     // called every time there is a new payload from the peer
     public void sensor(@NonNull @NotNull SensorType sensorType, @NonNull @NotNull PayloadData payloadData, @NonNull @NotNull TargetIdentifier targetIdentifier) {
         Log.i(tag, sensorType.name() + ",payloadData=" + payloadData.shortName() + ",targetIdentifier=" + targetIdentifier);
-        parsePayload("didRead", sensorType, payloadData, targetIdentifier);
+        parsePayload("didRead", sensorType, payloadData, null, targetIdentifier);
     }
 
     @Override
@@ -130,6 +131,7 @@ public class TestApplication extends Application implements SensorDelegate {
     public void sensor(@NonNull @NotNull SensorType sensorType, @NonNull @NotNull Proximity proximity, @NonNull @NotNull TargetIdentifier targetIdentifier, @NonNull @NotNull PayloadData payloadData) {
         // proximity.value = this is RSSI (signed integer, int8)! 25 values for a standard model...
         Log.i(tag, sensorType.name() + ",proximity=" + proximity.toString() + ",targetIdentifier=" + targetIdentifier + ",payloadData=" + payloadData.shortName());
+        parsePayload("didRead", sensorType, payloadData, proximity, targetIdentifier);
     }
 
     @Override
@@ -138,7 +140,7 @@ public class TestApplication extends Application implements SensorDelegate {
     }
 
 
-    private void parsePayload(String source, SensorType sensor, PayloadData payloadData, TargetIdentifier fromTarget) {
+    private void parsePayload(String source, SensorType sensor, PayloadData payloadData, Proximity proximity, TargetIdentifier fromTarget) {
         String service = "herald";
         String parsedPayload = payloadData.shortName();
         if (payloadData instanceof LegacyPayloadData) {
@@ -156,7 +158,6 @@ public class TestApplication extends Application implements SensorDelegate {
                 service = "unknown|" + legacyPayloadData.service.toString();
                 parsedPayload = payloadData.hexEncodedString();
             }
-            peerStatus.add(parsedPayload);
             Log.i(tag, "RECEIVED PAYLOAD ------> " + parsedPayload);
             TestBroadcast.triggerPeerDetect();
         } else {
@@ -165,6 +166,17 @@ public class TestApplication extends Application implements SensorDelegate {
                 int identifier = IllnessStatusPayloadDataSupplier.getIdentifierFromPayload(payloadData);
                 IllnessStatus status = IllnessStatusPayloadDataSupplier.getIllnessStatusFromPayload(payloadData);
                 Log.i(tag, "Status of individual with ID: " + identifier + " is " + status.toString());
+
+
+                PeerInfo info = peerStatus.get(identifier);
+                if (info == null) {
+                    info = new PeerInfo();
+                    peerStatus.put(identifier, info);
+                }
+                info.status = status;
+                if (proximity != null) {
+                    info.addRSSI(proximity.value);
+                }
 
                 // TODO other stuff with IllnessStatus and identifier here. E.g. display on the UI
 
