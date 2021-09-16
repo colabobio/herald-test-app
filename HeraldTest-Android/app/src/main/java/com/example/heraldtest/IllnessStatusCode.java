@@ -1,6 +1,7 @@
 package com.example.heraldtest;
 
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Represents an epidemiological status for an individual in relation to a single pathogen/toxin.
@@ -38,5 +39,13 @@ public enum IllnessStatusCode {
 
     public int getValue() {
         return value;
+    }
+
+
+    public static IllnessStatusCode getRandomStatus() {
+        IllnessStatusCode[] values = IllnessStatusCode.values();
+        int length = values.length;
+        int randIndex = new Random().nextInt(length);
+        return values[randIndex];
     }
 }

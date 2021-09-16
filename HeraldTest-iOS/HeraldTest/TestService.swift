@@ -75,6 +75,8 @@ class TestService {
     
     private func updatePayload() {
 //        AppDelegate.instance?.payloadDataSupplier?.payload(Data(state.utf8))
+        AppDelegate.instance?.payloadDataSupplier?.setStatus(newStatus:
+                                                                IllnessStatus(status: IllnessStatusCode.allCases.randomElement() ?? .susceptable, dateSince: Date()))
     }
     
     private func updateLoop() {

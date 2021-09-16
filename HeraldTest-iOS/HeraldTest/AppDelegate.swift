@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     
     public static var instance: AppDelegate?
     
-    var payloadDataSupplier: PayloadDataSupplier?
+    var payloadDataSupplier: IllnessDataPayloadSupplier?
     var sensor: SensorArray?
     
     var peerStatus: [String: String] = [:]
@@ -80,11 +80,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     }
     
     func sensor(_ sensor: SensorType, didShare: [PayloadData], fromTarget: TargetIdentifier) {
-        let payloads = didShare.map { $0.shortName }
-        print(sensor.rawValue + ",didShare=" + payloads.description + ",fromTarget=" + fromTarget.description)
-        for payload in didShare {
-            parsePayload("didRead", sensor, payload, fromTarget)
-        }
+//        let payloads = didShare.map { $0.shortName }
+//        print(sensor.rawValue + ",didShare=" + payloads.description + ",fromTarget=" + fromTarget.description)
+//        for payload in didShare {
+//            parsePayload("didRead", sensor, payload, fromTarget)
+//        }
     }
     
     // TODO: Gets us proximity
