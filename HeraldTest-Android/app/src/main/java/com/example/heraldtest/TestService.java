@@ -85,7 +85,7 @@ public class TestService extends Service {
     }
 
     private void updatePayload() {
-        TestApplication.payloadDataSupplier.setStatus(new IllnessStatus(IllnessStatusCode.getRandomStatus() ,new Date()));
+        MainActivity.payloadDataSupplier.setStatus(new IllnessStatus(IllnessStatusCode.getRandomStatus() ,new Date()));
 //        TestApplication.payloadDataSupplier.payload(new Data(state));
     }
 
