@@ -23,6 +23,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
     private final static String tag = TestApplication.class.getName();
 
 
-    public ArrayList<String> peerStatus = null;
+    public HashMap<Integer, PeerInfo> currentPeers = null;
 
     public final static String USER_CHANNEL_ID = "com.example.heraldtest.user_notifications";
     public final static String SERVICE_CHANNEL_ID = "com.example.heraldtest.service_notifications";
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
     protected void onStart() {
         super.onStart();
 
-        peerStatus = new ArrayList<>();
+        currentPeers = new HashMap<>();
 
         initNotifications(this);
 
@@ -160,8 +161,9 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
     protected void updatePeers() {
         if (TestApplication.instance != null) {
             EditText peers = findViewById(R.id.peers);
-            for (String peer: peerStatus) {
-                peers.setText(peer + "\n");
+            for (Integer id: currentPeers.keySet()) {
+                PeerInfo info = currentPeers.get(id);
+                peers.setText(id + ":" + info.status + ":" + info.getRSSI() + "\n");
             }
         }
     }
@@ -175,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
     // called every time there is a new payload from the peer
     public void sensor(@NonNull @NotNull SensorType sensorType, @NonNull @NotNull PayloadData payloadData, @NonNull @NotNull TargetIdentifier targetIdentifier) {
         Log.i(tag, sensorType.name() + ",payloadData=" + payloadData.shortName() + ",targetIdentifier=" + targetIdentifier);
-        parsePayload("didRead", sensorType, payloadData, targetIdentifier);
+        parsePayload("didRead", sensorType, payloadData, null, targetIdentifier);
     }
 
     @Override
@@ -211,6 +213,7 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
     public void sensor(@NonNull @NotNull SensorType sensorType, @NonNull @NotNull Proximity proximity, @NonNull @NotNull TargetIdentifier targetIdentifier, @NonNull @NotNull PayloadData payloadData) {
         // proximity.value = this is RSSI (signed integer, int8)! 25 values for a standard model...
         Log.i(tag, sensorType.name() + ",proximity=" + proximity.toString() + ",targetIdentifier=" + targetIdentifier + ",payloadData=" + payloadData.shortName());
+        parsePayload("didRead", sensorType, payloadData, proximity, targetIdentifier);
     }
 
     @Override
@@ -219,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
     }
 
 
-    private void parsePayload(String source, SensorType sensor, PayloadData payloadData, TargetIdentifier fromTarget) {
+    private void parsePayload(String source, SensorType sensor, PayloadData payloadData, Proximity proximity, TargetIdentifier fromTarget) {
         String service = "herald";
         String parsedPayload = payloadData.shortName();
         if (payloadData instanceof LegacyPayloadData) {
@@ -237,7 +240,6 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
                 service = "unknown|" + legacyPayloadData.service.toString();
                 parsedPayload = payloadData.hexEncodedString();
             }
-            peerStatus.add(parsedPayload);
             Log.i(tag, "RECEIVED PAYLOAD ------> " + parsedPayload);
             TestBroadcast.triggerPeerDetect();
         } else {
@@ -245,7 +247,23 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
             try {
                 int identifier = IllnessStatusPayloadDataSupplier.getIdentifierFromPayload(payloadData);
                 IllnessStatus status = IllnessStatusPayloadDataSupplier.getIllnessStatusFromPayload(payloadData);
+
                 Log.i(tag, "Status of individual with ID: " + identifier + " is " + status.toString());
+
+                PeerInfo info = currentPeers.get(identifier);
+                if (info == null) {
+                    info = new PeerInfo();
+                    currentPeers.put(identifier, info);
+                }
+                info.status = status;
+                if (proximity != null) {
+                    info.addRSSI(proximity.value);
+                    Log.i(tag, "RSSI value: " + proximity.value);
+                }
+                if (-55 < info.getRSSI()) {
+                    // not in contact anymore, remove
+                    currentPeers.remove(identifier);
+                }
 
                 // TODO other stuff with IllnessStatus and identifier here. E.g. display on the UI
 
