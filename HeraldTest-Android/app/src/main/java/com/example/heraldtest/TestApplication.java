@@ -14,7 +14,6 @@ import java.util.Random;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.OnLifecycleEvent;
-import io.heraldprox.herald.sensor.PayloadDataSupplier;
 import io.heraldprox.herald.sensor.SensorArray;
 import io.heraldprox.herald.sensor.SensorDelegate;
 import io.heraldprox.herald.sensor.ble.BLESensorConfiguration;
@@ -27,7 +26,6 @@ import io.heraldprox.herald.sensor.datatype.SensorState;
 import io.heraldprox.herald.sensor.datatype.SensorType;
 import io.heraldprox.herald.sensor.datatype.TargetIdentifier;
 import io.heraldprox.herald.sensor.datatype.TimeInterval;
-import io.heraldprox.herald.sensor.payload.test.TestPayloadDataSupplier;
 
 public class TestApplication extends Application implements SensorDelegate {
     private final static String tag = TestApplication.class.getName();
@@ -35,7 +33,7 @@ public class TestApplication extends Application implements SensorDelegate {
     public static TestApplication instance;
     private static boolean activityVisible = false;
 
-    private int identifier() {
+    public static int identifier() {
         // TODO for persistence between app restarts, make the 'random' section a check
         //      for a text file value. If no text file, generate random and use. If file
         //      exists, load the value. Otherwise the ID will change on phone restart!
@@ -45,8 +43,7 @@ public class TestApplication extends Application implements SensorDelegate {
         return text.hashCode();
     }
 
-    public static IllnessStatusPayloadDataSupplier payloadDataSupplier =
-            new IllnessStatusPayloadDataSupplier(instance.identifier());
+    public static IllnessStatusPayloadDataSupplier payloadDataSupplier = new IllnessStatusPayloadDataSupplier(identifier());
 
     public SensorArray sensor = null;
 
@@ -68,6 +65,7 @@ public class TestApplication extends Application implements SensorDelegate {
 
         // Add appDelegate as listener for detection events for logging and start sensor
         sensor.add(this);
+        sensor.start();
 
         peerStatus = new ArrayList<>();
     }

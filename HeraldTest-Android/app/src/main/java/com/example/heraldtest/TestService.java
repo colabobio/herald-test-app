@@ -11,6 +11,7 @@ import java.util.Random;
 
 import androidx.core.app.NotificationCompat;
 import io.heraldprox.herald.sensor.datatype.Data;
+import io.heraldprox.herald.sensor.datatype.Date;
 
 public class TestService extends Service {
     private static final String tag = "TestService";
@@ -84,7 +85,8 @@ public class TestService extends Service {
     }
 
     private void updatePayload() {
-        TestApplication.payloadDataSupplier.payload(new Data(state));
+        TestApplication.payloadDataSupplier.setStatus(new IllnessStatus(IllnessStatusCode.getRandomStatus() ,new Date()));
+//        TestApplication.payloadDataSupplier.payload(new Data(state));
     }
 
     private void updateLoop() {

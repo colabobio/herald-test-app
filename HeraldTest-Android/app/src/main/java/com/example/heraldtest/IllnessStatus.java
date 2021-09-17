@@ -95,9 +95,8 @@ public class IllnessStatus {
         // Note: No size() function (or length() equivalent) in v2.0 java API
         // See bug: https://github.com/theheraldproject/herald-for-android/issues/225
 //        if (raw.size() != 9) {
-        if (raw.value.length != 9) {
-            return null; // parse error
-        }
+//            return null; // parse error
+//        }
         Date s = new Date(raw.uint64(0).value);
         IllnessStatusCode code = IllnessStatusCode.valueOf(raw.uint8(8).value);
         return new IllnessStatus(code,s);

@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     
     public static var instance: AppDelegate?
     
-    var payloadDataSupplier: PayloadDataSupplier?
+    var payloadDataSupplier: IllnessDataPayloadSupplier?
     var sensor: SensorArray?
     
     var peerStatus: [String: String] = [:]
@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
        }
 
     func startPhone() {
-        payloadDataSupplier = ConcreteTestPayloadDataSupplier(identifier: identifier())
+        payloadDataSupplier = IllnessDataPayloadSupplier(identifier: Int(identifier()))
         BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minute
         BLESensorConfiguration.logLevel = .debug
         sensor = SensorArray(payloadDataSupplier!)
@@ -77,14 +77,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     // Get Message
     func sensor(_ sensor: SensorType, didReceive: Data, fromTarget: TargetIdentifier) {
         print(sensor.rawValue + ",didReceive=" + didReceive.base64EncodedString() + ",fromTarget=" + fromTarget.description)
-    }
-    
-    func sensor(_ sensor: SensorType, didShare: [PayloadData], fromTarget: TargetIdentifier) {
-        let payloads = didShare.map { $0.shortName }
-        print(sensor.rawValue + ",didShare=" + payloads.description + ",fromTarget=" + fromTarget.description)
-        for payload in didShare {
-            parsePayload("didRead", sensor, payload, fromTarget)
-        }
     }
     
     // TODO: Gets us proximity
@@ -112,11 +104,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     }
     
     func parsePayload(_ source: String, _ sensor: SensorType, _ payloadData: PayloadData, _ fromTarget: TargetIdentifier) {
-        let info = payloadData.base64EncodedString()
         
-        print("RECEIVED PAYLOAD ------>", info)
+        let identifer = IllnessDataPayloadSupplier.getIdentifierFromPayload(illnessPayload: payloadData)
+        let status = IllnessDataPayloadSupplier.getIllnessStatusFromPayload(illnessPayload: payloadData)
+    
+        print("RECEIVED PAYLOAD IDENTIFIER: ", identifer)
+        print("RECEIVED STATUS: ", status.toString())
         
         EventHelper.triggerPeerDetect()
+        
     }
 }
 

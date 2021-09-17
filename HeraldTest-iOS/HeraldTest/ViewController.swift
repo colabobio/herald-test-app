@@ -27,7 +27,8 @@ extension ViewController: EventHelperDelegate {
     func updateStatus() {
         DispatchQueue.main.async {
             let service = TestService.shared
-            self.status.text = service.state
+            self.status.text = (String(AppDelegate.instance?.payloadDataSupplier?.getIdentifier() ?? 0)) + ":" +
+                               (AppDelegate.instance?.payloadDataSupplier?.getStatus().toString() ?? "")
         }
     }
         

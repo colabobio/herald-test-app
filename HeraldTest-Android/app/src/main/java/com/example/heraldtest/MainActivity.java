@@ -85,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
     protected void updateStatus() {
         if (TestService.instance != null) {
             TextView status = findViewById(R.id.status);
-            status.setText(TestService.instance.state);
+            status.setText(TestApplication.instance.payloadDataSupplier.getIdentifier() + ":" +
+                           TestApplication.instance.payloadDataSupplier.getStatus());
         }
     }
 
