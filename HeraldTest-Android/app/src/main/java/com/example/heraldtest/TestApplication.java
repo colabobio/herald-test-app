@@ -64,6 +64,7 @@ public class TestApplication extends Application implements SensorDelegate {
 
         // Add appDelegate as listener for detection events for logging and start sensor
         sensor.add(this);
+        sensor.start();
 
         peerStatus = new ArrayList<>();
     }

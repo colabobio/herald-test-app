@@ -79,14 +79,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
         print(sensor.rawValue + ",didReceive=" + didReceive.base64EncodedString() + ",fromTarget=" + fromTarget.description)
     }
     
-    func sensor(_ sensor: SensorType, didShare: [PayloadData], fromTarget: TargetIdentifier) {
-//        let payloads = didShare.map { $0.shortName }
-//        print(sensor.rawValue + ",didShare=" + payloads.description + ",fromTarget=" + fromTarget.description)
-//        for payload in didShare {
-//            parsePayload("didRead", sensor, payload, fromTarget)
-//        }
-    }
-    
     // TODO: Gets us proximity
     func sensor(_ sensor: SensorType, didMeasure: Proximity, fromTarget: TargetIdentifier) {
         print(sensor.rawValue + ",didMeasure=" + didMeasure.description + ",fromTarget=" + fromTarget.description)
@@ -117,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
         let status = IllnessDataPayloadSupplier.getIllnessStatusFromPayload(illnessPayload: payloadData)
     
         print("RECEIVED PAYLOAD IDENTIFIER: ", identifer)
-        print("RECEIVED STATUS: ", status)
+        print("RECEIVED STATUS: ", status.toString())
         
         EventHelper.triggerPeerDetect()
         

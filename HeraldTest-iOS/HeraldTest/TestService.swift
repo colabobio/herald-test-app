@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import Herald
 
 class TestService {
     static let TIME_STEP: Int = 2
@@ -75,8 +74,7 @@ class TestService {
     
     private func updatePayload() {
 //        AppDelegate.instance?.payloadDataSupplier?.payload(Data(state.utf8))
-        AppDelegate.instance?.payloadDataSupplier?.setStatus(newStatus:
-                                                                IllnessStatus(status: IllnessStatusCode.allCases.randomElement() ?? .susceptable, dateSince: Date()))
+        AppDelegate.instance?.payloadDataSupplier?.setStatus(newStatus: IllnessStatus(status: IllnessStatusCode.allCases.randomElement() ?? .susceptable, dateSince: Date()))
     }
     
     private func updateLoop() {
