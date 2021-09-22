@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     var payloadDataSupplier: IllnessDataPayloadSupplier?
     var sensor: SensorArray?
     
-    var peerStatus: [String: String] = [:]
+    var currentPeers: [Int: PeerInfo] = [:]
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         AppDelegate.instance = self
@@ -70,8 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     // TODO: Get Message
     func sensor(_ sensor: SensorType, didRead: PayloadData, fromTarget: TargetIdentifier) {
         print(sensor.rawValue + ",didRead=" + didRead.shortName + ",fromTarget=" + fromTarget.description)
-        parsePayload("didRead", sensor, didRead, fromTarget)
-        peerStatus[fromTarget] = "";
+        parsePayload("didRead", sensor, didRead, nil, fromTarget)
     }
     
     // Get Message
@@ -82,9 +81,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     // TODO: Gets us proximity
     func sensor(_ sensor: SensorType, didMeasure: Proximity, fromTarget: TargetIdentifier) {
         print(sensor.rawValue + ",didMeasure=" + didMeasure.description + ",fromTarget=" + fromTarget.description)
-        
-        let prox = didMeasure.value
-        sensor.rawValue
     }
     
     func sensor(_ sensor: SensorType, didVisit: Location?) {
@@ -94,22 +90,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     func sensor(_ sensor: SensorType, didMeasure: Proximity, fromTarget: TargetIdentifier, withPayload: PayloadData) {
         print(sensor.rawValue + ",didMeasure=" + didMeasure.description + ",fromTarget=" + fromTarget.description + ",withPayload=" + withPayload.shortName)
         
-        let prox = didMeasure.value
-        
-        parsePayload("didMeasure", sensor, withPayload, fromTarget)
+        parsePayload("didMeasure", sensor, withPayload, didMeasure, fromTarget)
     }
     
     func sensor(_ sensor: SensorType, didUpdateState: SensorState) {
         print(sensor.rawValue + ",didUpdateState=" + didUpdateState.rawValue)
     }
     
-    func parsePayload(_ source: String, _ sensor: SensorType, _ payloadData: PayloadData, _ fromTarget: TargetIdentifier) {
+    func parsePayload(_ source: String, _ sensor: SensorType, _ payloadData: PayloadData, _ proximity: Proximity?, _ fromTarget: TargetIdentifier) {
         
         let identifer = IllnessDataPayloadSupplier.getIdentifierFromPayload(illnessPayload: payloadData)
         let status = IllnessDataPayloadSupplier.getIllnessStatusFromPayload(illnessPayload: payloadData)
     
         print("RECEIVED PAYLOAD IDENTIFIER: ", identifer)
         print("RECEIVED STATUS: ", status.toString())
+        
+        var info = currentPeers[identifer]
+        
+        if (info == nil) {
+            info = PeerInfo()
+            info!.status = status
+            currentPeers[identifer] = info;
+        }
+       
+        if (proximity != nil) {
+            info!.addRSSI(value: proximity!.value);
+            print("RSSI value: ", proximity!.value);
+        }
+        if (-55.0 < info!.getRSSI()) {
+            // not in contact anymore, remove
+            currentPeers.removeValue(forKey: identifer);
+        }
         
         EventHelper.triggerPeerDetect()
         
