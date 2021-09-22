@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -22,10 +23,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" editable="NO" text="----------------" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qkq-Tq-XsG">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="----------------" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qkq-Tq-XsG">
                                 <rect key="frame" x="87" y="273" width="240" height="360"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="textColor" systemColor="labelColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -33,10 +34,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Qkq-Tq-XsG" firstAttribute="centerX" secondItem="YUN-pO-PB6" secondAttribute="centerX" id="RDb-S6-coQ"/>
                             <constraint firstItem="YUN-pO-PB6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="128" id="Rgs-os-XTv"/>
                             <constraint firstItem="Qkq-Tq-XsG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="229" id="Ycg-tf-hGf"/>
                             <constraint firstItem="YUN-pO-PB6" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="bVl-iI-PrM"/>
                             <constraint firstItem="Qkq-Tq-XsG" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="gbL-7x-bvg"/>
+                            <constraint firstItem="Qkq-Tq-XsG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="liA-rj-Z0m"/>
                         </constraints>
                     </view>
                     <connections>
@@ -50,9 +53,6 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

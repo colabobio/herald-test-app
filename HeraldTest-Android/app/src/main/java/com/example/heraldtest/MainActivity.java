@@ -161,10 +161,12 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
     protected void updatePeers() {
         if (TestApplication.instance != null) {
             EditText peers = findViewById(R.id.peers);
+            String txt = "";
             for (Integer id: currentPeers.keySet()) {
                 PeerInfo info = currentPeers.get(id);
-                peers.setText(id + ":" + info.status + ":" + info.getRSSI() + "\n");
+                txt += "->" + id + ":" + info.status + ":" + info.getRSSI() + "\n";
             }
+            peers.setText(txt);
         }
     }
 

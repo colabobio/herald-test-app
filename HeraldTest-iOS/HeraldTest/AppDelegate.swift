@@ -110,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
         if (info == nil) {
             info = PeerInfo()
             info!.status = status
-            currentPeers[identifer] = info;
+            currentPeers[identifer] = info
         }
        
         if (proximity != nil) {
