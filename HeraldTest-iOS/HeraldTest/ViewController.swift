@@ -34,12 +34,9 @@ extension ViewController: EventHelperDelegate {
         
     func updatePeers() {
         DispatchQueue.main.async {
-          // @Edison, here we should get the list of detected peers, now as peerStatus in the AppDelegate,
-          // and add them one line at the time to the peers UITextView... forgot how to do that programatically :-)
-            
-            // TODO: Get PeerID
-        
-            self.peers.text.append("PEERID");
+            AppDelegate.instance?.currentPeers.forEach({ (id: Int, value: PeerInfo) in
+                self.peers.text = "\(id): \(value.status): \(value.getRSSI()) \n"
+            })
         }
     }
 }
