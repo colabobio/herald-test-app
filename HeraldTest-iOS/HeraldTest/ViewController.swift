@@ -26,9 +26,9 @@ extension ViewController: EventHelperDelegate {
     
     func updateStatus() {
         DispatchQueue.main.async {
-            let service = TestService.shared
-            self.status.text = (String(AppDelegate.instance?.payloadDataSupplier?.getIdentifier() ?? 0)) + ":" +
-                               (AppDelegate.instance?.payloadDataSupplier?.getStatus().toString() ?? "")
+            if let supplier = AppDelegate.instance?.payloadDataSupplier {
+                self.status.text = "\(supplier.getIdentifier()): \(supplier.getStatus())"
+            }
         }
     }
         
@@ -37,7 +37,7 @@ extension ViewController: EventHelperDelegate {
             self.peers.text = ""
             let cpeers = AppDelegate.instance?.currentPeers
             cpeers?.forEach({ (id: Int, value: PeerInfo) in
-                let txt = "-> \(id): \(value.status): \(value.getRSSI()) \n"
+                let txt = "-> \(id): \(value.status): RSSI=\(value.getRSSI()) \n"
                 print(txt)
                 self.peers.text.append(txt)
             })

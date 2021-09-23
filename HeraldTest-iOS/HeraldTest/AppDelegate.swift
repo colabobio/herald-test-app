@@ -40,20 +40,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
 
     }
     
-    private func identifier() -> Int32 {
-           let text = UIDevice.current.name + ":" + UIDevice.current.model + ":" + UIDevice.current.systemName + ":" + UIDevice.current.systemVersion
-           var hash = UInt64 (5381)
-           let buf = [UInt8](text.utf8)
-           for b in buf {
-               hash = 127 * (hash & 0x00ffffffffffffff) + UInt64(b)
-           }
-           let value = Int32(hash.remainderReportingOverflow(dividingBy: UInt64(Int32.max)).partialValue)
-        
-           return value
-       }
+    private var uniqueID: String = ""
+    static let PREF_UNIQUE_ID: String = "PREF_UNIQUE_DEVICE_ID"
+    private func getUniqueId() -> String {
+        if uniqueID == "" {
+            uniqueID = UserDefaults.standard.string(forKey: AppDelegate.PREF_UNIQUE_ID) ?? ""
+            if uniqueID == "" {
+                uniqueID = UUID().uuidString
+                UserDefaults.standard.set(uniqueID, forKey: AppDelegate.PREF_UNIQUE_ID)
+            }
+        }
+        return uniqueID
+    }
+    
+    private func hashCode(_ text: String) -> Int {
+        var hash = UInt64 (5381)
+        let buf = [UInt8](text.utf8)
+        for b in buf {
+            hash = 127 * (hash & 0x00ffffffffffffff) + UInt64(b)
+        }
+        let value = Int(hash.remainderReportingOverflow(dividingBy: UInt64(Int32.max)).partialValue)
+        return value
+    }
+    
+    private func identifier() -> Int {
+//           let text = UIDevice.current.name + ":" + UIDevice.current.model + ":" + UIDevice.current.systemName + ":" + UIDevice.current.systemVersion
+//           var hash = UInt64 (5381)
+//           let buf = [UInt8](text.utf8)
+//           for b in buf {
+//               hash = 127 * (hash & 0x00ffffffffffffff) + UInt64(b)
+//           }
+//           let value = Int32(hash.remainderReportingOverflow(dividingBy: UInt64(Int32.max)).partialValue)
+         let v = getUniqueId()
+         let h = hashCode(v)
+         return h
+     }
 
     func startPhone() {
-        payloadDataSupplier = IllnessDataPayloadSupplier(identifier: Int(identifier()))
+        payloadDataSupplier = IllnessDataPayloadSupplier(identifier: identifier())
         BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minute
         BLESensorConfiguration.logLevel = .debug
         sensor = SensorArray(payloadDataSupplier!)
