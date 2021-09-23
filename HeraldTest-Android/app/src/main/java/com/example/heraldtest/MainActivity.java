@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,12 +19,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import cesarferreira.androiduniquedeviceid.UniqueDeviceIdProvider;
+
+import io.heraldprox.herald.sensor.PayloadDataSupplier;
 import io.heraldprox.herald.sensor.SensorArray;
 import io.heraldprox.herald.sensor.SensorDelegate;
 import io.heraldprox.herald.sensor.ble.BLESensorConfiguration;
@@ -60,6 +63,22 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
 
     public SensorArray sensor = null;
 
+    private String uniqueID = null;
+    private final static String PREF_UNIQUE_ID = "PREF_UNIQUE_DEVICE_ID";
+    private String getUniqueId(Context context) {
+        if (uniqueID == null) {
+            SharedPreferences sharedPrefs = context.getSharedPreferences(PREF_UNIQUE_ID, Context.MODE_PRIVATE);
+            uniqueID = sharedPrefs.getString(PREF_UNIQUE_ID, null);
+            if (uniqueID == null || uniqueID == "") {
+                uniqueID = UUID.randomUUID().toString();
+                SharedPreferences.Editor editor = sharedPrefs.edit();
+                editor.putString(PREF_UNIQUE_ID, uniqueID);
+                editor.apply();
+            }
+        }
+        return uniqueID;
+    }
+
     public int identifier(Context context) {
         // TODO for persistence between app restarts, make the 'random' section a check
         //      for a text file value. If no text file, generate random and use. If file
@@ -67,8 +86,7 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
         // Unique UUID from app
         // iOS: https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor
 
-        UniqueDeviceIdProvider uniqueID = new UniqueDeviceIdProvider(context);
-        return uniqueID.getUniqueId().hashCode();
+        return getUniqueId(context).hashCode();
     }
 
     @Override
@@ -156,8 +174,8 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
     protected void updateStatus() {
         if (TestService.instance != null) {
             TextView status = findViewById(R.id.status);
-            status.setText(MainActivity.payloadDataSupplier.getIdentifier() + ":" +
-                           MainActivity.payloadDataSupplier.getStatus());
+            IllnessStatusPayloadDataSupplier supplier = MainActivity.payloadDataSupplier;
+            status.setText(supplier.getIdentifier() + ": " + supplier.getStatus().status);
         }
     }
 
@@ -167,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
             String txt = "";
             for (Integer id: currentPeers.keySet()) {
                 PeerInfo info = currentPeers.get(id);
-                txt += "->" + id + ":" + info.status + ":" + info.getRSSI() + "\n";
+                txt += "->" + id + ":" + info.status.status + ":RSSI=" + info.getRSSI() + "\n";
             }
             peers.setText(txt);
         }
