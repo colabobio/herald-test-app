@@ -114,12 +114,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
         }
        
         if (proximity != nil) {
-            info!.addRSSI(value: proximity!.value);
-            print("RSSI value: ", proximity!.value);
+            info!.addRSSI(value: proximity!.value)
+            print("RSSI value: ", proximity!.value)
         }
+        
+        
         if (-55.0 < info!.getRSSI()) {
             // not in contact anymore, remove
-            currentPeers.removeValue(forKey: identifer);
+            currentPeers.removeValue(forKey: identifer)
+        }
+        
+        let lastFiveMinutes = Date().timeIntervalSince(info!.lastSeen)
+        let fiveMinutesFromNow: TimeInterval = 60 * 5
+        
+        if (lastFiveMinutes >= fiveMinutesFromNow) {
+            currentPeers.removeValue(forKey: identifer)
         }
         
         EventHelper.triggerPeerDetect()

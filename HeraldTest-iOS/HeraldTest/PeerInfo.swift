@@ -9,15 +9,18 @@ import Foundation
 class PeerInfo {
     public var data: [Double] = []
     public var status: IllnessStatus
+    public var lastSeen: Date
     
-    init(data: [Double], status: IllnessStatus) {
+    init(data: [Double], status: IllnessStatus, lastSeen: Date) {
         self.data = data
         self.status = status
+        self.lastSeen = lastSeen
     }
     
     init() {
         self.data = []
         self.status = IllnessStatus.init(status: .susceptable, dateSince: Date())
+        self.lastSeen = Date()
     }
     
     func addRSSI(value: Double) {
