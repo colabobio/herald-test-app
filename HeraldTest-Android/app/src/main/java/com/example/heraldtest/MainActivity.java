@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
 
     public SensorArray sensor = null;
 
+    public int RSSI_THRESHOLD = -30;
+
     private String uniqueID = null;
     private final static String PREF_UNIQUE_ID = "PREF_UNIQUE_DEVICE_ID";
     private String getUniqueId(Context context) {
@@ -283,7 +285,7 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
                     info.addRSSI(proximity.value);
                     Log.i(tag, "RSSI value: " + proximity.value);
                 }
-                if (-55 < info.getRSSI()) {
+                if (RSSI_THRESHOLD < info.getRSSI() && 10 < info.data.size()) {
                     // not in contact anymore, remove
                     currentPeers.remove(identifier);
                 }

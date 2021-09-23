@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
     
     var currentPeers: [Int: PeerInfo] = [:]
     
+    let RSSI_THRESHOLD = -30.0
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         AppDelegate.instance = self
     
@@ -143,7 +145,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
         }
         
         
-        if (-55.0 < info!.getRSSI()) {
+        if (RSSI_THRESHOLD < info!.getRSSI() && 10 < info!.data.count) {
             // not in contact anymore, remove
             currentPeers.removeValue(forKey: identifer)
         }
