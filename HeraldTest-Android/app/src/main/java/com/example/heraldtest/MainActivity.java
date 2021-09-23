@@ -271,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
                 }
 
                 // TODO other stuff with IllnessStatus and identifier here. E.g. display on the UI
-                if (new Date().getTime() - info.lastSeen.getTime() >= (60 * 5 * 1000)) {
+                if (new Date().getTime() - info.lastSeen.getTime() >= (60 * 5L * 1000)) {
                     currentPeers.remove(identifier);
                 }
 
