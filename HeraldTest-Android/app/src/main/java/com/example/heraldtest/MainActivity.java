@@ -1,12 +1,5 @@
 package com.example.heraldtest;
 
-import static android.content.pm.PackageManager.PERMISSION_GRANTED;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
 import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -27,9 +20,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import io.heraldprox.herald.sensor.SensorArray;
 import io.heraldprox.herald.sensor.SensorDelegate;
 import io.heraldprox.herald.sensor.ble.BLESensorConfiguration;
+import io.heraldprox.herald.sensor.datatype.Date;
 import io.heraldprox.herald.sensor.datatype.ImmediateSendData;
 import io.heraldprox.herald.sensor.datatype.LegacyPayloadData;
 import io.heraldprox.herald.sensor.datatype.Location;
@@ -39,6 +37,8 @@ import io.heraldprox.herald.sensor.datatype.SensorState;
 import io.heraldprox.herald.sensor.datatype.SensorType;
 import io.heraldprox.herald.sensor.datatype.TargetIdentifier;
 import io.heraldprox.herald.sensor.datatype.TimeInterval;
+
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class MainActivity extends AppCompatActivity implements SensorDelegate {
     /// REQUIRED: Unique permission request code, used by requestPermission and onRequestPermissionsResult.
@@ -268,6 +268,9 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
                 }
 
                 // TODO other stuff with IllnessStatus and identifier here. E.g. display on the UI
+                if (new Date().getTime() - info.lastSeen.getTime() >= (60 * 5)) {
+                    currentPeers.remove(identifier);
+                }
 
                 TestBroadcast.triggerPeerDetect();
             } catch (Exception e) {

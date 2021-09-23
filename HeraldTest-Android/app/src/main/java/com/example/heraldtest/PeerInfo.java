@@ -2,13 +2,13 @@ package com.example.heraldtest;
 
 import java.util.ArrayList;
 
-import io.heraldprox.herald.sensor.analysis.sampling.SampleList;
-import io.heraldprox.herald.sensor.datatype.RSSI;
+import io.heraldprox.herald.sensor.datatype.Date;
 
 // https://github.com/broadinstitute/operation-outbreak/issues/163
 public class PeerInfo {
     ArrayList<Double> data = new ArrayList<>();
     IllnessStatus status;
+    Date lastSeen;
 
     void addRSSI(double value) {
         if (-100 <= value && value < 0) {
