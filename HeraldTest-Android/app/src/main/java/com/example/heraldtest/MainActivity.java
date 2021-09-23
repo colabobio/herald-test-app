@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
+import java.util.UUID;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,18 +57,27 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
     private final BroadcastReceiver statusChangedReceiver = TestBroadcast.statusChangeReceived(this::updateStatus);
     private final BroadcastReceiver statusDetectedReceiver = TestBroadcast.peerDetectReceived(this::updatePeers);
 
-    public static IllnessStatusPayloadDataSupplier payloadDataSupplier = new IllnessStatusPayloadDataSupplier(identifier());
+    public static IllnessStatusPayloadDataSupplier payloadDataSupplier;
 
     public SensorArray sensor = null;
 
-    public static int identifier() {
+    public int identifier(Context context) {
         // TODO for persistence between app restarts, make the 'random' section a check
         //      for a text file value. If no text file, generate random and use. If file
         //      exists, load the value. Otherwise the ID will change on phone restart!
         // Unique UUID from app
         // iOS: https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor
-        final String text = Build.MODEL + ":" + Build.BRAND + ":" + (new Random()).nextInt();
-        return text.hashCode();
+
+        final TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+
+        final String tmDevice, tmSerial, androidId;
+        tmDevice = "" + tm.getDeviceId();
+        tmSerial = "" + tm.getSimSerialNumber();
+        androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+
+        UUID deviceUuid = new UUID(androidId.hashCode(), ((long)tmDevice.hashCode() << 32) | tmSerial.hashCode());
+        String deviceId = deviceUuid.toString();
+        return deviceId.hashCode();
     }
 
     @Override
@@ -77,6 +87,8 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
 
         // REQUIRED : Ensure app has all required permissions
         requestPermissions();
+
+        payloadDataSupplier = new IllnessStatusPayloadDataSupplier(identifier(this));
 
         // The more frequent this is, the more Bluetooth payload transfer failures will result
         // This value DOES NOT slow down INITIAL / new in range payload exchange! That's always ASAP.
