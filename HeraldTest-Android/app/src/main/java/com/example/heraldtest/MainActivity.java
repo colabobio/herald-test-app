@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,12 +18,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import cesarferreira.androiduniquedeviceid.UniqueDeviceIdProvider;
 import io.heraldprox.herald.sensor.SensorArray;
 import io.heraldprox.herald.sensor.SensorDelegate;
 import io.heraldprox.herald.sensor.ble.BLESensorConfiguration;
@@ -68,16 +67,8 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
         // Unique UUID from app
         // iOS: https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor
 
-        final TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
-
-        final String tmDevice, tmSerial, androidId;
-        tmDevice = "" + tm.getDeviceId();
-        tmSerial = "" + tm.getSimSerialNumber();
-        androidId = "" + android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
-
-        UUID deviceUuid = new UUID(androidId.hashCode(), ((long)tmDevice.hashCode() << 32) | tmSerial.hashCode());
-        String deviceId = deviceUuid.toString();
-        return deviceId.hashCode();
+        UniqueDeviceIdProvider uniqueID = new UniqueDeviceIdProvider(context);
+        return uniqueID.getUniqueId().hashCode();
     }
 
     @Override
