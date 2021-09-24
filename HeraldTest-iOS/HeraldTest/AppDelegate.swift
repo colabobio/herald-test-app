@@ -150,13 +150,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SensorDelegate {
             currentPeers.removeValue(forKey: identifer)
         }
         
-        let lastFiveMinutes = Date().timeIntervalSince(info!.lastSeen)
-        let fiveMinutesFromNow: TimeInterval = 60 * 5
-        
-        if (lastFiveMinutes >= fiveMinutesFromNow) {
-            currentPeers.removeValue(forKey: identifer)
-        }
-        
         EventHelper.triggerPeerDetect()
         
     }
