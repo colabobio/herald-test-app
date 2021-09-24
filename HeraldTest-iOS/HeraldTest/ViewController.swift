@@ -35,7 +35,7 @@ extension ViewController: EventHelperDelegate {
     func updatePeers() {
         DispatchQueue.main.async {
             self.peers.text = ""
-                AppDelegate.instance?.currentPeers.forEach({ (id: Int, value: PeerInfo) in
+            AppDelegate.instance?.currentPeers.forEach({ (id: Int, value: PeerInfo) in
                 
                 let lastFiveMinutes = Date().timeIntervalSince(value.lastSeen)
                 let fiveMinutesFromNow: TimeInterval = 60 * 5
