@@ -25,12 +25,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-
-import io.heraldprox.herald.sensor.PayloadDataSupplier;
 import io.heraldprox.herald.sensor.SensorArray;
 import io.heraldprox.herald.sensor.SensorDelegate;
 import io.heraldprox.herald.sensor.ble.BLESensorConfiguration;
-import io.heraldprox.herald.sensor.datatype.Date;
 import io.heraldprox.herald.sensor.datatype.ImmediateSendData;
 import io.heraldprox.herald.sensor.datatype.LegacyPayloadData;
 import io.heraldprox.herald.sensor.datatype.Location;
@@ -51,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
     private final static String tag = TestApplication.class.getName();
 
 
-    public HashMap<Integer, PeerInfo> currentPeers = null;
+    public static HashMap<Integer, PeerInfo> currentPeers = null;
 
     public final static String USER_CHANNEL_ID = "com.example.heraldtest.user_notifications";
     public final static String SERVICE_CHANNEL_ID = "com.example.heraldtest.service_notifications";
@@ -291,9 +288,6 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
                 }
 
                 // TODO other stuff with IllnessStatus and identifier here. E.g. display on the UI
-                if (new Date().getTime() - info.lastSeen.getTime() >= (60 * 5L * 1000)) {
-                    currentPeers.remove(identifier);
-                }
 
                 TestBroadcast.triggerPeerDetect();
             } catch (Exception e) {
