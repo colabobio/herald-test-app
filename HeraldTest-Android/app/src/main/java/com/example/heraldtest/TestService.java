@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
-import java.util.Map;
 import java.util.Random;
 
 import androidx.core.app.NotificationCompat;
@@ -80,13 +79,6 @@ public class TestService extends Service {
         state = id + ":" + (System.currentTimeMillis() / 1000 - time0);
 
         updatePayload();
-
-
-        for (Map.Entry<Integer, PeerInfo> pair: MainActivity.currentPeers.entrySet()){
-            if (new Date().getTime() - pair.getValue().lastSeen.getTime() >= (60 * 5L * 1000)) {
-                MainActivity.currentPeers.remove(pair.getKey());
-            }
-        }
 
         TestBroadcast.triggerStatusChange();
     }

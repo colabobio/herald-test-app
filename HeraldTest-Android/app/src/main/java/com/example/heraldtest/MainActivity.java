@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import androidx.annotation.NonNull;
@@ -28,6 +30,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import io.heraldprox.herald.sensor.SensorArray;
 import io.heraldprox.herald.sensor.SensorDelegate;
 import io.heraldprox.herald.sensor.ble.BLESensorConfiguration;
+import io.heraldprox.herald.sensor.datatype.Date;
 import io.heraldprox.herald.sensor.datatype.ImmediateSendData;
 import io.heraldprox.herald.sensor.datatype.LegacyPayloadData;
 import io.heraldprox.herald.sensor.datatype.Location;
@@ -57,6 +60,11 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
     private final BroadcastReceiver statusDetectedReceiver = TestBroadcast.peerDetectReceived(this::updatePeers);
 
     public static IllnessStatusPayloadDataSupplier payloadDataSupplier;
+
+    Handler handler = new Handler();
+    Runnable runnable;
+
+    int delay = 1000;
 
     public SensorArray sensor = null;
 
@@ -110,6 +118,27 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate {
         // Add appDelegate as listener for detection events for logging and start sensor
         sensor.add(this);
         sensor.start();
+    }
+
+    @Override
+    protected void onResume() {
+        handler.postDelayed(runnable = () -> {
+            handler.postDelayed(runnable, delay);
+
+            for (Map.Entry<Integer, PeerInfo> pair: MainActivity.currentPeers.entrySet()){
+                if (new Date().getTime() - pair.getValue().lastSeen.getTime() >= (60 * 5L * 1000)) {
+                    MainActivity.currentPeers.remove(pair.getKey());
+                }
+            }
+
+        }, delay);
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        handler.removeCallbacks(runnable);
+        super.onPause();
     }
 
     @Override
