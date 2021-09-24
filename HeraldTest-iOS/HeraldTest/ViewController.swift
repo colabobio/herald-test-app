@@ -44,7 +44,7 @@ extension ViewController: EventHelperDelegate {
                     AppDelegate.instance?.currentPeers.removeValue(forKey: id)
                 }
                 
-                let txt = "-> \(id): \(value.status): RSSI=\(value.getRSSI()) \n"
+                let txt = "-> \(id): \(value.status.toString()): RSSI=\(value.getRSSI()) \n"
                 print(txt)
                 self.peers.text.append(txt)
             })
