@@ -26,7 +26,7 @@ extension ViewController: EventHelperDelegate {
     
     func updateStatus() {
         DispatchQueue.main.async {
-            if let supplier = AppDelegate.instance?.payloadDataSupplier {
+            if let supplier = TestService.instance?.payloadDataSupplier {
                 self.status.text = "\(supplier.getIdentifier()): \(supplier.getStatus())"
             }
         }
@@ -35,13 +35,13 @@ extension ViewController: EventHelperDelegate {
     func updatePeers() {
         DispatchQueue.main.async {
             self.peers.text = ""
-            AppDelegate.instance?.currentPeers.forEach({ (id: Int, value: PeerInfo) in
+            TestService.instance?.currentPeers.forEach({ (id: Int, value: PeerInfo) in
                 
                 let lastFiveMinutes = Date().timeIntervalSince(value.lastSeen)
                 let fiveMinutesFromNow: TimeInterval = 60 * 5
                 
                 if (lastFiveMinutes >= fiveMinutesFromNow) {
-                    AppDelegate.instance?.currentPeers.removeValue(forKey: id)
+                    TestService.instance?.currentPeers.removeValue(forKey: id)
                 }
                 
                 let txt = "-> \(id): \(value.status.toString()): RSSI=\(value.getRSSI()) \n"
