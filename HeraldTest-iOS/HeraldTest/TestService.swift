@@ -21,11 +21,6 @@ class TestService: SensorDelegate {
     
     public static var instance: TestService?
     
-    var id: String = ""
-    var state: String = ""
-    
-    var time0: Int = 0
-    
     var timer: Timer?
     var dispatch: DispatchSourceTimer?
     
@@ -53,31 +48,10 @@ class TestService: SensorDelegate {
     }
     
     private func identifier() -> Int {
-//           let text = UIDevice.current.name + ":" + UIDevice.current.model + ":" + UIDevice.current.systemName + ":" + UIDevice.current.systemVersion
-//           var hash = UInt64 (5381)
-//           let buf = [UInt8](text.utf8)
-//           for b in buf {
-//               hash = 127 * (hash & 0x00ffffffffffffff) + UInt64(b)
-//           }
-//           let value = Int32(hash.remainderReportingOverflow(dividingBy: UInt64(Int32.max)).partialValue)
          let v = getUniqueId()
          let h = hashCode(v)
          return h
      }
-
-    func startPhone() {
-        payloadDataSupplier = IllnessDataPayloadSupplier(identifier: identifier())
-        BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minute
-        
-        // This allow us to have multiple teams playing in the same area and not interfering each other
-        // https://www.uuidgenerator.net/version4
-        BLESensorConfiguration.serviceUUID = CBUUID(string: "8693a908-43cf-44b3-9444-b91c04b83877")
-        
-        BLESensorConfiguration.logLevel = .debug
-        sensor = SensorArray(payloadDataSupplier!)
-        sensor?.add(delegate: self)
-        sensor?.start()
-    }
     
     static var shared: TestService {
         if let service = TestService.instance { return service }
@@ -87,8 +61,7 @@ class TestService: SensorDelegate {
     }
     
     func start() {
-        startPhone()
-        initState()
+        initSensor()
         startTimer()
     }
     
@@ -111,28 +84,26 @@ class TestService: SensorDelegate {
         timer = nil
     }
     
-    private func initState() {
-        id = randomID()
-        time0 = Int(Date().timeIntervalSince1970)
-        state = id + ":0"
+    func initSensor() {
+        payloadDataSupplier = IllnessDataPayloadSupplier(identifier: identifier())
+        BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minute
+        
+        // This allow us to have multiple teams playing in the same area and not interfering each other
+        // https://www.uuidgenerator.net/version4
+        BLESensorConfiguration.serviceUUID = CBUUID(string: "8693a908-43cf-44b3-9444-b91c04b83877")
+        
+        BLESensorConfiguration.logLevel = .debug
+        sensor = SensorArray(payloadDataSupplier!)
+        sensor?.add(delegate: self)
+        sensor?.start()
     }
     
     private func updateState() {
-        state = id + ": \((Int(Date().timeIntervalSince1970) - time0))"
-        
         updatePayload()
-        
         EventHelper.triggerStatusChange()
     }
     
-    func randomID() -> String {
-      let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-      let digits = "0123456789"
-      return String((0..<2).map{ _ in letters.randomElement()! }) + String((0..<2).map{ _ in digits.randomElement()! })
-    }
-    
     private func updatePayload() {
-//        AppDelegate.instance?.payloadDataSupplier?.payload(Data(state.utf8))
         payloadDataSupplier?.setStatus(newStatus: IllnessStatus(status: IllnessStatusCode.allCases.randomElement() ?? .susceptable, dateSince: Date()))
     }
     

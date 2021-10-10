@@ -42,14 +42,8 @@ public class TestService extends Service implements SensorDelegate {
 
     public static TestService instance;
 
-    public String id;
-    public String state;
-
-    private int time0;
-
     private Handler handler = new Handler();
     private Runnable runnable;
-
 
     public HashMap<Integer, PeerInfo> currentPeers = null;
     public IllnessStatusPayloadDataSupplier payloadDataSupplier;
@@ -82,7 +76,6 @@ public class TestService extends Service implements SensorDelegate {
         instance = this;
         currentPeers = new HashMap<>();
         goToForeground();
-        initState();
         initSensor();
         updateLoop();
     }
@@ -138,26 +131,8 @@ public class TestService extends Service implements SensorDelegate {
         return new TestServiceBinder(this);
     }
 
-    private void initState() {
-        String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String digits = "0123456789";
-        id = generateRandomString(letters, 2) + generateRandomString(digits, 2);
-        time0 = (int)(System.currentTimeMillis() / 1000);
-        state = id + ":0";
-    }
-
-    private String generateRandomString(String chars, int length) {
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-        for (int i = 0; i < length; i++) sb.append(chars.charAt(random.nextInt(chars.length())));
-        return sb.toString();
-    }
-
     private void updateState() {
-        state = id + ":" + (System.currentTimeMillis() / 1000 - time0);
-
         updatePayload();
-
         TestBroadcast.triggerStatusChange();
     }
 
