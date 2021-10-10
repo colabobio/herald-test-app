@@ -128,12 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void updatePeers() {
         EditText peers = findViewById(R.id.peers);
-        String txt = "";
-        for (Integer id: TestService.instance.currentPeers.keySet()) {
-            PeerInfo info = TestService.instance.currentPeers.get(id);
-            txt += "->" + id + ":" + info.status.status + ":RSSI=" + info.getRSSI() + "\n";
-        }
-        peers.setText(txt);
+        TestService.instance.updateEditText(peers);
     }
 
 

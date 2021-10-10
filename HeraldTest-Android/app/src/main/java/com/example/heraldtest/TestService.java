@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.EditText;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -165,7 +166,7 @@ public class TestService extends Service implements SensorDelegate {
 //        TestApplication.payloadDataSupplier.payload(new Data(state));
     }
 
-    private void updateLoop() {
+    synchronized private void updateLoop() {
         updateState();
 
         Log.i(tag, "in update loop");
@@ -174,7 +175,8 @@ public class TestService extends Service implements SensorDelegate {
         handler.postDelayed(runnable, TIME_STEP * 1000);
 
         for (Map.Entry<Integer, PeerInfo> pair: currentPeers.entrySet()){
-            if (new Date().getTime() - pair.getValue().lastSeen.getTime() >= (60 * 5L * 1000)) {
+            Date lastSeen = pair.getValue().lastSeen;
+            if (lastSeen != null && new Date().getTime() - lastSeen.getTime() >= (60 * 5L * 1000)) {
                 currentPeers.remove(pair.getKey());
             }
         }
@@ -234,7 +236,16 @@ public class TestService extends Service implements SensorDelegate {
     }
 
 
-    private void parsePayload(String source, SensorType sensor, PayloadData payloadData, Proximity proximity, TargetIdentifier fromTarget) {
+    synchronized public void updateEditText(EditText peers) {
+        String txt = "";
+        for (Integer id: currentPeers.keySet()) {
+            PeerInfo info = currentPeers.get(id);
+            txt += "->" + id + ":" + info.status.status + ":RSSI=" + info.getRSSI() + "\n";
+        }
+        peers.setText(txt);
+    }
+
+    synchronized private void parsePayload(String source, SensorType sensor, PayloadData payloadData, Proximity proximity, TargetIdentifier fromTarget) {
         String service = "herald";
         String parsedPayload = payloadData.shortName();
         if (payloadData instanceof LegacyPayloadData) {
@@ -253,7 +264,6 @@ public class TestService extends Service implements SensorDelegate {
                 parsedPayload = payloadData.hexEncodedString();
             }
             Log.i(tag, "RECEIVED PAYLOAD ------> " + parsedPayload);
-            TestBroadcast.triggerPeerDetect();
         } else {
             // Likely an Illness payload
             try {
