@@ -80,14 +80,21 @@ public class TestService extends Service implements SensorDelegate {
         updateLoop();
     }
 
-    public int identifier(Context context) {
-        // TODO for persistence between app restarts, make the 'random' section a check
-        //      for a text file value. If no text file, generate random and use. If file
-        //      exists, load the value. Otherwise the ID will change on phone restart!
-        // Unique UUID from app
-        // iOS: https://developer.apple.com/documentation/uikit/uidevice/1620059-identifierforvendor
+    // This could also be relevant:
+    // http://mathcenter.oxford.emory.edu/site/cs171/usingTheHashCodeMethod/
+    private int hashCode(String text) {
+        long hash = (long)(5381);
+        byte[] buf = text.getBytes();
+        for (byte b: buf) {
+            hash = 127 * (hash & 0x00ffffffffffffffL) + (long)(b);
+        }
+        int value = (int)(hash % 2147483647);
+        return value;
+    }
 
-        return getUniqueId(context).hashCode();
+    public int identifier(Context context) {
+        String id = getUniqueId(context);
+        return hashCode(id);
     }
 
     private void initSensor() {

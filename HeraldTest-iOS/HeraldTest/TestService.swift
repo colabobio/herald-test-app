@@ -48,9 +48,8 @@ class TestService: SensorDelegate {
     }
     
     private func identifier() -> Int {
-         let v = getUniqueId()
-         let h = hashCode(v)
-         return h
+         let id = getUniqueId()
+         return hashCode(id)
      }
     
     static var shared: TestService {
