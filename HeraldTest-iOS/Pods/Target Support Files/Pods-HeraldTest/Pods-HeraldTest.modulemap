@@ -1,6 +1,0 @@
-module Pods_HeraldTest {
-  umbrella header "Pods-HeraldTest-umbrella.h"
-
-  export *
-  module * { export * }
-}
