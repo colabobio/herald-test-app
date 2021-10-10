@@ -102,8 +102,11 @@ public class TestService extends Service implements SensorDelegate {
         // The more frequent this is, the more Bluetooth payload transfer failures will result
         // This value DOES NOT slow down INITIAL / new in range payload exchange! That's always ASAP.
         BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minutes(1);
-        //        BLESensorConfiguration.serviceUUID = // any valid id... this allow us to have multiple teams playing in tghe same area
-        // and not interfering each other
+
+        // This allow us to have multiple teams playing in the same area and not interfering each other
+        // https://www.uuidgenerator.net/version4
+        BLESensorConfiguration.serviceUUID = UUID.fromString("8693a908-43cf-44b3-9444-b91c04b83877");
+
 
         sensor = new SensorArray(getApplicationContext(), payloadDataSupplier);
 

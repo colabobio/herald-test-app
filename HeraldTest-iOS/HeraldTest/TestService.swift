@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreBluetooth
 import Herald
 
 class TestService: SensorDelegate {
@@ -67,6 +68,11 @@ class TestService: SensorDelegate {
     func startPhone() {
         payloadDataSupplier = IllnessDataPayloadSupplier(identifier: identifier())
         BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minute
+        
+        // This allow us to have multiple teams playing in the same area and not interfering each other
+        // https://www.uuidgenerator.net/version4
+        BLESensorConfiguration.serviceUUID = CBUUID(string: "8693a908-43cf-44b3-9444-b91c04b83877")
+        
         BLESensorConfiguration.logLevel = .debug
         sensor = SensorArray(payloadDataSupplier!)
         sensor?.add(delegate: self)
