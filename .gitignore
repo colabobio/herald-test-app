@@ -9,5 +9,8 @@
 **/UserInterfaceState.xcuserstate
 **/xcuserdata
 
+# iOS Pods
+HeraldTest-iOS/Pods
+
 # Ephemeral build metadata
 **/build
