@@ -39,6 +39,7 @@ public class TestService extends Service implements SensorDelegate {
 
     private static final int FOREGROUND_NOTIFICATION_ID = 133;
     private static final int TIME_STEP = 2;
+    private static final int REMOVE_TIME = 5;
 
     public static TestService instance;
 
@@ -148,20 +149,24 @@ public class TestService extends Service implements SensorDelegate {
 //        TestApplication.payloadDataSupplier.payload(new Data(state));
     }
 
-    synchronized private void updateLoop() {
+    synchronized private void removeLostPeers() {
+        for (Map.Entry<Integer, PeerInfo> pair: currentPeers.entrySet()){
+            Date lastSeen = pair.getValue().lastSeen;
+            if (lastSeen != null && new Date().getTime() - lastSeen.getTime() >= (60 * REMOVE_TIME * 1000)) {
+                currentPeers.remove(pair.getKey());
+                Log.i(tag, "Removed peer " + pair.getKey());
+            }
+        }
+    }
+
+    private void updateLoop() {
         updateState();
+        removeLostPeers();
 
         Log.i(tag, "in update loop");
 
         runnable = () -> handler.post(TestService.this::updateLoop);
         handler.postDelayed(runnable, TIME_STEP * 1000);
-
-        for (Map.Entry<Integer, PeerInfo> pair: currentPeers.entrySet()){
-            Date lastSeen = pair.getValue().lastSeen;
-            if (lastSeen != null && new Date().getTime() - lastSeen.getTime() >= (60 * 5L * 1000)) {
-                currentPeers.remove(pair.getKey());
-            }
-        }
     }
 
     @Override
@@ -218,15 +223,6 @@ public class TestService extends Service implements SensorDelegate {
     }
 
 
-    synchronized public void updateEditText(EditText peers) {
-        String txt = "";
-        for (Integer id: currentPeers.keySet()) {
-            PeerInfo info = currentPeers.get(id);
-            txt += "->" + id + ":" + info.status.status + ":RSSI=" + info.getRSSI() + "\n";
-        }
-        peers.setText(txt);
-    }
-
     synchronized private void parsePayload(String source, SensorType sensor, PayloadData payloadData, Proximity proximity, TargetIdentifier fromTarget) {
         String service = "herald";
         String parsedPayload = payloadData.shortName();
@@ -276,5 +272,14 @@ public class TestService extends Service implements SensorDelegate {
                 Log.e(tag, "Error parsing payload data", e);
             }
         }
+    }
+
+    synchronized public void updateEditText(EditText peers) {
+        String txt = "";
+        for (Integer id: currentPeers.keySet()) {
+            PeerInfo info = currentPeers.get(id);
+            txt += "->" + id + ":" + info.status.status + ":RSSI=" + info.getRSSI() + "\n";
+        }
+        peers.setText(txt);
     }
 }

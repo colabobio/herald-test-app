@@ -12,6 +12,7 @@ import Herald
 
 class TestService: SensorDelegate {
     static let TIME_STEP: Int = 2
+    static let REMOVE_TIME: Double = 5
     
     var currentPeers: [Int: PeerInfo] = [:]
     var payloadDataSupplier: IllnessDataPayloadSupplier?
@@ -106,8 +107,22 @@ class TestService: SensorDelegate {
         payloadDataSupplier?.setStatus(newStatus: IllnessStatus(status: IllnessStatusCode.allCases.randomElement() ?? .susceptable, dateSince: Date()))
     }
     
+    private func removeLostPeers() {
+        currentPeers.forEach({ (id: Int, value: PeerInfo) in
+            
+            let lastSeen = Date().timeIntervalSince(value.lastSeen)
+            let fiveMinutesFromNow: TimeInterval = 60 * TestService.REMOVE_TIME
+            
+            if (lastSeen >= fiveMinutesFromNow) {
+                TestService.instance?.currentPeers.removeValue(forKey: id)
+                print("Removed peer \(id)")
+            }
+        })
+    }
+    
     private func updateLoop() {
         updateState()
+        removeLostPeers()
         
         print("in update loop")
     }
@@ -176,7 +191,15 @@ class TestService: SensorDelegate {
         }
         
         EventHelper.triggerPeerDetect()
-        
+    }
+    
+    func updateEditText(_ peers: UITextView) {
+        peers.text = ""
+        currentPeers.forEach({ (id: Int, value: PeerInfo) in
+            let txt = "-> \(id): \(value.status.toString()): RSSI=\(value.getRSSI()) \n"
+            print(txt)
+            peers.text.append(txt)
+        })
     }
 
 }
