@@ -33,7 +33,7 @@ class IllnessStatus {
     
     func toString() -> String {
 //        return "Status: \(status.rawValue), since (epoch): \(since.hashValue)"
-        return "\(status.rawValue)"
+        return "\(status.name)"
     }
     
     static func fromPayload(raw: Data) -> IllnessStatus {
