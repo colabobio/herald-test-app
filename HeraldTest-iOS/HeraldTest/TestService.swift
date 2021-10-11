@@ -11,6 +11,9 @@ import CoreBluetooth
 import Herald
 
 class TestService: SensorDelegate {
+    static let DISABLE_HERALD: Bool = false
+    static let SIMULATION_ID: String = "8693a908-43cf-44b3-9444-b91c04b83877"
+    
     static let TIME_STEP: Int = 2
     static let REMOVE_TIME: Double = 1
     static let UPDATE_TIME: Double = 2
@@ -88,11 +91,16 @@ class TestService: SensorDelegate {
     
     func initSensor() {
         payloadDataSupplier = IllnessDataPayloadSupplier(identifier: identifier())
+        
+        if (TestService.DISABLE_HERALD) {
+            return
+        }
+        
         BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minute
         
         // This allow us to have multiple teams playing in the same area and not interfering each other
         // https://www.uuidgenerator.net/version4
-        BLESensorConfiguration.serviceUUID = CBUUID(string: "8693a908-43cf-44b3-9444-b91c04b83877")
+        BLESensorConfiguration.serviceUUID = CBUUID(string: TestService.SIMULATION_ID)
         
         BLESensorConfiguration.logLevel = .debug
         sensor = SensorArray(payloadDataSupplier!)
