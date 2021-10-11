@@ -37,6 +37,9 @@ import io.heraldprox.herald.sensor.datatype.TimeInterval;
 public class TestService extends Service implements SensorDelegate {
     private static final String tag = "TestService";
 
+    private static final boolean DISABLE_HERALD = true;
+    private static final String SIMULATION_ID = "8693a908-43cf-44b3-9444-b91c04b83877";
+
     private static final int FOREGROUND_NOTIFICATION_ID = 133;
     private static final int TIME_STEP = 2;
     private static final int REMOVE_TIME = 1;
@@ -103,17 +106,17 @@ public class TestService extends Service implements SensorDelegate {
     private void initSensor() {
         payloadDataSupplier = new IllnessStatusPayloadDataSupplier(identifier(this));
 
+        if (DISABLE_HERALD) return;
+
         // The more frequent this is, the more Bluetooth payload transfer failures will result
         // This value DOES NOT slow down INITIAL / new in range payload exchange! That's always ASAP.
         BLESensorConfiguration.payloadDataUpdateTimeInterval = TimeInterval.minutes(1);
 
         // This allow us to have multiple teams playing in the same area and not interfering each other
         // https://www.uuidgenerator.net/version4
-        BLESensorConfiguration.serviceUUID = UUID.fromString("8693a908-43cf-44b3-9444-b91c04b83877");
-
+        BLESensorConfiguration.serviceUUID = UUID.fromString(SIMULATION_ID);
 
         sensor = new SensorArray(getApplicationContext(), payloadDataSupplier);
-
 
         // Add appDelegate as listener for detection events for logging and start sensor
         sensor.add(this);
