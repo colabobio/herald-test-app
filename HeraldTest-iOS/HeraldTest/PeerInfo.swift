@@ -10,7 +10,7 @@ class PeerInfo {
     public var data: [Double] = []
     public var status: IllnessStatus
     public var lastSeen: Date
-    public var updateCount: Int = 0
+    public var updateCount: Int
     
     init(data: [Double], status: IllnessStatus, lastSeen: Date) {
         self.data = data
@@ -23,12 +23,13 @@ class PeerInfo {
         self.data = []
         self.status = IllnessStatus.init(status: .susceptible, dateSince: Date())
         self.lastSeen = Date()
-        self.updateCount += 1
+        self.updateCount = 0
     }
     
     func setStatus(_ status: IllnessStatus) {
         self.status = status
         self.lastSeen = Date()
+        self.updateCount += 1
     }
     
     func addRSSI(_ value: Double) {
