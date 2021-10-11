@@ -23,6 +23,7 @@ class TestService: SensorDelegate {
     var sensor: SensorArray?
     
     let RSSI_THRESHOLD = -70.0
+    let MIN_RSSI_VALUES = 10
     
     public static var instance: TestService?
     
@@ -208,7 +209,7 @@ class TestService: SensorDelegate {
         }
         
         
-        if (10 < info!.data.count && info!.getRSSI() < RSSI_THRESHOLD) {
+        if (MIN_RSSI_VALUES <= info!.data.count && info!.getRSSI() < RSSI_THRESHOLD) {
             // not in contact anymore, remove
             currentPeers.removeValue(forKey: identifer)
         }
@@ -219,9 +220,11 @@ class TestService: SensorDelegate {
     func updateEditText(_ peers: UITextView) {
         peers.text = ""
         currentPeers.forEach({ (id: Int, value: PeerInfo) in
-            let txt = "-> \(id): \(value.status.toString()): RSSI=\(value.getRSSI()): UPC=\(value.updateCount)\n"
-            print(txt)
-            peers.text.append(txt)
+            if (MIN_RSSI_VALUES <= value.data.count) {
+                let txt = "-> \(id): \(value.status.toString()): RSSI=\(value.getRSSI()): UPC=\(value.updateCount)\n"
+                print(txt)
+                peers.text.append(txt)
+            }
         })
     }
 

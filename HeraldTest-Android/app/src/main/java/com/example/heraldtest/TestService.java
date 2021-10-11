@@ -55,6 +55,7 @@ public class TestService extends Service implements SensorDelegate {
     public SensorArray sensor = null;
 
     public int RSSI_THRESHOLD = -70;
+    public int MIN_RSSI_VALUES = 10;
 
     private String uniqueID = null;
     private final static String PREF_UNIQUE_ID = "PREF_UNIQUE_DEVICE_ID";
@@ -277,7 +278,7 @@ public class TestService extends Service implements SensorDelegate {
                     info.addRSSI(proximity.value);
                     Log.i(tag, "RSSI value: " + proximity.value);
                 }
-                if (10 < info.data.size() && info.getRSSI() < RSSI_THRESHOLD) {
+                if (MIN_RSSI_VALUES <= info.data.size() && info.getRSSI() < RSSI_THRESHOLD) {
                     // not in contact anymore, remove
                     currentPeers.remove(identifier);
                 }
@@ -295,7 +296,9 @@ public class TestService extends Service implements SensorDelegate {
         String txt = "";
         for (Integer id: currentPeers.keySet()) {
             PeerInfo info = currentPeers.get(id);
-            txt += "->" + id + ":" + info.status.status + ":RSSI=" + info.getRSSI() + ":UPC=" + info.updateCount + "\n";
+            if (MIN_RSSI_VALUES <= info.data.size()) {
+                txt += "->" + id + ":" + info.status.status + ":RSSI=" + info.getRSSI() + ":UPC=" + info.updateCount + "\n";
+            }
         }
         peers.setText(txt);
     }
