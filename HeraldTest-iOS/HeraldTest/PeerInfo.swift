@@ -49,7 +49,7 @@ class PeerInfo {
             }
             return sum / Double(data.count);
         } else {
-            return -100;
+            return -50;
         }
     }
 }

@@ -39,7 +39,7 @@ public class PeerInfo {
             for (Double v: data) sum += v;
             return sum / data.size();
         } else {
-            return -100;
+            return -50;
         }
     }
 }
