@@ -19,14 +19,14 @@ class IllnessDataPayloadSupplier: PayloadDataSupplier {
 
     init(identifier: Int) {
         self.identifier = identifier
-        status = IllnessStatus(status: .susceptable, dateSince: Date())
+        status = IllnessStatus(status: .susceptible, dateSince: Date())
     }
 
     func setStatus(newStatus: IllnessStatus) {
         self.status = newStatus
     }
 
-    func getStatus() -> IllnessStatus{
+    func getStatus() -> IllnessStatus {
         return status
     }
 

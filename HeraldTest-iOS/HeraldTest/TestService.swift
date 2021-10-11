@@ -12,7 +12,8 @@ import Herald
 
 class TestService: SensorDelegate {
     static let TIME_STEP: Int = 2
-    static let REMOVE_TIME: Double = 5
+    static let REMOVE_TIME: Double = 1
+    static let UPDATE_TIME: Double = 2
     
     var currentPeers: [Int: PeerInfo] = [:]
     var payloadDataSupplier: IllnessDataPayloadSupplier?
@@ -63,6 +64,7 @@ class TestService: SensorDelegate {
     func start() {
         initSensor()
         startTimer()
+        selectRandomState()
     }
     
     private func startTimer() {
@@ -100,30 +102,43 @@ class TestService: SensorDelegate {
     
     private func updateState() {
         updatePayload()
-        EventHelper.triggerStatusChange()
     }
     
     private func updatePayload() {
-        payloadDataSupplier?.setStatus(newStatus: IllnessStatus(status: IllnessStatusCode.allCases.randomElement() ?? .susceptable, dateSince: Date()))
+        let lastUpdate = Date().timeIntervalSince((payloadDataSupplier?.getStatus().since)!)
+        let someMinutesFromNow: TimeInterval = 60 * TestService.UPDATE_TIME
+        if (lastUpdate >= someMinutesFromNow) {
+            selectRandomState()
+        }
+    }
+    
+    private func selectRandomState() {
+        payloadDataSupplier?.setStatus(newStatus: IllnessStatus(status: IllnessStatusCode.allCases.randomElement() ?? .susceptible, dateSince: Date()))
+        EventHelper.triggerStatusChange()
     }
     
     private func removeLostPeers() {
+        var removed = false        
         currentPeers.forEach({ (id: Int, value: PeerInfo) in
             
             let lastSeen = Date().timeIntervalSince(value.lastSeen)
-            let fiveMinutesFromNow: TimeInterval = 60 * TestService.REMOVE_TIME
+            let someMinutesFromNow: TimeInterval = 60 * TestService.REMOVE_TIME
             
-            if (lastSeen >= fiveMinutesFromNow) {
+            if (lastSeen >= someMinutesFromNow) {
+                removed = true
                 TestService.instance?.currentPeers.removeValue(forKey: id)
-                print("Removed peer \(id)")
+                print("Removed lost peer \(id)")
             }
         })
+        
+        if (removed) {
+            EventHelper.triggerPeerDetect()
+        }
     }
     
     private func updateLoop() {
         updateState()
         removeLostPeers()
-        
         print("in update loop")
     }
     
@@ -175,12 +190,12 @@ class TestService: SensorDelegate {
         
         if (info == nil) {
             info = PeerInfo()
-            info!.status = status
             currentPeers[identifer] = info
         }
+        info?.setStatus(status)
        
         if (proximity != nil) {
-            info!.addRSSI(value: proximity!.value)
+            info?.addRSSI(proximity!.value)
             print("RSSI value: ", proximity!.value)
         }
         

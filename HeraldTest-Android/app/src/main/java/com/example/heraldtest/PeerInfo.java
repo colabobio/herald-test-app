@@ -1,14 +1,24 @@
 package com.example.heraldtest;
 
 import java.util.ArrayList;
-
 import io.heraldprox.herald.sensor.datatype.Date;
 
 // https://github.com/broadinstitute/operation-outbreak/issues/163
 public class PeerInfo {
-    ArrayList<Double> data = new ArrayList<>();
+    ArrayList<Double> data;
     IllnessStatus status;
     Date lastSeen;
+
+    PeerInfo() {
+        this.data = new ArrayList<>();
+        this.status = new IllnessStatus(IllnessStatusCode.susceptible, new Date());
+        this.lastSeen = new Date();
+    }
+
+    void setStatus(IllnessStatus status) {
+        this.status = status;
+        this.lastSeen = new Date();
+    }
 
     void addRSSI(double value) {
         if (-100 <= value && value < 0) {

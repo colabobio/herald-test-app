@@ -15,9 +15,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        TestService.shared.start()
-        
         EventHelper.delegate = self
+        
+        TestService.shared.start()
     }
 
 }
@@ -27,7 +27,7 @@ extension ViewController: EventHelperDelegate {
     func updateStatus() {
         DispatchQueue.main.async {
             if let supplier = TestService.instance?.payloadDataSupplier {
-                self.status.text = "\(supplier.getIdentifier()): \(supplier.getStatus())"
+                self.status.text = "\(supplier.getIdentifier()): \(supplier.getStatus().toString())"
             }
         }
     }

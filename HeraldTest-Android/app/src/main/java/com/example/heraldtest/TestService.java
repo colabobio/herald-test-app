@@ -39,7 +39,8 @@ public class TestService extends Service implements SensorDelegate {
 
     private static final int FOREGROUND_NOTIFICATION_ID = 133;
     private static final int TIME_STEP = 2;
-    private static final int REMOVE_TIME = 5;
+    private static final int REMOVE_TIME = 1;
+    private static final int UPDATE_TIME = 2;
 
     public static TestService instance;
 
@@ -79,6 +80,7 @@ public class TestService extends Service implements SensorDelegate {
         goToForeground();
         initSensor();
         updateLoop();
+        selectRandomState();
     }
 
     // This could also be relevant:
@@ -141,21 +143,32 @@ public class TestService extends Service implements SensorDelegate {
 
     private void updateState() {
         updatePayload();
-        TestBroadcast.triggerStatusChange();
     }
 
     private void updatePayload() {
+        if (new Date().getTime() - payloadDataSupplier.getStatus().since.getTime() >= (60 * UPDATE_TIME * 1000)) {
+            selectRandomState();
+        }
+    }
+
+    private void selectRandomState() {
         payloadDataSupplier.setStatus(new IllnessStatus(IllnessStatusCode.getRandomStatus() ,new Date()));
-//        TestApplication.payloadDataSupplier.payload(new Data(state));
+        TestBroadcast.triggerStatusChange();
     }
 
     synchronized private void removeLostPeers() {
+        boolean removed = false;
         for (Map.Entry<Integer, PeerInfo> pair: currentPeers.entrySet()){
             Date lastSeen = pair.getValue().lastSeen;
-            if (lastSeen != null && new Date().getTime() - lastSeen.getTime() >= (60 * REMOVE_TIME * 1000)) {
+            long dif = new Date().getTime() - lastSeen.getTime();
+            if (dif >= (60 * REMOVE_TIME * 1000)) {
                 currentPeers.remove(pair.getKey());
-                Log.i(tag, "Removed peer " + pair.getKey());
+                removed = true;
+                Log.i(tag, "Removed lost peer " + pair.getKey());
             }
+        }
+        if (removed) {
+            TestBroadcast.triggerPeerDetect();
         }
     }
 
@@ -255,7 +268,8 @@ public class TestService extends Service implements SensorDelegate {
                     info = new PeerInfo();
                     currentPeers.put(identifier, info);
                 }
-                info.status = status;
+                info.setStatus(status);
+
                 if (proximity != null) {
                     info.addRSSI(proximity.value);
                     Log.i(tag, "RSSI value: " + proximity.value);

@@ -7,12 +7,12 @@
 import Herald
 
 class IllnessStatus {
-    var status: IllnessStatusCode
-    var date: Date
+    var status: IllnessStatusCode = .susceptible
+    var since: Date = Date()
     
     init(status: IllnessStatusCode, dateSince: Date) {
         self.status = status
-        self.date = dateSince
+        self.since = dateSince
     }
     
     func update(newStatus: IllnessStatusCode) {
@@ -21,26 +21,23 @@ class IllnessStatus {
     
     func update(newStatus: IllnessStatusCode, dateSince: Date) {
         self.status = newStatus
-        self.date = dateSince
+        self.since = dateSince
     }
     
     func toPayload() -> PayloadData {
         let result = PayloadData()
-        result.append(UInt64(self.date.timeIntervalSince1970))
+        result.append(UInt64(self.since.timeIntervalSince1970))
         result.append(UInt8(self.status.rawValue))
         return result
     }
     
     func toString() -> String {
-        return "Status: \(status.rawValue), since (epoch): \(date.hashValue)"
+//        return "Status: \(status.rawValue), since (epoch): \(since.hashValue)"
+        return "\(status.rawValue)"
     }
     
     static func fromPayload(raw: Data) -> IllnessStatus {
         return IllnessStatus(status: IllnessStatusCode(rawValue: Int(raw.uint8(8)!))!, dateSince: Date(timeIntervalSince1970: Double(raw.uint64(0)!)))
     }
-    
-    
-    
-    
 }
 

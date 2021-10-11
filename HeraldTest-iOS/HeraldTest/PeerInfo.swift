@@ -19,11 +19,16 @@ class PeerInfo {
     
     init() {
         self.data = []
-        self.status = IllnessStatus.init(status: .susceptable, dateSince: Date())
+        self.status = IllnessStatus.init(status: .susceptible, dateSince: Date())
         self.lastSeen = Date()
     }
     
-    func addRSSI(value: Double) {
+    func setStatus(_ status: IllnessStatus) {
+        self.status = status
+        self.lastSeen = Date()
+    }
+    
+    func addRSSI(_ value: Double) {
         if (-100 <= value && value < 0) {
             data.append(value);
             if (25 < data.count) {

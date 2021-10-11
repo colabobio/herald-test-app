@@ -20,7 +20,7 @@ public class IllnessStatus {
      * @param status Illness Status
      * @param since When this status began
      */
-    public IllnessStatus(IllnessStatusCode status,Date since) {
+    public IllnessStatus(IllnessStatusCode status, Date since) {
         this.status = status;
         this.since = since;
     }
@@ -81,7 +81,8 @@ public class IllnessStatus {
      * @return A descriptive string including status and since date
      */
     public String toString() {
-        return "Status: " + status.toString() + ", since (epoch): " + since.toString();
+//        return "Status: " + status.toString() + ", since (epoch): " + since.toString();
+        return status.toString();
     }
 
     /**

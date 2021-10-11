@@ -5,7 +5,7 @@
 //
 
 enum IllnessStatusCode : Int, CaseIterable {
-    case susceptable = 1
+    case susceptible = 1
     case infected = 2
     case transmittable = 3
     case illAndTransmittable = 4
