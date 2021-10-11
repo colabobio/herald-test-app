@@ -118,7 +118,7 @@ class TestService: SensorDelegate {
     }
     
     private func removeLostPeers() {
-        var removed = false        
+        var removed = false
         currentPeers.forEach({ (id: Int, value: PeerInfo) in
             
             let lastSeen = Date().timeIntervalSince(value.lastSeen)
@@ -211,7 +211,7 @@ class TestService: SensorDelegate {
     func updateEditText(_ peers: UITextView) {
         peers.text = ""
         currentPeers.forEach({ (id: Int, value: PeerInfo) in
-            let txt = "-> \(id): \(value.status.toString()): RSSI=\(value.getRSSI()) \n"
+            let txt = "-> \(id): \(value.status.toString()): RSSI=\(value.getRSSI()): UPC=\(value.updateCount)\n"
             print(txt)
             peers.text.append(txt)
         })

@@ -292,7 +292,7 @@ public class TestService extends Service implements SensorDelegate {
         String txt = "";
         for (Integer id: currentPeers.keySet()) {
             PeerInfo info = currentPeers.get(id);
-            txt += "->" + id + ":" + info.status.status + ":RSSI=" + info.getRSSI() + "\n";
+            txt += "->" + id + ":" + info.status.status + ":RSSI=" + info.getRSSI() + ":UPC=" + info.updateCount + "\n";
         }
         peers.setText(txt);
     }

@@ -8,16 +8,19 @@ public class PeerInfo {
     ArrayList<Double> data;
     IllnessStatus status;
     Date lastSeen;
+    int updateCount;
 
     PeerInfo() {
         this.data = new ArrayList<>();
         this.status = new IllnessStatus(IllnessStatusCode.susceptible, new Date());
         this.lastSeen = new Date();
+        this.updateCount = 0;
     }
 
     void setStatus(IllnessStatus status) {
         this.status = status;
         this.lastSeen = new Date();
+        this.updateCount += 1;
     }
 
     void addRSSI(double value) {

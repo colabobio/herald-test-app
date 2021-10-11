@@ -10,17 +10,20 @@ class PeerInfo {
     public var data: [Double] = []
     public var status: IllnessStatus
     public var lastSeen: Date
+    public var updateCount: Int = 0
     
     init(data: [Double], status: IllnessStatus, lastSeen: Date) {
         self.data = data
         self.status = status
         self.lastSeen = lastSeen
+        self.updateCount = 0
     }
     
     init() {
         self.data = []
         self.status = IllnessStatus.init(status: .susceptible, dateSince: Date())
         self.lastSeen = Date()
+        self.updateCount += 1
     }
     
     func setStatus(_ status: IllnessStatus) {
