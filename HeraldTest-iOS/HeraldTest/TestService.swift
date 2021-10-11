@@ -22,7 +22,7 @@ class TestService: SensorDelegate {
     var payloadDataSupplier: IllnessDataPayloadSupplier?
     var sensor: SensorArray?
     
-    let RSSI_THRESHOLD = -30.0
+    let RSSI_THRESHOLD = -70.0
     
     public static var instance: TestService?
     
@@ -208,7 +208,7 @@ class TestService: SensorDelegate {
         }
         
         
-        if (RSSI_THRESHOLD < info!.getRSSI() && 10 < info!.data.count) {
+        if (10 < info!.data.count && info!.getRSSI() < RSSI_THRESHOLD) {
             // not in contact anymore, remove
             currentPeers.removeValue(forKey: identifer)
         }

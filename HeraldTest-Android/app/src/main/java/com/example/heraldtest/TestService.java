@@ -37,7 +37,7 @@ import io.heraldprox.herald.sensor.datatype.TimeInterval;
 public class TestService extends Service implements SensorDelegate {
     private static final String tag = "TestService";
 
-    private static final boolean DISABLE_HERALD = true;
+    private static final boolean DISABLE_HERALD = false;
     private static final String SIMULATION_ID = "8693a908-43cf-44b3-9444-b91c04b83877";
 
     private static final int FOREGROUND_NOTIFICATION_ID = 133;
@@ -54,7 +54,7 @@ public class TestService extends Service implements SensorDelegate {
     public IllnessStatusPayloadDataSupplier payloadDataSupplier;
     public SensorArray sensor = null;
 
-    public int RSSI_THRESHOLD = -30;
+    public int RSSI_THRESHOLD = -70;
 
     private String uniqueID = null;
     private final static String PREF_UNIQUE_ID = "PREF_UNIQUE_DEVICE_ID";
@@ -277,7 +277,7 @@ public class TestService extends Service implements SensorDelegate {
                     info.addRSSI(proximity.value);
                     Log.i(tag, "RSSI value: " + proximity.value);
                 }
-                if (RSSI_THRESHOLD < info.getRSSI() && 10 < info.data.size()) {
+                if (10 < info.data.size() && info.getRSSI() < RSSI_THRESHOLD) {
                     // not in contact anymore, remove
                     currentPeers.remove(identifier);
                 }
