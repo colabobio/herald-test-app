@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -50,7 +51,7 @@ public class TestService extends Service implements SensorDelegate {
     private Handler handler = new Handler();
     private Runnable runnable;
 
-    public HashMap<Integer, PeerInfo> currentPeers = null;
+    public ConcurrentHashMap<Integer, PeerInfo> currentPeers = null;
     public IllnessStatusPayloadDataSupplier payloadDataSupplier;
     public SensorArray sensor = null;
 
@@ -80,7 +81,7 @@ public class TestService extends Service implements SensorDelegate {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        currentPeers = new HashMap<>();
+        currentPeers = new ConcurrentHashMap<>();
         goToForeground();
         initSensor();
         updateLoop();
@@ -160,7 +161,7 @@ public class TestService extends Service implements SensorDelegate {
         TestBroadcast.triggerStatusChange();
     }
 
-    synchronized private void removeLostPeers() {
+    private void removeLostPeers() {
         boolean removed = false;
         for (Map.Entry<Integer, PeerInfo> pair: currentPeers.entrySet()){
             Date lastSeen = pair.getValue().lastSeen;
@@ -240,7 +241,7 @@ public class TestService extends Service implements SensorDelegate {
     }
 
 
-    synchronized private void parsePayload(String source, SensorType sensor, PayloadData payloadData, Proximity proximity, TargetIdentifier fromTarget) {
+    private void parsePayload(String source, SensorType sensor, PayloadData payloadData, Proximity proximity, TargetIdentifier fromTarget) {
         String service = "herald";
         String parsedPayload = payloadData.shortName();
         if (payloadData instanceof LegacyPayloadData) {
@@ -292,7 +293,7 @@ public class TestService extends Service implements SensorDelegate {
         }
     }
 
-    synchronized public void updateEditText(EditText peers) {
+    public void updateEditText(EditText peers) {
         String txt = "";
         for (Integer id: currentPeers.keySet()) {
             PeerInfo info = currentPeers.get(id);
