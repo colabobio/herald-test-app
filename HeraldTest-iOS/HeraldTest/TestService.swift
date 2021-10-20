@@ -168,6 +168,19 @@ class TestService: SensorDelegate {
         print(sensor.rawValue + ",didReceive=" + didReceive.base64EncodedString() + ",fromTarget=" + fromTarget.description)
     }
     
+    // Handles "nearby characteristic" feature: Read payload data of other targets recently acquired by a target, e.g.
+    // Android peripheral sharing payload data acquired from nearby iOS peripherals.
+    func sensor(_ sensor: SensorType, didShare: [PayloadData], fromTarget: TargetIdentifier) {
+        var str: String = ""
+        for payload in didShare {
+            str += ":" + payload    .shortName
+        }
+        print(sensor.rawValue + ",didShare=" + str + ",fromTarget=" + fromTarget.description)
+        for payload in didShare {
+            parsePayload("didShare", sensor, payload, nil, fromTarget)
+        }
+    }
+    
     // TODO: Gets us proximity
     func sensor(_ sensor: SensorType, didMeasure: Proximity, fromTarget: TargetIdentifier) {
         print(sensor.rawValue + ",didMeasure=" + didMeasure.description + ",fromTarget=" + fromTarget.description)
@@ -179,7 +192,6 @@ class TestService: SensorDelegate {
     
     func sensor(_ sensor: SensorType, didMeasure: Proximity, fromTarget: TargetIdentifier, withPayload: PayloadData) {
         print(sensor.rawValue + ",didMeasure=" + didMeasure.description + ",fromTarget=" + fromTarget.description + ",withPayload=" + withPayload.shortName)
-        
         parsePayload("didMeasure", sensor, withPayload, didMeasure, fromTarget)
     }
     

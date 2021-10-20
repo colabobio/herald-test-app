@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -206,15 +207,15 @@ public class TestService extends Service implements SensorDelegate {
     }
 
     @Override
-    public void sensor(@NonNull @NotNull SensorType sensorType, @NonNull @NotNull List<PayloadData> list, @NonNull @NotNull TargetIdentifier targetIdentifier) {
-//        final List<String> payloads = new ArrayList<>(list.size());
-//        for (PayloadData payloadData : list) {
-//            payloads.add(payloadData.shortName());
-//        }
-//        Log.i(tag, sensorType.name() + ",list=" + payloads.toString() + ",targetIdentifier=" + targetIdentifier);
-//        for (PayloadData payloadData : list) {
-//            parsePayload("didShare", sensorType, payloadData, targetIdentifier);
-//        }
+    public void sensor(@NonNull @NotNull SensorType sensorType, @NonNull @NotNull List<PayloadData> didShare, @NonNull @NotNull TargetIdentifier targetIdentifier) {
+        final List<String> payloads = new ArrayList<>(didShare.size());
+        for (PayloadData payloadData : didShare) {
+            payloads.add(payloadData.shortName());
+        }
+        Log.i(tag, sensorType.name() + ",list=" + payloads.toString() + ",targetIdentifier=" + targetIdentifier);
+        for (PayloadData payloadData : didShare) {
+            parsePayload("didShare", sensorType, payloadData, null, targetIdentifier);
+        }
     }
 
     @Override
