@@ -15,7 +15,7 @@ class TestService: SensorDelegate {
     static let SIMULATION_ID: String = "8693a908-43cf-44b3-9444-b91c04b83877"
     
     static let TIME_STEP: Int = 2
-    static let REMOVE_TIME: Double = 1
+    static let REMOVE_TIME: Double = 30
     static let UPDATE_TIME: Double = 2
     
     var currentPeers: [Int: PeerInfo] = [:]
