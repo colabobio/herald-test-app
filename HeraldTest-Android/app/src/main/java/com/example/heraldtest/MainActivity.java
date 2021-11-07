@@ -3,6 +3,7 @@ package com.example.heraldtest;
 import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +19,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -28,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
     /// REQUIRED: Unique permission request code, used by requestPermission and onRequestPermissionsResult.
     private final static int permissionRequestCode = 1249951875;
     private boolean foreground = false;
+
+    static final String BLUETOOTH_CONNECT = "android.permission.BLUETOOTH_CONNECT";
+    static final String BLUETOOTH_ADVERTISE = "android.permission.BLUETOOTH_ADVERTISE";
+    static final String BLUETOOTH_SCAN = "android.permission.BLUETOOTH_SCAN";
+
+    static final int ENABLE_BLUETOOTH_REQUEST = 111;
 
     private final static String tag = TestApplication.class.getName();
 
@@ -136,14 +145,24 @@ public class MainActivity extends AppCompatActivity {
     private void requestPermissions() {
         // Check and request permissions
         final List<String> requiredPermissions = new ArrayList<>();
-        requiredPermissions.add(Manifest.permission.BLUETOOTH);
-        requiredPermissions.add(Manifest.permission.BLUETOOTH_ADMIN);
-        requiredPermissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
-        requiredPermissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            requiredPermissions.add(Manifest.permission.FOREGROUND_SERVICE);
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R) {
+            requiredPermissions.add(BLUETOOTH_CONNECT);
+            requiredPermissions.add(BLUETOOTH_ADVERTISE);
+            requiredPermissions.add(BLUETOOTH_SCAN);
+        } else {
+            requiredPermissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+            requiredPermissions.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
         }
-        requiredPermissions.add(Manifest.permission.WAKE_LOCK);
+
+        // All normal level permission don't need to ask explicitly
+//        requiredPermissions.add(Manifest.permission.BLUETOOTH);
+//        requiredPermissions.add(Manifest.permission.BLUETOOTH_ADMIN);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+//            requiredPermissions.add(Manifest.permission.FOREGROUND_SERVICE);
+//        }
+//        requiredPermissions.add(Manifest.permission.WAKE_LOCK);
+
         final String[] requiredPermissionsArray = requiredPermissions.toArray(new String[0]);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(requiredPermissionsArray, permissionRequestCode);
@@ -165,6 +184,18 @@ public class MainActivity extends AppCompatActivity {
                     permissionsGranted = false;
                 } else {
                     Log.d(tag, "Permission granted (permission=" + permission + ")");
+                    if (!isBluetoothOn()) {
+                      boolean requestBluetooth = false;
+                      if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R) {
+                          requestBluetooth = permission.equals(BLUETOOTH_CONNECT);
+                      } else {
+                          requestBluetooth = permission.equals(Manifest.permission.ACCESS_FINE_LOCATION);
+                      }
+                      if (requestBluetooth) {
+                          Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                          startActivityForResult(intent, ENABLE_BLUETOOTH_REQUEST);
+                      }
+                    }
                 }
             }
 
@@ -174,4 +205,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == ENABLE_BLUETOOTH_REQUEST) {
+            if (resultCode == RESULT_OK) {
+            } else {
+                showError("CANNOT TURN ON BLUETOOTH", "This app needs Bluetooth on to operate");
+            }
+            return;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void showError(String title, String message) {
+        new AlertDialog.Builder(this).
+                setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("Cancel", (dialog, which) -> {
+                }).show();
+    }
+
+    public static boolean isBluetoothOn() {
+        BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (btAdapter == null) {
+            return false;
+        }
+        return btAdapter.isEnabled();
+    }
 }

@@ -44,7 +44,7 @@ public class TestService extends Service implements SensorDelegate {
 
     private static final int FOREGROUND_NOTIFICATION_ID = 133;
     private static final int TIME_STEP = 2;
-    private static final int REMOVE_TIME = 1;
+    private static final int REMOVE_TIME = 30;
     private static final int UPDATE_TIME = 2;
 
     public static TestService instance;
