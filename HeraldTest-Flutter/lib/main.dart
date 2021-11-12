@@ -1,5 +1,6 @@
 import 'home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterxherald/widgets/app_retain_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(title: 'HeraldTestFlutter'),
+      home: const AppRetainWidget(
+        child: HomePage(title: 'HeraldTestFlutter'),
+      ),
     );
   }
 }

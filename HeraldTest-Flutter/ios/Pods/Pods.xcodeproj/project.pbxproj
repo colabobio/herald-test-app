@@ -1,0 +1,977 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		003B2C6945A4BD067F6FBC8314173D65 /* BLETransmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFA5EB38FCEBB5854002903F52EBE01 /* BLETransmitter.swift */; };
+		0B8080F8FDEC7237FAC15780AF77BF7C /* TextFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54F583B5971A65AC147B6EB8D33F859 /* TextFile.swift */; };
+		0D84C02D24EFC2193E4859CCEAC02284 /* InertiaSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335015AF3C84FA07BF68DB714AD3CCD4 /* InertiaSensor.swift */; };
+		0F3CA7862AAD20B24746C0EBB8BAD6D8 /* AnalysisRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCEE0FA804422041C1D83E0EDC0332 /* AnalysisRunner.swift */; };
+		0FFEB9FFF1CD557AE4EA885F387C1DD3 /* SocialDistance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 312468680640FB9CFDDCE65ECB270102 /* SocialDistance.swift */; };
+		1A03C81BC51053C7ACFBD1C4A1488ED6 /* PseudoRandomFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8C2F873B0B1EED91A2508CDF4BF792 /* PseudoRandomFunction.swift */; };
+		1AB669845120115EAE7A6BDCBD7FEE71 /* BLEReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED96850B75893D69978589B8869B9C05 /* BLEReceiver.swift */; };
+		2163C690E45BAFFCBC04E40FD601DF27 /* Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BE3057F9436949F39A06EA6F05E615 /* Encryption.swift */; };
+		22282670F80D990CC60394DFB7754408 /* herald.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FDAA6AE6B2E3D6C80FED9072AC326F4 /* herald.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2984995B566525D009AE3B4D00708156 /* Sensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6ECFE8FC51CA295BDF7D880FB9B27B /* Sensor.swift */; };
+		2C44D20CB0A900195867DDADB20EF61F /* BLEAdvertParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 374FD17692E0E6A2284AA69E2E9DD49C /* BLEAdvertParser.swift */; };
+		2C80047BC0421008B5B9BB30C618077C /* SimplePayloadDataMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A804EC03999D4BEDBCD4304DBC144B /* SimplePayloadDataMatcher.swift */; };
+		2D1F6CF48E68547DC0157C27182241B4 /* BloomFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD18C94409282820ADF447F6ECFC680A /* BloomFilter.swift */; };
+		3344BA2C408595A344D944ACB80234D8 /* BLEDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD878568F7E865B4D9F4A543FE4F982 /* BLEDatabase.swift */; };
+		3404F3B45490096A8AD328958EE37428 /* BatteryLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD6FF1C0280F42494754B53CF00D79F /* BatteryLog.swift */; };
+		37C870F8EC2316102E1196B76C480948 /* AnalysisDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7B3B105B44C3BEBBD8E585E60B0B74 /* AnalysisDelegate.swift */; };
+		451CF377ADF46B269B3FE1FA5D1BAB37 /* ContactLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7101D605CA6FC93CC384F8873507D5 /* ContactLog.swift */; };
+		46B7FE2B298E1D9690A1BAB3C7F9E538 /* RingBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFA5041AF502DC1D3217FA8B64FD02CE /* RingBuffer.swift */; };
+		4B05142FE6F3B486D85BFC633EC3B820 /* PayloadDataFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2E7C7258221EAE5F49E2FCA02983B0 /* PayloadDataFormatter.swift */; };
+		51FAA5AFE746D5D01833823029F98AB4 /* Interactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C0276A6AF5E1B7B45CA997FE978D70 /* Interactions.swift */; };
+		5CE980F56998277F0F587136CAB7C96C /* SmoothedLinearModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852AF12918EAABFA19E5F596C395D35E /* SmoothedLinearModel.swift */; };
+		601F48CEA95C1F6106C1D1DC0674063B /* VenueDiary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C93715C0FA96B7F7051A9CBB223BEA /* VenueDiary.swift */; };
+		60469C74B2B969A9B8D3F220EC71D4BF /* UIntBig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0260EE0890DC256C18CD8BAF812459EB /* UIntBig.swift */; };
+		61F88DF7A2BBA459963AB0EA388709BE /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E1EA742EF91094CE27F6AF62735C30 /* Sample.swift */; };
+		62AFCAB58089DB156CE55438F59172EA /* Herald-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B9FA0CA55DFDA6F47DD660906159ECAC /* Herald-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		634BBA0AF1DF50CB172CE06B152C8211 /* Pods-Runner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3C932BD54DBB963102A89E0F9E3948 /* Pods-Runner-dummy.m */; };
+		64FCDB9DBF3CBA844DCBB473AF35C0A0 /* XXH3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C52429B681610C5625D0FD9F5D56ADD /* XXH3.swift */; };
+		6C1618B74E0E9D73965A1A81D6B5A0BB /* Mobility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895B47F48B2BF71B3A06CD883C699112 /* Mobility.swift */; };
+		718F73C5CD9BE551D273753FE5CF36C2 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9964E59BBE58CBACEC66FC421B5C58C1 /* Filter.swift */; };
+		72479619062AD3CC97FAB3303538B19E /* DataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E086E7E9BBAD74409DB9CE60BB8D82 /* DataExtensions.swift */; };
+		76DC08FF0079C3933A97D1EEBC716A98 /* Pods-Runner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 96BF45FBE2BC9AD7B2D7E56D01B5EE46 /* Pods-Runner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7ACA6EE2D63DBE657392AE5E69D8015A /* Aggregate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608A500D53A8E990A20EF68D8F1C7B3F /* Aggregate.swift */; };
+		7E1A3A0DDDA24AB38EE0FD980BF780F8 /* BLEUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7AE433B425C54392311C41C8741DA /* BLEUtilities.swift */; };
+		7E917C23C7CD5D5F6AD14CEA58E74050 /* Integrity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB58BA25D8EA7ABD012DF7F833D5B71 /* Integrity.swift */; };
+		7ECC968521D90D8B2B5B61AA10B664B2 /* Herald-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A4B6CB5B3C3626C66D4A7618C86F37AE /* Herald-dummy.m */; };
+		83A683FC0633A67ADA846D31173D635E /* KeyExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894B72E19AD7A00C52AC9FBBD3BBCC73 /* KeyExchange.swift */; };
+		83C0CA0C2E9524117BAA09D4D8762E52 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08D8F80B2227DCBCA63FD0EDFC393A6 /* DateExtensions.swift */; };
+		84F68DB4D8067D39BBB22A532E80B7BD /* SelfCalibratedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E03C642273F754EB99B869151243 /* SelfCalibratedModel.swift */; };
+		8549DBDFDF7B43166838BC19F4843396 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		854B26D6C9A8B5ED1FF2B272999812D9 /* DetectionLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1946E4697BAE2D382249055D5917DF0B /* DetectionLog.swift */; };
+		9DC5E4E48C91549CB9328E8CCACE94A6 /* DoubleValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F3730C38DEAFC6C8C42FC7D0DBFA40 /* DoubleValue.swift */; };
+		9E63800770B4955E1FF9F4DA42CB96AB /* FowlerBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B958B1294937ACF65E6C35C8B5F7A61 /* FowlerBasic.swift */; };
+		A34400640A545002ECF65F11377DF096 /* SampleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4E8A7D525742F67144099F4A3EB5230 /* SampleList.swift */; };
+		A4D0F0BA20F3CA8835151773F2AF30F5 /* TestPayloadDataSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDF38AEC5C5EC8B1426BCAE0C5F5AC5 /* TestPayloadDataSupplier.swift */; };
+		A77190B51B8F8A037B3B708FF9A7F34B /* ExtendedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C2FA632C4BCC52B682ECC4F2217351 /* ExtendedData.swift */; };
+		A81AA92AD4C29A3FA46A117EB52649B6 /* SensorLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7AF42FFDE15DF174B5A86737591FBC /* SensorLogger.swift */; };
+		ABF09EE50915F5DC172833309D39BC29 /* SampleStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E99B924F1615C8A3121CAF876F3C800 /* SampleStatistics.swift */; };
+		AEF6752683087CCEE9B9D12B0B9570A3 /* ListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF340BF8DDE855AA99CA8BACFF1D2C68 /* ListManager.swift */; };
+		B0CB7555F45AEDCD3C05DDF6E039BAD7 /* SimplePayloadDataSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 113460D05F8C49B69C3DE39760588B9A /* SimplePayloadDataSupplier.swift */; };
+		BB418FB76694B2A44DA6E57481C89273 /* CalibrationLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81828D76B044007213147AAA3B53F0BB /* CalibrationLog.swift */; };
+		BB45620E3EF69E5E770BC2FE108D944B /* EventTimeIntervalLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539BA4EDFAD69BCC6234DD9DB2E49AA /* EventTimeIntervalLog.swift */; };
+		BBEE59A28EB5F3A32B29B7D7657DCC91 /* StatisticsLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5279557D1A0F253395ACABB36450289F /* StatisticsLog.swift */; };
+		C1A0E62F49C6FD971DA059F2FB3B562B /* SensorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DC0D31CF652600951B90D2438FCF2C /* SensorDelegate.swift */; };
+		CE8C99E33DC3FB62EC6A6B035FBAB10E /* BLESensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BEAF5C07024EFBB089C68F65ED3F77 /* BLESensor.swift */; };
+		D1FE9193BDAC0F2738E83FC8C23FAFA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		D30EC22CFE5756BFA98880CB92F83695 /* PayloadDataSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C764BD31C396A7640EE429CDCD3832A /* PayloadDataSupplier.swift */; };
+		D696C27D4B6D7114FE202FF25A77B53D /* VariantSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932C20A9F9BA81198E0546E7ED847550 /* VariantSet.swift */; };
+		DCE808FDDCED1A98892AB6B138182876 /* PayloadDataMatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87FCF02A2DA1B0DCD2E2E4DD078F4F7 /* PayloadDataMatcher.swift */; };
+		E1613E3E1E3F04E49BF43D241D5577D5 /* RiskAggregationBasic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939BA6FA3EDA31FFE70580566A24AD1C /* RiskAggregationBasic.swift */; };
+		E67CBBC616B8FC12CDF04777F949D85B /* EventLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F762972EBAC05AA2BA542850852AB2 /* EventLog.swift */; };
+		EE20A7CA23C88725155BBA9868F24824 /* AnalysisProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779DDEC129AE53B09D2355665E968CA1 /* AnalysisProvider.swift */; };
+		F26F82EF974545BF4078D83E12010D0B /* SensorArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737FD73A8DCB22B27F54D5B4AAD63501 /* SensorArray.swift */; };
+		F77810B21D6E86CBB0B3BA100E72FB33 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C85E3E100ADB715E73144F05A53295C /* Device.swift */; };
+		FC2118C0FCDD034016557B549E785D57 /* BeaconPayloadDataSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027584E6960422F3A6925D3F154D1033 /* BeaconPayloadDataSupplier.swift */; };
+		FEEEC8AC00F35FF923051BB532CBD0BA /* MobilitySensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8361B158C49F0CEF3DBCF197E0B9093 /* MobilitySensor.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9B6384BEFDDFDA275B71C5BA06574BD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 90C4532E7943ACC1C205C763A87FADA2;
+			remoteInfo = Herald;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0260EE0890DC256C18CD8BAF812459EB /* UIntBig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIntBig.swift; path = Herald/Herald/Sensor/Datatype/UIntBig.swift; sourceTree = "<group>"; };
+		027584E6960422F3A6925D3F154D1033 /* BeaconPayloadDataSupplier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeaconPayloadDataSupplier.swift; path = Herald/Herald/Sensor/Payload/Beacon/BeaconPayloadDataSupplier.swift; sourceTree = "<group>"; };
+		02C93715C0FA96B7F7051A9CBB223BEA /* VenueDiary.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VenueDiary.swift; path = Herald/Herald/Sensor/Analysis/VenueDiary.swift; sourceTree = "<group>"; };
+		08E1EA742EF91094CE27F6AF62735C30 /* Sample.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sample.swift; path = Herald/Herald/Sensor/Analysis/Sampling/Sample.swift; sourceTree = "<group>"; };
+		0A7101D605CA6FC93CC384F8873507D5 /* ContactLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContactLog.swift; path = Herald/Herald/Sensor/Data/ContactLog.swift; sourceTree = "<group>"; };
+		0C764BD31C396A7640EE429CDCD3832A /* PayloadDataSupplier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PayloadDataSupplier.swift; path = Herald/Herald/Sensor/PayloadDataSupplier.swift; sourceTree = "<group>"; };
+		0E99B924F1615C8A3121CAF876F3C800 /* SampleStatistics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SampleStatistics.swift; path = Herald/Herald/Sensor/Analysis/SampleStatistics.swift; sourceTree = "<group>"; };
+		113460D05F8C49B69C3DE39760588B9A /* SimplePayloadDataSupplier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SimplePayloadDataSupplier.swift; path = Herald/Herald/Sensor/Payload/Simple/SimplePayloadDataSupplier.swift; sourceTree = "<group>"; };
+		13DC0D31CF652600951B90D2438FCF2C /* SensorDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SensorDelegate.swift; path = Herald/Herald/Sensor/SensorDelegate.swift; sourceTree = "<group>"; };
+		1946E4697BAE2D382249055D5917DF0B /* DetectionLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DetectionLog.swift; path = Herald/Herald/Sensor/Data/DetectionLog.swift; sourceTree = "<group>"; };
+		1FFA5EB38FCEBB5854002903F52EBE01 /* BLETransmitter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BLETransmitter.swift; path = Herald/Herald/Sensor/BLE/BLETransmitter.swift; sourceTree = "<group>"; };
+		21E1BB292122DFFED016F5F5EC5A79C2 /* Herald.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Herald.debug.xcconfig; sourceTree = "<group>"; };
+		2D4006F54ED82E3B70E8E12626908840 /* Herald-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Herald-prefix.pch"; sourceTree = "<group>"; };
+		2E1D1B7DE7D7AC324701C3586EC164C1 /* Herald-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Herald-Info.plist"; sourceTree = "<group>"; };
+		2F2E7C7258221EAE5F49E2FCA02983B0 /* PayloadDataFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PayloadDataFormatter.swift; path = Herald/Herald/Sensor/Data/PayloadDataFormatter.swift; sourceTree = "<group>"; };
+		312468680640FB9CFDDCE65ECB270102 /* SocialDistance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SocialDistance.swift; path = Herald/Herald/Sensor/Analysis/SocialDistance.swift; sourceTree = "<group>"; };
+		317C26B9A7CEDD34ADE8F37FAAB7AC20 /* Pods-Runner-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Runner-frameworks.sh"; sourceTree = "<group>"; };
+		335015AF3C84FA07BF68DB714AD3CCD4 /* InertiaSensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InertiaSensor.swift; path = Herald/Herald/Sensor/Motion/InertiaSensor.swift; sourceTree = "<group>"; };
+		33A804EC03999D4BEDBCD4304DBC144B /* SimplePayloadDataMatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SimplePayloadDataMatcher.swift; path = Herald/Herald/Sensor/Payload/Simple/SimplePayloadDataMatcher.swift; sourceTree = "<group>"; };
+		374FD17692E0E6A2284AA69E2E9DD49C /* BLEAdvertParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BLEAdvertParser.swift; path = Herald/Herald/Sensor/BLE/BLEAdvertParser.swift; sourceTree = "<group>"; };
+		3CD6FF1C0280F42494754B53CF00D79F /* BatteryLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BatteryLog.swift; path = Herald/Herald/Sensor/Data/BatteryLog.swift; sourceTree = "<group>"; };
+		3DDF38AEC5C5EC8B1426BCAE0C5F5AC5 /* TestPayloadDataSupplier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TestPayloadDataSupplier.swift; path = Herald/Herald/Sensor/Payload/Test/TestPayloadDataSupplier.swift; sourceTree = "<group>"; };
+		4539BA4EDFAD69BCC6234DD9DB2E49AA /* EventTimeIntervalLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EventTimeIntervalLog.swift; path = Herald/Herald/Sensor/Data/EventTimeIntervalLog.swift; sourceTree = "<group>"; };
+		49F3730C38DEAFC6C8C42FC7D0DBFA40 /* DoubleValue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DoubleValue.swift; path = Herald/Herald/Sensor/Datatype/DoubleValue.swift; sourceTree = "<group>"; };
+		50F762972EBAC05AA2BA542850852AB2 /* EventLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EventLog.swift; path = Herald/Herald/Sensor/Data/EventLog.swift; sourceTree = "<group>"; };
+		51825CD8F0558EFA53D9510F0E5BFA16 /* Pods-Runner-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Runner-Info.plist"; sourceTree = "<group>"; };
+		5279557D1A0F253395ACABB36450289F /* StatisticsLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StatisticsLog.swift; path = Herald/Herald/Sensor/Data/StatisticsLog.swift; sourceTree = "<group>"; };
+		53C7AE433B425C54392311C41C8741DA /* BLEUtilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BLEUtilities.swift; path = Herald/Herald/Sensor/BLE/BLEUtilities.swift; sourceTree = "<group>"; };
+		5B7B3B105B44C3BEBBD8E585E60B0B74 /* AnalysisDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnalysisDelegate.swift; path = Herald/Herald/Sensor/Analysis/Sampling/AnalysisDelegate.swift; sourceTree = "<group>"; };
+		5C52429B681610C5625D0FD9F5D56ADD /* XXH3.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = XXH3.swift; path = Herald/Herald/Sensor/Payload/Simple/XXH3.swift; sourceTree = "<group>"; };
+		608A500D53A8E990A20EF68D8F1C7B3F /* Aggregate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Aggregate.swift; path = Herald/Herald/Sensor/Analysis/Sampling/Aggregate.swift; sourceTree = "<group>"; };
+		61BEAF5C07024EFBB089C68F65ED3F77 /* BLESensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BLESensor.swift; path = Herald/Herald/Sensor/BLE/BLESensor.swift; sourceTree = "<group>"; };
+		669E8F25E1897672BDB80B7EB784DA24 /* Pods-Runner */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Runner"; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B958B1294937ACF65E6C35C8B5F7A61 /* FowlerBasic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FowlerBasic.swift; path = Herald/Herald/Sensor/Analysis/Algorithms/Distance/FowlerBasic.swift; sourceTree = "<group>"; };
+		6C6ECFE8FC51CA295BDF7D880FB9B27B /* Sensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sensor.swift; path = Herald/Herald/Sensor/Sensor.swift; sourceTree = "<group>"; };
+		6EB58BA25D8EA7ABD012DF7F833D5B71 /* Integrity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Integrity.swift; path = Herald/Herald/Sensor/Data/Security/Integrity.swift; sourceTree = "<group>"; };
+		71C2FA632C4BCC52B682ECC4F2217351 /* ExtendedData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExtendedData.swift; path = Herald/Herald/Sensor/Payload/Extended/ExtendedData.swift; sourceTree = "<group>"; };
+		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		737FD73A8DCB22B27F54D5B4AAD63501 /* SensorArray.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SensorArray.swift; path = Herald/Herald/Sensor/SensorArray.swift; sourceTree = "<group>"; };
+		779DDEC129AE53B09D2355665E968CA1 /* AnalysisProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnalysisProvider.swift; path = Herald/Herald/Sensor/Analysis/Sampling/AnalysisProvider.swift; sourceTree = "<group>"; };
+		7B3C932BD54DBB963102A89E0F9E3948 /* Pods-Runner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Runner-dummy.m"; sourceTree = "<group>"; };
+		81828D76B044007213147AAA3B53F0BB /* CalibrationLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CalibrationLog.swift; path = Herald/Herald/Sensor/Data/CalibrationLog.swift; sourceTree = "<group>"; };
+		8245C6BA90042A668BF754B2F5AFE9C9 /* Herald.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Herald.modulemap; sourceTree = "<group>"; };
+		852AF12918EAABFA19E5F596C395D35E /* SmoothedLinearModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SmoothedLinearModel.swift; path = Herald/Herald/Sensor/Analysis/Algorithms/Distance/SmoothedLinearModel.swift; sourceTree = "<group>"; };
+		894B72E19AD7A00C52AC9FBBD3BBCC73 /* KeyExchange.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeyExchange.swift; path = Herald/Herald/Sensor/Data/Security/KeyExchange.swift; sourceTree = "<group>"; };
+		895B47F48B2BF71B3A06CD883C699112 /* Mobility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Mobility.swift; path = Herald/Herald/Sensor/Analysis/Mobility.swift; sourceTree = "<group>"; };
+		8C85E3E100ADB715E73144F05A53295C /* Device.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Device.swift; path = Herald/Herald/Sensor/Device.swift; sourceTree = "<group>"; };
+		8FDAA6AE6B2E3D6C80FED9072AC326F4 /* herald.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = herald.h; path = Herald/Herald/herald.h; sourceTree = "<group>"; };
+		932C20A9F9BA81198E0546E7ED847550 /* VariantSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VariantSet.swift; path = Herald/Herald/Sensor/Analysis/Sampling/VariantSet.swift; sourceTree = "<group>"; };
+		939BA6FA3EDA31FFE70580566A24AD1C /* RiskAggregationBasic.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RiskAggregationBasic.swift; path = Herald/Herald/Sensor/Analysis/Algorithms/Risk/RiskAggregationBasic.swift; sourceTree = "<group>"; };
+		952F58E42063DE35FF1AE3D36B137B31 /* Herald.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Herald.release.xcconfig; sourceTree = "<group>"; };
+		96BF45FBE2BC9AD7B2D7E56D01B5EE46 /* Pods-Runner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Runner-umbrella.h"; sourceTree = "<group>"; };
+		98C0276A6AF5E1B7B45CA997FE978D70 /* Interactions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Interactions.swift; path = Herald/Herald/Sensor/Analysis/Interactions.swift; sourceTree = "<group>"; };
+		9964E59BBE58CBACEC66FC421B5C58C1 /* Filter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = Herald/Herald/Sensor/Analysis/Sampling/Filter.swift; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9F79F8269DC34AC56BB3D1D9652C0D86 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
+		A4B6CB5B3C3626C66D4A7618C86F37AE /* Herald-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Herald-dummy.m"; sourceTree = "<group>"; };
+		A4E8A7D525742F67144099F4A3EB5230 /* SampleList.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SampleList.swift; path = Herald/Herald/Sensor/Analysis/Sampling/SampleList.swift; sourceTree = "<group>"; };
+		AD18C94409282820ADF447F6ECFC680A /* BloomFilter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BloomFilter.swift; path = Herald/Herald/Sensor/Payload/Simple/BloomFilter.swift; sourceTree = "<group>"; };
+		AE8C2F873B0B1EED91A2508CDF4BF792 /* PseudoRandomFunction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PseudoRandomFunction.swift; path = Herald/Herald/Sensor/Data/Security/PseudoRandomFunction.swift; sourceTree = "<group>"; };
+		B4BCEE0FA804422041C1D83E0EDC0332 /* AnalysisRunner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnalysisRunner.swift; path = Herald/Herald/Sensor/Analysis/Sampling/AnalysisRunner.swift; sourceTree = "<group>"; };
+		B8BE3057F9436949F39A06EA6F05E615 /* Encryption.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Encryption.swift; path = Herald/Herald/Sensor/Data/Security/Encryption.swift; sourceTree = "<group>"; };
+		B9FA0CA55DFDA6F47DD660906159ECAC /* Herald-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Herald-umbrella.h"; sourceTree = "<group>"; };
+		BFA5041AF502DC1D3217FA8B64FD02CE /* RingBuffer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RingBuffer.swift; path = Herald/Herald/Sensor/Datatype/RingBuffer.swift; sourceTree = "<group>"; };
+		C6EA98402A94995D022D330B64B5203D /* Pods-Runner-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Runner-acknowledgements.markdown"; sourceTree = "<group>"; };
+		CDAECCF4B5E08124ED410F09FD5A5DF9 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
+		D2FA70CA298C392CB8332ADEEDD1CE85 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
+		D9F2B4CB813B4BDC4D164C6E0868930A /* Pods-Runner-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Runner-acknowledgements.plist"; sourceTree = "<group>"; };
+		DCD878568F7E865B4D9F4A543FE4F982 /* BLEDatabase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BLEDatabase.swift; path = Herald/Herald/Sensor/BLE/BLEDatabase.swift; sourceTree = "<group>"; };
+		DF340BF8DDE855AA99CA8BACFF1D2C68 /* ListManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ListManager.swift; path = Herald/Herald/Sensor/Analysis/Sampling/ListManager.swift; sourceTree = "<group>"; };
+		E8361B158C49F0CEF3DBCF197E0B9093 /* MobilitySensor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MobilitySensor.swift; path = Herald/Herald/Sensor/Location/MobilitySensor.swift; sourceTree = "<group>"; };
+		EC14E03C642273F754EB99B869151243 /* SelfCalibratedModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SelfCalibratedModel.swift; path = Herald/Herald/Sensor/Analysis/Algorithms/Distance/SelfCalibratedModel.swift; sourceTree = "<group>"; };
+		ED96850B75893D69978589B8869B9C05 /* BLEReceiver.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BLEReceiver.swift; path = Herald/Herald/Sensor/BLE/BLEReceiver.swift; sourceTree = "<group>"; };
+		F08D8F80B2227DCBCA63FD0EDFC393A6 /* DateExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateExtensions.swift; path = Herald/Herald/Sensor/Extensions/DateExtensions.swift; sourceTree = "<group>"; };
+		F49C32B3B8CF59AB437BFD7314674868 /* Pods-Runner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Runner.modulemap"; sourceTree = "<group>"; };
+		F54F583B5971A65AC147B6EB8D33F859 /* TextFile.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextFile.swift; path = Herald/Herald/Sensor/Data/TextFile.swift; sourceTree = "<group>"; };
+		F636616F2AB77B45B43D1A4B3CDB69B3 /* Herald.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Herald.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7E086E7E9BBAD74409DB9CE60BB8D82 /* DataExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataExtensions.swift; path = Herald/Herald/Sensor/Extensions/DataExtensions.swift; sourceTree = "<group>"; };
+		F87FCF02A2DA1B0DCD2E2E4DD078F4F7 /* PayloadDataMatcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PayloadDataMatcher.swift; path = Herald/Herald/Sensor/PayloadDataMatcher.swift; sourceTree = "<group>"; };
+		FA7AF42FFDE15DF174B5A86737591FBC /* SensorLogger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SensorLogger.swift; path = Herald/Herald/Sensor/Data/SensorLogger.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		223ADAAE0781023C2C68523F9FA17A48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1FE9193BDAC0F2738E83FC8C23FAFA4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E558E1327A96F3D6F5974796E2C9E1DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8549DBDFDF7B43166838BC19F4843396 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1CC07B1BFC7821403EA232CEFA74F04F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				708DD5387315DC1A0B57708799A36518 /* Herald */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		708DD5387315DC1A0B57708799A36518 /* Herald */ = {
+			isa = PBXGroup;
+			children = (
+				608A500D53A8E990A20EF68D8F1C7B3F /* Aggregate.swift */,
+				5B7B3B105B44C3BEBBD8E585E60B0B74 /* AnalysisDelegate.swift */,
+				779DDEC129AE53B09D2355665E968CA1 /* AnalysisProvider.swift */,
+				B4BCEE0FA804422041C1D83E0EDC0332 /* AnalysisRunner.swift */,
+				3CD6FF1C0280F42494754B53CF00D79F /* BatteryLog.swift */,
+				027584E6960422F3A6925D3F154D1033 /* BeaconPayloadDataSupplier.swift */,
+				374FD17692E0E6A2284AA69E2E9DD49C /* BLEAdvertParser.swift */,
+				DCD878568F7E865B4D9F4A543FE4F982 /* BLEDatabase.swift */,
+				ED96850B75893D69978589B8869B9C05 /* BLEReceiver.swift */,
+				61BEAF5C07024EFBB089C68F65ED3F77 /* BLESensor.swift */,
+				1FFA5EB38FCEBB5854002903F52EBE01 /* BLETransmitter.swift */,
+				53C7AE433B425C54392311C41C8741DA /* BLEUtilities.swift */,
+				AD18C94409282820ADF447F6ECFC680A /* BloomFilter.swift */,
+				81828D76B044007213147AAA3B53F0BB /* CalibrationLog.swift */,
+				0A7101D605CA6FC93CC384F8873507D5 /* ContactLog.swift */,
+				F7E086E7E9BBAD74409DB9CE60BB8D82 /* DataExtensions.swift */,
+				F08D8F80B2227DCBCA63FD0EDFC393A6 /* DateExtensions.swift */,
+				1946E4697BAE2D382249055D5917DF0B /* DetectionLog.swift */,
+				8C85E3E100ADB715E73144F05A53295C /* Device.swift */,
+				49F3730C38DEAFC6C8C42FC7D0DBFA40 /* DoubleValue.swift */,
+				B8BE3057F9436949F39A06EA6F05E615 /* Encryption.swift */,
+				50F762972EBAC05AA2BA542850852AB2 /* EventLog.swift */,
+				4539BA4EDFAD69BCC6234DD9DB2E49AA /* EventTimeIntervalLog.swift */,
+				71C2FA632C4BCC52B682ECC4F2217351 /* ExtendedData.swift */,
+				9964E59BBE58CBACEC66FC421B5C58C1 /* Filter.swift */,
+				6B958B1294937ACF65E6C35C8B5F7A61 /* FowlerBasic.swift */,
+				8FDAA6AE6B2E3D6C80FED9072AC326F4 /* herald.h */,
+				335015AF3C84FA07BF68DB714AD3CCD4 /* InertiaSensor.swift */,
+				6EB58BA25D8EA7ABD012DF7F833D5B71 /* Integrity.swift */,
+				98C0276A6AF5E1B7B45CA997FE978D70 /* Interactions.swift */,
+				894B72E19AD7A00C52AC9FBBD3BBCC73 /* KeyExchange.swift */,
+				DF340BF8DDE855AA99CA8BACFF1D2C68 /* ListManager.swift */,
+				895B47F48B2BF71B3A06CD883C699112 /* Mobility.swift */,
+				E8361B158C49F0CEF3DBCF197E0B9093 /* MobilitySensor.swift */,
+				2F2E7C7258221EAE5F49E2FCA02983B0 /* PayloadDataFormatter.swift */,
+				F87FCF02A2DA1B0DCD2E2E4DD078F4F7 /* PayloadDataMatcher.swift */,
+				0C764BD31C396A7640EE429CDCD3832A /* PayloadDataSupplier.swift */,
+				AE8C2F873B0B1EED91A2508CDF4BF792 /* PseudoRandomFunction.swift */,
+				BFA5041AF502DC1D3217FA8B64FD02CE /* RingBuffer.swift */,
+				939BA6FA3EDA31FFE70580566A24AD1C /* RiskAggregationBasic.swift */,
+				08E1EA742EF91094CE27F6AF62735C30 /* Sample.swift */,
+				A4E8A7D525742F67144099F4A3EB5230 /* SampleList.swift */,
+				0E99B924F1615C8A3121CAF876F3C800 /* SampleStatistics.swift */,
+				EC14E03C642273F754EB99B869151243 /* SelfCalibratedModel.swift */,
+				6C6ECFE8FC51CA295BDF7D880FB9B27B /* Sensor.swift */,
+				737FD73A8DCB22B27F54D5B4AAD63501 /* SensorArray.swift */,
+				13DC0D31CF652600951B90D2438FCF2C /* SensorDelegate.swift */,
+				FA7AF42FFDE15DF174B5A86737591FBC /* SensorLogger.swift */,
+				33A804EC03999D4BEDBCD4304DBC144B /* SimplePayloadDataMatcher.swift */,
+				113460D05F8C49B69C3DE39760588B9A /* SimplePayloadDataSupplier.swift */,
+				852AF12918EAABFA19E5F596C395D35E /* SmoothedLinearModel.swift */,
+				312468680640FB9CFDDCE65ECB270102 /* SocialDistance.swift */,
+				5279557D1A0F253395ACABB36450289F /* StatisticsLog.swift */,
+				3DDF38AEC5C5EC8B1426BCAE0C5F5AC5 /* TestPayloadDataSupplier.swift */,
+				F54F583B5971A65AC147B6EB8D33F859 /* TextFile.swift */,
+				0260EE0890DC256C18CD8BAF812459EB /* UIntBig.swift */,
+				932C20A9F9BA81198E0546E7ED847550 /* VariantSet.swift */,
+				02C93715C0FA96B7F7051A9CBB223BEA /* VenueDiary.swift */,
+				5C52429B681610C5625D0FD9F5D56ADD /* XXH3.swift */,
+				81F8820EE4B2E0CAAD512CAEC77230A5 /* Support Files */,
+			);
+			path = Herald;
+			sourceTree = "<group>";
+		};
+		791C6E4B424AF06279F8918FA67B8ED6 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7B0D67477903E1EB8D6A9F9AF51BC5CC /* Pods-Runner */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		7B0D67477903E1EB8D6A9F9AF51BC5CC /* Pods-Runner */ = {
+			isa = PBXGroup;
+			children = (
+				F49C32B3B8CF59AB437BFD7314674868 /* Pods-Runner.modulemap */,
+				C6EA98402A94995D022D330B64B5203D /* Pods-Runner-acknowledgements.markdown */,
+				D9F2B4CB813B4BDC4D164C6E0868930A /* Pods-Runner-acknowledgements.plist */,
+				7B3C932BD54DBB963102A89E0F9E3948 /* Pods-Runner-dummy.m */,
+				317C26B9A7CEDD34ADE8F37FAAB7AC20 /* Pods-Runner-frameworks.sh */,
+				51825CD8F0558EFA53D9510F0E5BFA16 /* Pods-Runner-Info.plist */,
+				96BF45FBE2BC9AD7B2D7E56D01B5EE46 /* Pods-Runner-umbrella.h */,
+				CDAECCF4B5E08124ED410F09FD5A5DF9 /* Pods-Runner.debug.xcconfig */,
+				9F79F8269DC34AC56BB3D1D9652C0D86 /* Pods-Runner.profile.xcconfig */,
+				D2FA70CA298C392CB8332ADEEDD1CE85 /* Pods-Runner.release.xcconfig */,
+			);
+			name = "Pods-Runner";
+			path = "Target Support Files/Pods-Runner";
+			sourceTree = "<group>";
+		};
+		81F8820EE4B2E0CAAD512CAEC77230A5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				8245C6BA90042A668BF754B2F5AFE9C9 /* Herald.modulemap */,
+				A4B6CB5B3C3626C66D4A7618C86F37AE /* Herald-dummy.m */,
+				2E1D1B7DE7D7AC324701C3586EC164C1 /* Herald-Info.plist */,
+				2D4006F54ED82E3B70E8E12626908840 /* Herald-prefix.pch */,
+				B9FA0CA55DFDA6F47DD660906159ECAC /* Herald-umbrella.h */,
+				21E1BB292122DFFED016F5F5EC5A79C2 /* Herald.debug.xcconfig */,
+				952F58E42063DE35FF1AE3D36B137B31 /* Herald.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Herald";
+			sourceTree = "<group>";
+		};
+		A8618F1457175A41C7B4EE061B4D670E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F636616F2AB77B45B43D1A4B3CDB69B3 /* Herald.framework */,
+				669E8F25E1897672BDB80B7EB784DA24 /* Pods-Runner */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				1CC07B1BFC7821403EA232CEFA74F04F /* Pods */,
+				A8618F1457175A41C7B4EE061B4D670E /* Products */,
+				791C6E4B424AF06279F8918FA67B8ED6 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				578452D2E740E91742655AC8F1636D1F /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B101A7A615905002AD9C3FAC36F26677 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22282670F80D990CC60394DFB7754408 /* herald.h in Headers */,
+				62AFCAB58089DB156CE55438F59172EA /* Herald-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CB3607EAF28F8CC084EC452E9DD2BB0F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76DC08FF0079C3933A97D1EEBC716A98 /* Pods-Runner-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8B74B458B450D74B75744B87BD747314 /* Pods-Runner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 994151B98BEA6D7BD3ECF6A6DD184288 /* Build configuration list for PBXNativeTarget "Pods-Runner" */;
+			buildPhases = (
+				CB3607EAF28F8CC084EC452E9DD2BB0F /* Headers */,
+				E064B4BB863C0CA952B15B0F26D2D65F /* Sources */,
+				223ADAAE0781023C2C68523F9FA17A48 /* Frameworks */,
+				C556CCF3C9C53B4CFBF83153C70F16F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				94C13FEE133FE880894AB3BCCD618356 /* PBXTargetDependency */,
+			);
+			name = "Pods-Runner";
+			productName = Pods_Runner;
+			productReference = 669E8F25E1897672BDB80B7EB784DA24 /* Pods-Runner */;
+			productType = "com.apple.product-type.framework";
+		};
+		90C4532E7943ACC1C205C763A87FADA2 /* Herald */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C08CB4579F73F8BF532EFE3BA54BC6C /* Build configuration list for PBXNativeTarget "Herald" */;
+			buildPhases = (
+				B101A7A615905002AD9C3FAC36F26677 /* Headers */,
+				8B2D9601DDC83EDBFF2FDA80552590D3 /* Sources */,
+				E558E1327A96F3D6F5974796E2C9E1DF /* Frameworks */,
+				A79A668DB80981673A153642E4D65CF8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Herald;
+			productName = Herald;
+			productReference = F636616F2AB77B45B43D1A4B3CDB69B3 /* Herald.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1310;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = A8618F1457175A41C7B4EE061B4D670E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				90C4532E7943ACC1C205C763A87FADA2 /* Herald */,
+				8B74B458B450D74B75744B87BD747314 /* Pods-Runner */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A79A668DB80981673A153642E4D65CF8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C556CCF3C9C53B4CFBF83153C70F16F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8B2D9601DDC83EDBFF2FDA80552590D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7ACA6EE2D63DBE657392AE5E69D8015A /* Aggregate.swift in Sources */,
+				37C870F8EC2316102E1196B76C480948 /* AnalysisDelegate.swift in Sources */,
+				EE20A7CA23C88725155BBA9868F24824 /* AnalysisProvider.swift in Sources */,
+				0F3CA7862AAD20B24746C0EBB8BAD6D8 /* AnalysisRunner.swift in Sources */,
+				3404F3B45490096A8AD328958EE37428 /* BatteryLog.swift in Sources */,
+				FC2118C0FCDD034016557B549E785D57 /* BeaconPayloadDataSupplier.swift in Sources */,
+				2C44D20CB0A900195867DDADB20EF61F /* BLEAdvertParser.swift in Sources */,
+				3344BA2C408595A344D944ACB80234D8 /* BLEDatabase.swift in Sources */,
+				1AB669845120115EAE7A6BDCBD7FEE71 /* BLEReceiver.swift in Sources */,
+				CE8C99E33DC3FB62EC6A6B035FBAB10E /* BLESensor.swift in Sources */,
+				003B2C6945A4BD067F6FBC8314173D65 /* BLETransmitter.swift in Sources */,
+				7E1A3A0DDDA24AB38EE0FD980BF780F8 /* BLEUtilities.swift in Sources */,
+				2D1F6CF48E68547DC0157C27182241B4 /* BloomFilter.swift in Sources */,
+				BB418FB76694B2A44DA6E57481C89273 /* CalibrationLog.swift in Sources */,
+				451CF377ADF46B269B3FE1FA5D1BAB37 /* ContactLog.swift in Sources */,
+				72479619062AD3CC97FAB3303538B19E /* DataExtensions.swift in Sources */,
+				83C0CA0C2E9524117BAA09D4D8762E52 /* DateExtensions.swift in Sources */,
+				854B26D6C9A8B5ED1FF2B272999812D9 /* DetectionLog.swift in Sources */,
+				F77810B21D6E86CBB0B3BA100E72FB33 /* Device.swift in Sources */,
+				9DC5E4E48C91549CB9328E8CCACE94A6 /* DoubleValue.swift in Sources */,
+				2163C690E45BAFFCBC04E40FD601DF27 /* Encryption.swift in Sources */,
+				E67CBBC616B8FC12CDF04777F949D85B /* EventLog.swift in Sources */,
+				BB45620E3EF69E5E770BC2FE108D944B /* EventTimeIntervalLog.swift in Sources */,
+				A77190B51B8F8A037B3B708FF9A7F34B /* ExtendedData.swift in Sources */,
+				718F73C5CD9BE551D273753FE5CF36C2 /* Filter.swift in Sources */,
+				9E63800770B4955E1FF9F4DA42CB96AB /* FowlerBasic.swift in Sources */,
+				7ECC968521D90D8B2B5B61AA10B664B2 /* Herald-dummy.m in Sources */,
+				0D84C02D24EFC2193E4859CCEAC02284 /* InertiaSensor.swift in Sources */,
+				7E917C23C7CD5D5F6AD14CEA58E74050 /* Integrity.swift in Sources */,
+				51FAA5AFE746D5D01833823029F98AB4 /* Interactions.swift in Sources */,
+				83A683FC0633A67ADA846D31173D635E /* KeyExchange.swift in Sources */,
+				AEF6752683087CCEE9B9D12B0B9570A3 /* ListManager.swift in Sources */,
+				6C1618B74E0E9D73965A1A81D6B5A0BB /* Mobility.swift in Sources */,
+				FEEEC8AC00F35FF923051BB532CBD0BA /* MobilitySensor.swift in Sources */,
+				4B05142FE6F3B486D85BFC633EC3B820 /* PayloadDataFormatter.swift in Sources */,
+				DCE808FDDCED1A98892AB6B138182876 /* PayloadDataMatcher.swift in Sources */,
+				D30EC22CFE5756BFA98880CB92F83695 /* PayloadDataSupplier.swift in Sources */,
+				1A03C81BC51053C7ACFBD1C4A1488ED6 /* PseudoRandomFunction.swift in Sources */,
+				46B7FE2B298E1D9690A1BAB3C7F9E538 /* RingBuffer.swift in Sources */,
+				E1613E3E1E3F04E49BF43D241D5577D5 /* RiskAggregationBasic.swift in Sources */,
+				61F88DF7A2BBA459963AB0EA388709BE /* Sample.swift in Sources */,
+				A34400640A545002ECF65F11377DF096 /* SampleList.swift in Sources */,
+				ABF09EE50915F5DC172833309D39BC29 /* SampleStatistics.swift in Sources */,
+				84F68DB4D8067D39BBB22A532E80B7BD /* SelfCalibratedModel.swift in Sources */,
+				2984995B566525D009AE3B4D00708156 /* Sensor.swift in Sources */,
+				F26F82EF974545BF4078D83E12010D0B /* SensorArray.swift in Sources */,
+				C1A0E62F49C6FD971DA059F2FB3B562B /* SensorDelegate.swift in Sources */,
+				A81AA92AD4C29A3FA46A117EB52649B6 /* SensorLogger.swift in Sources */,
+				2C80047BC0421008B5B9BB30C618077C /* SimplePayloadDataMatcher.swift in Sources */,
+				B0CB7555F45AEDCD3C05DDF6E039BAD7 /* SimplePayloadDataSupplier.swift in Sources */,
+				5CE980F56998277F0F587136CAB7C96C /* SmoothedLinearModel.swift in Sources */,
+				0FFEB9FFF1CD557AE4EA885F387C1DD3 /* SocialDistance.swift in Sources */,
+				BBEE59A28EB5F3A32B29B7D7657DCC91 /* StatisticsLog.swift in Sources */,
+				A4D0F0BA20F3CA8835151773F2AF30F5 /* TestPayloadDataSupplier.swift in Sources */,
+				0B8080F8FDEC7237FAC15780AF77BF7C /* TextFile.swift in Sources */,
+				60469C74B2B969A9B8D3F220EC71D4BF /* UIntBig.swift in Sources */,
+				D696C27D4B6D7114FE202FF25A77B53D /* VariantSet.swift in Sources */,
+				601F48CEA95C1F6106C1D1DC0674063B /* VenueDiary.swift in Sources */,
+				64FCDB9DBF3CBA844DCBB473AF35C0A0 /* XXH3.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E064B4BB863C0CA952B15B0F26D2D65F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				634BBA0AF1DF50CB172CE06B152C8211 /* Pods-Runner-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		94C13FEE133FE880894AB3BCCD618356 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Herald;
+			target = 90C4532E7943ACC1C205C763A87FADA2 /* Herald */;
+			targetProxy = 9B6384BEFDDFDA275B71C5BA06574BD3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		12CDE6760B98834AD5A4B718D765AD4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21E1BB292122DFFED016F5F5EC5A79C2 /* Herald.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Herald/Herald-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Herald/Herald-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Herald/Herald.modulemap";
+				PRODUCT_MODULE_NAME = Herald;
+				PRODUCT_NAME = Herald;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2B9E26EAE2CD392AD762421F663075A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		524EE57F00D9357182392502274807C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CDAECCF4B5E08124ED410F09FD5A5DF9 /* Pods-Runner.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Runner/Pods-Runner-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Runner/Pods-Runner.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5AF1AC88E5F655C93D1E3B5012F6FDC8 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_PROFILE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Profile;
+		};
+		63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		99B57F2157B173B21DAC23125D8E5234 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 952F58E42063DE35FF1AE3D36B137B31 /* Herald.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Herald/Herald-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Herald/Herald-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Herald/Herald.modulemap";
+				PRODUCT_MODULE_NAME = Herald;
+				PRODUCT_NAME = Herald;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Profile;
+		};
+		B1CA8C3C09725A7424265004683104D1 /* Profile */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F79F8269DC34AC56BB3D1D9652C0D86 /* Pods-Runner.profile.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Runner/Pods-Runner-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Runner/Pods-Runner.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Profile;
+		};
+		C2B599A2372FE1C97B4C1E591E1FB40C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2FA70CA298C392CB8332ADEEDD1CE85 /* Pods-Runner.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-Runner/Pods-Runner-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Runner/Pods-Runner.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E5EF47B5B50B0F567B2345AF4A88AC00 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 952F58E42063DE35FF1AE3D36B137B31 /* Herald.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Herald/Herald-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Herald/Herald-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Herald/Herald.modulemap";
+				PRODUCT_MODULE_NAME = Herald;
+				PRODUCT_NAME = Herald;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1C08CB4579F73F8BF532EFE3BA54BC6C /* Build configuration list for PBXNativeTarget "Herald" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				12CDE6760B98834AD5A4B718D765AD4E /* Debug */,
+				99B57F2157B173B21DAC23125D8E5234 /* Profile */,
+				E5EF47B5B50B0F567B2345AF4A88AC00 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B9E26EAE2CD392AD762421F663075A1 /* Debug */,
+				5AF1AC88E5F655C93D1E3B5012F6FDC8 /* Profile */,
+				63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		994151B98BEA6D7BD3ECF6A6DD184288 /* Build configuration list for PBXNativeTarget "Pods-Runner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				524EE57F00D9357182392502274807C9 /* Debug */,
+				B1CA8C3C09725A7424265004683104D1 /* Profile */,
+				C2B599A2372FE1C97B4C1E591E1FB40C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

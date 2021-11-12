@@ -52,7 +52,10 @@ public class MainActivity extends FlutterActivity {
         Log.i("abc", "2");
         new MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), METHOD_CHANNEL_NAME)
                 .setMethodCallHandler((call, result) -> {
-                    if (call.method.equals("isPeersAvailable")) {
+                    if (call.method.equals("sendToBackground")) {
+                        moveTaskToBack(true);
+                        result.success(null);
+                    } else if (call.method.equals("isPeersAvailable")) {
                         String Peers = updatePeers();
                         result.success(Peers);
                     } else if (call.method.equals("isStatusAvailable")) {
