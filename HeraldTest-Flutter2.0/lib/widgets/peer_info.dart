@@ -4,15 +4,15 @@ class PeerInfo {
   late List<double> _data;
   late int _illnessStatusCode;
   late DateTime _lastseen;
+  /* update count is for keeping track of how many
+  times the illness status code changed in the current peer */
   late int _updateCount;
 
   PeerInfo() {
     _data = List<double>.empty(growable: true);
     _illnessStatusCode = 0;
-
     _lastseen = DateFormat('yyyy-MM-dd HH:mm:ss')
         .parse(DateTime.now().toUtc().toString());
-
     _updateCount = 0;
   }
 
@@ -27,8 +27,8 @@ class PeerInfo {
     return _data;
   }
 
-  String getIllnessStatus() {
-    return _illnessStatusCode.toString();
+  int getIllnessStatus() {
+    return _illnessStatusCode;
   }
 
   DateTime getLastSeen() {

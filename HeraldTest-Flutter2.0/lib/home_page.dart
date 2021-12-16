@@ -93,7 +93,9 @@ class _HomePageState extends State<HomePage> {
         _currentPeers[data["uuid"]] = info;
       }
     }
-    if (data["code"] != null) {
+    /* if the status is not null && not the same as the current one
+    then update the status with the new one */
+    if (data["code"] != null && data["code"] != info.getIllnessStatus()) {
       info.setStatus(data["code"]);
     }
 
@@ -101,7 +103,8 @@ class _HomePageState extends State<HomePage> {
       info.addRSSI(data["rssi"]);
     }
 
-    if (10 <= info.getData().length && info.getRSSI() < -70) {
+    if ((10 <= info.getData().length && info.getRSSI() < -70) ||
+        data["uuid"] == 1234567890) {
       _currentPeers.remove(data["uuid"]);
     }
   }
@@ -153,8 +156,10 @@ class _HomePageState extends State<HomePage> {
       DateTime lastSeen = info.getLastSeen();
       DateTime newDateTime = DateFormat('yyyy-MM-dd HH:mm:ss')
           .parse(DateTime.now().toUtc().toString());
+      //difference between dates is in seconds
       int difference =
-          _generateDate.differenceBetweenDates(newDateTime, lastSeen);
+          _generateDate.differenceBetweenDates(lastSeen, newDateTime);
+      //if no update in 30 minutes remove peer from peers map
       if (difference >= 1800) {
         setState(() {
           _currentPeers.remove(e.key);
