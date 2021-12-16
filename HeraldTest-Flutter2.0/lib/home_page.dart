@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:intl/intl.dart';
-import 'package:nanoid/nanoid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:herald_flutter/widgets/peer_info.dart';
+import 'package:herald_flutter/widgets/shared_prefs.dart';
 import 'package:herald_flutter/widgets/generate_date.dart';
 import 'package:herald_flutter/widgets/illness_status_code.dart';
 
@@ -13,7 +13,6 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-final String _randomlyGeneratedUUID = customAlphabet('1234567890', 9);
 final IllnessStatusCode _illnessStatusCode = IllnessStatusCode();
 final GenerateDate _generateDate = GenerateDate();
 
@@ -25,26 +24,28 @@ class _HomePageState extends State<HomePage> {
   final EventChannel _eventChannel =
       const EventChannel("com.herald_flutter.eventChannel");
 
-  final int _uuid = int.parse(_randomlyGeneratedUUID);
+  String _uuid = '';
   var _randomIllnessStatusCode = _illnessStatusCode.getRandomStatus();
   String _date = _generateDate.generateDate();
 
   final Map<int, PeerInfo> _currentPeers = {};
-  String _currentPeersTxt = "";
+  String _currentPeersTxt = '';
 
   @override
   initState() {
     super.initState();
-    Timer.periodic(const Duration(milliseconds: 2000), _updateLoop);
     _sendData();
     _reciveData();
+    Timer.periodic(const Duration(milliseconds: 2000), _updateLoop);
   }
 
   //Method channel to send initial payload data (UUID, code, date)
   Future<void> _sendData() async {
+    int uuid = SharedPrefs().getIdentifier;
+    _uuid = uuid.toString();
     try {
       await _methodChannel.invokeMethod(_initalPayload, <String, dynamic>{
-        'uuid': _uuid,
+        'uuid': uuid,
         'illnessStatusCode': _randomIllnessStatusCode.index,
         'date': _date
       });
@@ -52,6 +53,7 @@ class _HomePageState extends State<HomePage> {
       // ignore: avoid_print
       print(e.message);
     }
+    SharedPrefs().setIdentifier(uuid);
   }
 
   //Event channel to recieve a stream of peers payload data (UUID, Code, Date, RSSI)
@@ -78,7 +80,7 @@ class _HomePageState extends State<HomePage> {
           " ************************");
       print("******************* CURRENT PEERS: " +
           _currentPeersTxt +
-          " ************************");
+          " *******************");
     });
   }
 
@@ -101,6 +103,26 @@ class _HomePageState extends State<HomePage> {
 
     if (10 <= info.getData().length && info.getRSSI() < -70) {
       _currentPeers.remove(data["uuid"]);
+    }
+  }
+
+  void _updateCurrentPeersText() {
+    String txt = '';
+    for (int id in _currentPeers.keys) {
+      PeerInfo? info = _currentPeers[id];
+
+      if (10 <= info!.getData().length) {
+        txt += "->" +
+            id.toString() +
+            ":CODE=" +
+            info.getIllnessStatus().toString() +
+            ":RSSI=" +
+            info.getRSSI().toString() +
+            ":UPC=" +
+            info.getUpdateCount() +
+            "\n";
+      }
+      _currentPeersTxt = txt;
     }
   }
 
@@ -138,26 +160,6 @@ class _HomePageState extends State<HomePage> {
           _currentPeers.remove(e.key);
         });
       }
-    }
-  }
-
-  void _updateCurrentPeersText() {
-    String txt = '';
-    for (int id in _currentPeers.keys) {
-      PeerInfo? info = _currentPeers[id];
-
-      if (10 <= info!.getData().length) {
-        txt += "->" +
-            id.toString() +
-            ":CODE=" +
-            info.getIllnessStatus().toString() +
-            ":RSSI=" +
-            info.getRSSI().toString() +
-            ":UPC=" +
-            info.getUpdateCount() +
-            "\n";
-      }
-      _currentPeersTxt = txt;
     }
   }
 

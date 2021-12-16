@@ -1,8 +1,11 @@
 import 'home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:herald_flutter/widgets/shared_prefs.dart';
 import 'package:herald_flutter/widgets/app_retain_widget.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPrefs().init();
   runApp(const MyApp());
 }
 
