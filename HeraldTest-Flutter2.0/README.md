@@ -1,16 +1,20 @@
 # HeraldTest-Flutter2.0
 
-A new Flutter project.
+Herald & Services in Native. Method & Event channels to communicate. Functionality & UI in Flutter.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+1. Install Flutter: [Flutter](https://docs.flutter.dev/get-started/install)
+2. Install VS Code: [VS Code](https://code.visualstudio.com/download)
+3. Extensions to install in VS Code: Flutter, Dart, Error Lens
+4. Clone the project & open it in VS Code: herald-test/HeraldTest-Flutter2.0
+5. Open a new terminal in VS Code: **Ctrl + `**
+6. Run " **flutter clean** " then run " **flutter pub get** "
+7. Navigate to ios folder: " **cd ios** " and run " **pod install** "
+- If you have an issue with pod install, add this line to the top of the pod file: " **source ‘https://github.com/CocoaPods/Specs.git’** " and run " **pod install** " again then navigate back: " **cd ..** "
 
-A few resources to get you started if this is your first Flutter project:
+8. Open up the project in Xcode: herald-test/HeraldTest-Flutter2.0/ios/Runner.xcworkspace
+9. Navigate to Runner --> Runner under targets --> Signing & Capabilities and select your team
+10. Head back to VS Code & navigate to the main.dart file in: HeraldTest-Flutter2.0/lib
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Project should be able to run now with no issues. Use play button in the top right in VS Code to run the project in debug mode. If you want to run the release version run " **flutter run --release** " in the terminal
