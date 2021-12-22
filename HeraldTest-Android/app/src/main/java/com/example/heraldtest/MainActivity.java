@@ -150,10 +150,10 @@ public class MainActivity extends AppCompatActivity {
             requiredPermissions.add(BLUETOOTH_CONNECT);
             requiredPermissions.add(BLUETOOTH_ADVERTISE);
             requiredPermissions.add(BLUETOOTH_SCAN);
-        } else {
-            requiredPermissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
-            requiredPermissions.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
         }
+        requiredPermissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+        requiredPermissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+//        requiredPermissions.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
 
         // All normal level permission don't need to ask explicitly
 //        requiredPermissions.add(Manifest.permission.BLUETOOTH);
