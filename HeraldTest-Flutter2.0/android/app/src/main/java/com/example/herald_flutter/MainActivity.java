@@ -36,6 +36,11 @@ public class MainActivity extends FlutterActivity {
     /// REQUIRED: Unique permission request code, used by requestPermission and
     /// onRequestPermissionsResult.
     private final static int permissionRequestCode = 1249951875;
+
+    static final String BLUETOOTH_CONNECT = "android.permission.BLUETOOTH_CONNECT";
+    static final String BLUETOOTH_ADVERTISE = "android.permission.BLUETOOTH_ADVERTISE";
+    static final String BLUETOOTH_SCAN = "android.permission.BLUETOOTH_SCAN";
+
     public final static String USER_CHANNEL_ID = "com.example.heraldtest.user_notifications";
     public final static String SERVICE_CHANNEL_ID = "com.example.heraldtest.service_notifications";
     private String METHOD_CHANNEL_NAME = "com.herald_flutter.methodChannel";
@@ -173,14 +178,20 @@ public class MainActivity extends FlutterActivity {
     private void requestPermissions() {
         // Check and request permissions
         final List<String> requiredPermissions = new ArrayList<>();
-        requiredPermissions.add(Manifest.permission.BLUETOOTH);
-        requiredPermissions.add(Manifest.permission.BLUETOOTH_ADMIN);
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R) {
+            requiredPermissions.add(BLUETOOTH_CONNECT);
+            requiredPermissions.add(BLUETOOTH_ADVERTISE);
+            requiredPermissions.add(BLUETOOTH_SCAN);
+        }
         requiredPermissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
         requiredPermissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            requiredPermissions.add(Manifest.permission.FOREGROUND_SERVICE);
-        }
-        requiredPermissions.add(Manifest.permission.WAKE_LOCK);
+        
+        // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        //     requiredPermissions.add(Manifest.permission.FOREGROUND_SERVICE);
+        // }
+        // requiredPermissions.add(Manifest.permission.WAKE_LOCK);
+
         final String[] requiredPermissionsArray = requiredPermissions.toArray(new String[0]);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(requiredPermissionsArray, permissionRequestCode);

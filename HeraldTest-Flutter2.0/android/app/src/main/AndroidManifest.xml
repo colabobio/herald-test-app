@@ -1,9 +1,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.herald_flutter">
 
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!--  DANGEROUS PERMISSIONS (require explicit user authorization) -->
+
+    <!-- New Bluetooth permissions for Android 12 (API level 31) -->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+
+    <!-- Bluetooth needs location in order to function, even on Android 12 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- NORMAL PERMISSIONS -->
+
+    <!-- Bluetooth permissions for Android 11 and older (API level 30) -->
+    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+
+    <!-- Non-Bluetooth permissions -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
    <application
         android:name=".TestApplication"
@@ -13,8 +30,9 @@
         android:supportsRtl="true">
 
        <service android:name=".TestService"
-           android:enabled="true"
-           android:exported="true"/>
+           android:enabled="true"           
+           android:exported="true"
+           android:foregroundServiceType="location" />
 
         <activity
             android:exported="true"
