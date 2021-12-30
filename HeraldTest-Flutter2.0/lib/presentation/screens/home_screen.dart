@@ -1,22 +1,25 @@
 import 'dart:async';
-import 'package:intl/intl.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:herald_flutter/widgets/peer_info.dart';
-import 'package:herald_flutter/widgets/shared_prefs.dart';
-import 'package:herald_flutter/widgets/generate_date.dart';
-import 'package:herald_flutter/widgets/illness_status_code.dart';
+import 'package:intl/intl.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+import '../../core/constants/strings.dart';
+import '../../data/generate_date.dart';
+import '../../data/illness_status_code.dart';
+import '../../data/peer_info.dart';
+import '../../data/shared_prefs.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 final IllnessStatusCode _illnessStatusCode = IllnessStatusCode();
 final GenerateDate _generateDate = GenerateDate();
 
-class _HomePageState extends State<HomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   final MethodChannel _methodChannel =
       const MethodChannel("com.herald_flutter.methodChannel");
   static const String _initalPayload = "initialPayload";
@@ -171,9 +174,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Center(child: Text('Herald x Flutter 2.0')),
-      ),
+      appBar: AppBar(title: const Center(child: Text(Strings.homeScreenTitle))),
       body: Center(
         child: Column(
           children: [

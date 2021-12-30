@@ -1,6 +1,7 @@
 import 'package:nanoid/nanoid.dart';
-import 'package:herald_flutter/constants/strings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../core/constants/strings.dart';
 
 class SharedPrefs {
   static late SharedPreferences _sharedPrefs;
@@ -14,10 +15,10 @@ class SharedPrefs {
   }
 
   int get getIdentifier =>
-      _sharedPrefs.getInt(identifier) ??
+      _sharedPrefs.getInt(Strings.identifier) ??
       int.parse(customAlphabet('1234567890', 9));
 
   setIdentifier(int value) async {
-    await _sharedPrefs.setInt(identifier, value);
+    await _sharedPrefs.setInt(Strings.identifier, value);
   }
 }
