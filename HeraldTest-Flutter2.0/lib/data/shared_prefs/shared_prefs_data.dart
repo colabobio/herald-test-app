@@ -1,14 +1,14 @@
 import 'package:nanoid/nanoid.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../core/constants/strings.dart';
+import '../../core/constants/strings.dart';
 
-class SharedPrefs {
+class SharedPrefsData {
   static late SharedPreferences _sharedPrefs;
 
-  factory SharedPrefs() => SharedPrefs._internal();
+  factory SharedPrefsData() => SharedPrefsData._internal();
 
-  SharedPrefs._internal();
+  SharedPrefsData._internal();
 
   Future<void> init() async {
     _sharedPrefs = await SharedPreferences.getInstance();

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/exceptions/route_exception.dart';
+import '../../logic/cubit/event_channel/event_channel_cubit.dart';
+import '../../logic/cubit/method_channel/method_channel_cubit.dart';
 import '../screens/home_screen.dart';
 import '../widgets/app_retain_widget.dart';
 
@@ -13,7 +16,14 @@ class AppRouter {
     switch (settings.name) {
       case home:
         return MaterialPageRoute(
-          builder: (_) => const AppRetainWidget(child: HomeScreen()),
+          builder: (_) => AppRetainWidget(
+              child: MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => MethodChannelCubit()),
+              BlocProvider(create: (context) => EventChannelCubit()),
+            ],
+            child: const HomeScreen(),
+          )),
         );
       default:
         throw const RouteException('Route not found!');

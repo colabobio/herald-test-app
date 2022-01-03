@@ -5,9 +5,14 @@ class Strings {
   // HomeScreen
   static const homeScreenTitle = 'Herald x Flutter 2.0';
 
-  // Method Channel
+  // Shared Preferences
   static const identifier = "identifier";
+
+  // Method Channel
   static const methodChannelName = "com.herald_flutter.methodChannel";
-  static const eventChannelName = "com.herald_flutter.eventChannel";
   static const initalPayload = "initialPayload";
+  static const sendToBackground = "sendToBackground";
+
+  // Event Channel
+  static const eventChannelName = "com.herald_flutter.eventChannel";
 }
