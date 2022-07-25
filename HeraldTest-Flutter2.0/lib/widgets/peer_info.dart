@@ -7,6 +7,7 @@ class PeerInfo {
   /* update count is for keeping track of how many
   times the illness status code changed in the current peer */
   late int _updateCount;
+  late double _distance;
 
   PeerInfo() {
     _data = List<double>.empty(growable: true);
@@ -39,9 +40,9 @@ class PeerInfo {
     return _updateCount.toString();
   }
 
-  void addRSSI(double value) {
-    if (-100 <= value && value < 0) {
-      _data.add(value);
+  void setRSSI(double rssi) {
+    if (-100 <= rssi && rssi < 0) {
+      _data.add(rssi);
       if (25 < _data.length) {
         _data.removeAt(0);
       }
@@ -49,14 +50,14 @@ class PeerInfo {
   }
 
   double getRSSI() {
-    if (_data.isNotEmpty) {
-      double sum = 0;
-      for (double v in _data) {
-        sum += v;
-      }
-      return sum / _data.length;
-    } else {
-      return -50;
-    }
+    return _data.last;
+  }
+
+  void setDistance(double distance) {
+    _distance = distance;
+  }
+
+  double getDistance() {
+    return _distance;
   }
 }
