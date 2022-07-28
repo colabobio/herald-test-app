@@ -46,6 +46,7 @@ public class MainActivity extends FlutterActivity {
     private String METHOD_CHANNEL_NAME = "com.herald_flutter.methodChannel";
     private String EVENT_CHANNEL_NAME = "com.herald_flutter.eventChannel";
     private static final String method = "initialPayload";
+    private static final String removePeer = "removePeer";
 
     Handler handler = new Handler();
     Runnable runnable;
@@ -86,6 +87,10 @@ public class MainActivity extends FlutterActivity {
 
                         Log.e("PAYLOADDATA", String.valueOf(_payloadData));
                         Log.e("resultsFromFlutter", _uuid + "   " + _illnessStatusCode + "   " + correctDate);
+                        result.success(null);
+                    }else if (call.method.equals(removePeer)) {
+                        _uuid = call.argument("uuid");
+                        TestService.instance.distanceEstimator.removeModel(_uuid);
                         result.success(null);
                     } else {
                         result.notImplemented();

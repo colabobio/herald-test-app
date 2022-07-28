@@ -8,6 +8,7 @@ import io.heraldprox.herald.sensor.datatype.RSSI;
 import io.heraldprox.herald.sensor.analysis.sampling.Sample;
 import io.heraldprox.herald.sensor.analysis.sampling.SampleList;
 import io.heraldprox.herald.sensor.datatype.TimeInterval;
+import io.flutter.Log;
 
 
 
@@ -19,6 +20,7 @@ import java.util.Map;
 
 public class DistanceEstimator { 
     private Map<Integer, ModelWrapper> modelMap;
+    private static final String tag = "DistanceEstimator";
     
 
 
@@ -27,8 +29,9 @@ public class DistanceEstimator {
     }
 
     //removes the model associated with the given UUID
-    private void removeModel(int UUID){
-        
+    public void removeModel(int UUID){
+        Log.i(tag, "Removed UUID: " + UUID);
+        modelMap.remove(UUID);
     }
 
     //creates a model for a given UUID
@@ -54,10 +57,6 @@ public class DistanceEstimator {
         return model.getDistance();
     }
 
-    public void removeStaleModels(){
-
-    }
-
     //This class essentially takes the role of SmoothedLinearModelAnalyzer and is heavily influenced by it
     //I made this class since SmoothedLinearModelAnalyzer is not *quite* what is required for this use
     private class ModelWrapper{
@@ -72,7 +71,7 @@ public class DistanceEstimator {
 
         public ModelWrapper(){
             lastUpdated = new Date();
-            maximumWindowSize = 50;
+            maximumWindowSize = 100;
             smoothingWindow = new TimeInterval(10);
             window = new SampleList<RSSI>(maximumWindowSize);
             model = new SmoothedLinearModel();

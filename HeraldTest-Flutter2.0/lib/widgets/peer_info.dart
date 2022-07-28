@@ -47,6 +47,8 @@ class PeerInfo {
         _data.removeAt(0);
       }
     }
+    _lastseen = DateFormat('yyyy-MM-dd HH:mm:ss')
+        .parse(DateTime.now().toUtc().toString());
   }
 
   double getRSSI() {

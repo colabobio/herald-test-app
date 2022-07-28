@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   final MethodChannel _methodChannel =
       const MethodChannel("com.herald_flutter.methodChannel");
   static const String _initalPayload = "initialPayload";
+  static const String _removePeer = "removePeer";
 
   final EventChannel _eventChannel =
       const EventChannel("com.herald_flutter.eventChannel");
@@ -54,6 +55,17 @@ class _HomePageState extends State<HomePage> {
       print(e.message);
     }
     SharedPrefs().setIdentifier(uuid);
+  }
+
+  Future<void> _sendRemovalCommand(int UUID) async {
+    try {
+      await _methodChannel.invokeMethod(_removePeer, <String, dynamic>{
+        'uuid': UUID,
+      });
+    } on PlatformException catch (e) {
+      // ignore: avoid_print
+      print(e.message);
+    }
   }
 
   //Event channel to recieve a stream of peers payload data (UUID, Code, Date, RSSI)
@@ -171,6 +183,8 @@ class _HomePageState extends State<HomePage> {
           _generateDate.differenceBetweenDates(lastSeen, newDateTime);
       //if no update in 30 minutes remove peer from peers map
       if (difference >= 1800) {
+        print("Removing UUID " + e.key.toString());
+        _sendRemovalCommand(e.key);
         setState(() {
           _currentPeers.remove(e.key);
         });
