@@ -9,6 +9,12 @@
 **/UserInterfaceState.xcuserstate
 **/xcuserdata
 
+# VS-specific files
+**/.vs
+
+# Dart-specific files
+**/.dart_tool
+
 # iOS Pods
 HeraldTest-iOS/Pods
 
