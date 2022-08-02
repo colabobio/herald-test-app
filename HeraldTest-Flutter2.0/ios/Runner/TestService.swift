@@ -28,6 +28,8 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
     var timer: Timer?
     var dispatch: DispatchSourceTimer?
     var date: Date = Date()
+
+    var distanceEstimator: DistanceEstimator = DistanceEstimator()
     
     static var shared: TestService {
         if let service = TestService.instance { return service }
@@ -138,6 +140,11 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
         storePeersPayload.updateValue(String(describing: date), forKey: "date")
         if (proximity?.value != nil) {
             storePeersPayload.updateValue(proximity?.value as Any, forKey: "rssi")
+
+            distanceEstimator.addRSSI(identifier, proximity?.value as Double)
+            let estimatedDistance = distanceEstimator.getDistance(identifier)
+            
+            storePeersPayload.put("distance", estimatedDistance)
         }
         
         print("EVERYTHING", String(describing: storePeersPayload))
