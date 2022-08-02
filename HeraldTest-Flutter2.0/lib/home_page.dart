@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   final MethodChannel _methodChannel =
       const MethodChannel("com.herald_flutter.methodChannel");
   static const String _initalPayload = "initialPayload";
+  static const String _removePeer = "removePeer";
 
   final EventChannel _eventChannel =
       const EventChannel("com.herald_flutter.eventChannel");
@@ -56,6 +57,17 @@ class _HomePageState extends State<HomePage> {
     SharedPrefs().setIdentifier(uuid);
   }
 
+  Future<void> _sendRemovalCommand(int UUID) async {
+    try {
+      await _methodChannel.invokeMethod(_removePeer, <String, dynamic>{
+        'uuid': UUID,
+      });
+    } on PlatformException catch (e) {
+      // ignore: avoid_print
+      print(e.message);
+    }
+  }
+
   //Event channel to recieve a stream of peers payload data (UUID, Code, Date, RSSI)
   Future<void> _reciveData() async {
     _eventChannel.receiveBroadcastStream().listen((data) {
@@ -72,11 +84,11 @@ class _HomePageState extends State<HomePage> {
       print("******************* CODE: " +
           data['code'].toString() +
           " ************************");
-      print("******************* DATE: " +
-          data['date'].toString() +
-          " ************************");
       print("******************* RSSI: " +
           data['rssi'].toString() +
+          " ************************");
+      print("******************* Distance: " +
+          data['distance'].toString() +
           " ************************");
       print("******************* CURRENT PEERS: " +
           _currentPeersTxt +
@@ -100,10 +112,14 @@ class _HomePageState extends State<HomePage> {
     }
 
     if (data["rssi"] != null) {
-      info.addRSSI(data["rssi"]);
+      info.setRSSI(data["rssi"]);
     }
 
-    if ((10 <= info.getData().length && info.getRSSI() < -70) ||
+    if (data["distance"] != null) {
+      info.setDistance(data["distance"]);
+    }
+
+    if ((10 <= info.getData().length && info.getDistance() > 50) ||
         data["uuid"] == 1234567890) {
       _currentPeers.remove(data["uuid"]);
     }
@@ -119,10 +135,13 @@ class _HomePageState extends State<HomePage> {
             id.toString() +
             ":CODE=" +
             info.getIllnessStatus().toString() +
-            ":RSSI=" +
-            info.getRSSI().toString() +
             ":UPC=" +
             info.getUpdateCount() +
+            ":RSSI=" +
+            info.getRSSI().toString() +
+            "\n" +
+            ":DIST=" +
+            info.getDistance().toString() +
             "\n";
       }
       _currentPeersTxt = txt;
@@ -130,6 +149,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _updateLoop(Timer t) {
+    setState(() {
+      _date = _generateDate.generateDate();
+    });
     _updateIllnessStatusCode();
     _removeLostPeers();
   }
@@ -161,6 +183,8 @@ class _HomePageState extends State<HomePage> {
           _generateDate.differenceBetweenDates(lastSeen, newDateTime);
       //if no update in 30 minutes remove peer from peers map
       if (difference >= 1800) {
+        print("Removing UUID " + e.key.toString());
+        _sendRemovalCommand(e.key);
         setState(() {
           _currentPeers.remove(e.key);
         });

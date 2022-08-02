@@ -52,6 +52,7 @@ public class TestService extends Service implements SensorDelegate, EventChannel
     private final Handler peersPayloadHandler = new Handler();
     private final Runnable peersPayloadRunnable = this::sendPeersPayload;
     private EventChannel.EventSink peersPayloadEventSink;
+    public DistanceEstimator distanceEstimator = new DistanceEstimator();
 
     private ConcurrentHashMap<String, Object> storePeersPayload = null;
 
@@ -208,8 +209,14 @@ public class TestService extends Service implements SensorDelegate, EventChannel
                 storePeersPayload.put("uuid", identifier);
                 storePeersPayload.put("code", illnessStatusCode);
                 storePeersPayload.put("date", date.toString());
-                if (proximity.value != null) {
-                    storePeersPayload.put("rssi", proximity.value);
+                Double rssi = proximity.value;
+                if (rssi != null) {
+                    storePeersPayload.put("rssi", rssi);
+
+                    distanceEstimator.addRSSI(identifier, rssi);
+                    double estimatedDistance = distanceEstimator.getDistance(identifier);
+
+                    storePeersPayload.put("distance", estimatedDistance);
                 }
 
             } catch (Exception e) {
@@ -220,6 +227,7 @@ public class TestService extends Service implements SensorDelegate, EventChannel
 
     void sendPeersPayload() {
         peersPayloadEventSink.success(storePeersPayload);
+        storePeersPayload.clear();
         peersPayloadHandler.postDelayed(peersPayloadRunnable, 1000);
     }
 
