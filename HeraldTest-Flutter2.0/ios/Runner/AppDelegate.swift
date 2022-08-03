@@ -20,6 +20,7 @@ import Flutter
         let EVENT_CHANNEL_NAME = "com.herald_flutter.eventChannel"
         let METHOD_CHANNEL_NAME = "com.herald_flutter.methodChannel"
         let method = "initialPayload"
+        let removePeer = "removePeer"
         
         let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
         let methodChannel = FlutterMethodChannel(name: METHOD_CHANNEL_NAME, binaryMessenger: controller.binaryMessenger)
@@ -48,8 +49,14 @@ import Flutter
                 self._supplier?.setDate(date: _date)
                 
                 return result(nil)
+            } else if (call.method == removePeer) {
+                guard let args = call.arguments else { return }
                 
-            }else {
+                self._payloadData = args as? [String: Any]
+                self._uuid = (self._payloadData? ["uuid"] as? Int)!
+
+                TestService.instance?.distanceEstimator.removeModel(self._uuid)
+            } else {
                 return result(FlutterMethodNotImplemented)
             }
         })

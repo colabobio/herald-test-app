@@ -1,10 +1,11 @@
 import Herald
+import Darwin
 
 // Note: "model" is used both for SmoothedLinerModel and ModelWrapper.
 
-public class TestService: NSObject {
-    var modelMap: [Int: ModelWrapper] = [:]
-    static let tag: String = "DistanceEstimator"
+public class DistanceEstimator {
+    private var modelMap: [Int: ModelWrapper] = [:]
+    private var tag: String = "DistanceEstimator"
 
     public init() {
 
@@ -12,30 +13,30 @@ public class TestService: NSObject {
 
     //removes the model associated with the given UUID
     public func removeModel(_ UUID: Int) {
-        print(tag + " Removed UUID: " + UUID)
-        self.modelMap.remove(UUID)
+        print("\(tag) Removed UUID: \(UUID)")
+        self.modelMap.removeValue(forKey: UUID)
     }
 
     //creates a model for a given UUID
     private func createModel(_ UUID: Int) -> ModelWrapper {
         let model = ModelWrapper()
-        self.modelMap.put(UUID, model)
+        self.modelMap[UUID] = model
         return model
     }
 
     //adds a RSSI value to the model handling the given UUID (will create a new model if needed)
     public func addRSSI(_ UUID: Int, _ rssi: Double) {
-        let sample = Sample(RSSI(rssi))
-        if let model = modelMap.get(UUID) {
-            model.addSample(sample)
-        } else if let model = createModel(UUID) {
-            model.addSample(sample)        
-        }
+        let sample = Sample(value: RSSI(rssi))
+        let model = self.modelMap[UUID] ?? self.createModel(UUID)
+        model.addSample(sample)
     }
 
-    public func getDistance(_ UUID: Int) -> Double { // TODO deal with not having enough samples to give distance or no model exists
-        let model = modelMap.get(UUID)
-        return model.getDistance()
+    public func getDistance(_ UUID: Int) -> Double? { // TODO deal with not having enough samples to give distance or no model exists
+        if let model = self.modelMap[UUID] {
+            return model.getDistance()
+        } else {
+            return nil
+        }
     }
 
     // This class essentially takes the role of SmoothedLinearModelAnalyzer and is heavily influenced by it
@@ -57,22 +58,26 @@ public class TestService: NSObject {
             self.smoothingWindow = TimeInterval(10)
             self.window = SampleList(maximumWindowSize)
             self.model = SmoothedLinearModel()
+            
+            self.lastDistance = 0
         }
 
         func addSample(_ sample: Sample){
-            window.push(sample)
+            window.push(sample: sample)
         }
 
-        func getDistance() -> Double { // TODO fix breaking for very close ranges
-            Date timeNow = Date();
+        func getDistance() -> Double? { // TODO fix breaking for very close ranges
+            let timeNow = Date()
             //remove stale samples
-            window.clearBeforeDate(Date(timeNow.secondsSinceUnixEpoch() - smoothingWindow.value))
+            self.window.clearBeforeDate(Date(timeInterval: -self.smoothingWindow, since: timeNow))
 
-            model.reset()
-            for sample in window {
-                model.map(sample)
+            self.model.reset()
+            for i in 0...self.window.size()-1 {
+                if let sample = self.window.get(i) {
+                    self.model.map(value: sample)
+                }
             }
-            return model.reduce()
+            return self.model.reduce()
         }
     }
 

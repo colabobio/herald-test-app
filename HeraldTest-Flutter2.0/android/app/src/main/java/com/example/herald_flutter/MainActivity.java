@@ -88,7 +88,7 @@ public class MainActivity extends FlutterActivity {
                         Log.e("PAYLOADDATA", String.valueOf(_payloadData));
                         Log.e("resultsFromFlutter", _uuid + "   " + _illnessStatusCode + "   " + correctDate);
                         result.success(null);
-                    }else if (call.method.equals(removePeer)) {
+                    } else if (call.method.equals(removePeer)) {
                         _uuid = call.argument("uuid");
                         TestService.instance.distanceEstimator.removeModel(_uuid);
                         result.success(null);

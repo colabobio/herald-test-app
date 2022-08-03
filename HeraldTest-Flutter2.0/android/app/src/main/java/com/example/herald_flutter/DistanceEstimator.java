@@ -45,7 +45,7 @@ public class DistanceEstimator {
     public void addRSSI(int UUID, Double rssi){
         Sample<RSSI> sample = new Sample(new RSSI(rssi));
         ModelWrapper model = modelMap.get(UUID);
-        if(model == null){
+        if (model == null){
             model = createModel(UUID);
         }
         model.addSample(sample);
