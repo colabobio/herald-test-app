@@ -63,12 +63,14 @@ public class DistanceEstimator {
         Double lastDistance; 
         private SmoothedLinearModel model;
         private SampleList<RSSI> window;
+        int minimumWindowSize;
         int maximumWindowSize; // TODO decide where these values go and how they work
         TimeInterval smoothingWindow;
 
 
         public ModelWrapper() {
             lastUpdated = new Date();
+            minimumWindowSize = 25;
             maximumWindowSize = 100;
             smoothingWindow = new TimeInterval(60);
             window = new SampleList<RSSI>(maximumWindowSize);
@@ -83,6 +85,10 @@ public class DistanceEstimator {
             Date timeNow = new Date();
             // Remove stale samples
             window.clearBeforeDate(new Date(timeNow.secondsSinceUnixEpoch() - smoothingWindow.value));
+
+            if (window.size() < minimumWindowSize) {
+                return null;
+            }
 
             model.reset();
             for (Sample<RSSI> sample : window) {

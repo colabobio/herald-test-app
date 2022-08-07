@@ -48,12 +48,14 @@ public class DistanceEstimator {
         var model: SmoothedLinearModel
 
         var window: SampleList
+        var minimumWindowSize: Int
         var maximumWindowSize: Int // TODO decide where these values go and how they work
         var smoothingWindow: TimeInterval
 
 
         init() {
             self.lastUpdated = Date()
+            self.minimumWindowSize = 25
             self.maximumWindowSize = 100
             self.smoothingWindow = TimeInterval(60)
             self.window = SampleList(maximumWindowSize)
@@ -71,6 +73,10 @@ public class DistanceEstimator {
             // Remove stale samples
             self.window.clearBeforeDate(Date(timeInterval: -self.smoothingWindow, since: timeNow))
 
+            if self.window.size() < minimumWindowSize {
+               return nil
+            }
+            
             self.model.reset()
             for i in 0...self.window.size()-1 {
                 if let sample = self.window.get(i) {

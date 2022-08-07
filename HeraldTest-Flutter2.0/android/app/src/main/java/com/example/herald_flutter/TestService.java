@@ -214,9 +214,10 @@ public class TestService extends Service implements SensorDelegate, EventChannel
                     storePeersPayload.put("rssi", rssi);
 
                     distanceEstimator.addRSSI(identifier, rssi);
-                    double estimatedDistance = distanceEstimator.getDistance(identifier);
-
-                    storePeersPayload.put("distance", estimatedDistance);
+                    Double estimatedDistance = distanceEstimator.getDistance(identifier);
+                    if (estimatedDistance != null) {
+                        storePeersPayload.put("distance", estimatedDistance);
+                    }
                 }
 
             } catch (Exception e) {
