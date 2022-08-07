@@ -11,20 +11,20 @@ public class DistanceEstimator {
 
     }
 
-    //removes the model associated with the given UUID
+    // Removes the model associated with the given UUID
     public func removeModel(_ UUID: Int) {
         print("\(tag) Removed UUID: \(UUID)")
         self.modelMap.removeValue(forKey: UUID)
     }
 
-    //creates a model for a given UUID
+    // Creates a model for a given UUID
     private func createModel(_ UUID: Int) -> ModelWrapper {
         let model = ModelWrapper()
         self.modelMap[UUID] = model
         return model
     }
 
-    //adds a RSSI value to the model handling the given UUID (will create a new model if needed)
+    // Adds a RSSI value to the model handling the given UUID (will create a new model if needed)
     public func addRSSI(_ UUID: Int, _ rssi: Double) {
         let sample = Sample(value: RSSI(rssi))
         let model = self.modelMap[UUID] ?? self.createModel(UUID)
@@ -55,20 +55,20 @@ public class DistanceEstimator {
         init() {
             self.lastUpdated = Date()
             self.maximumWindowSize = 100
-            self.smoothingWindow = TimeInterval(10)
+            self.smoothingWindow = TimeInterval(60)
             self.window = SampleList(maximumWindowSize)
             self.model = SmoothedLinearModel()
             
             self.lastDistance = 0
         }
 
-        func addSample(_ sample: Sample){
+        func addSample(_ sample: Sample) {
             window.push(sample: sample)
         }
 
         func getDistance() -> Double? { // TODO fix breaking for very close ranges
             let timeNow = Date()
-            //remove stale samples
+            // Remove stale samples
             self.window.clearBeforeDate(Date(timeInterval: -self.smoothingWindow, since: timeNow))
 
             self.model.reset()
