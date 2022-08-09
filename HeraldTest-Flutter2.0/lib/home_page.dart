@@ -119,9 +119,12 @@ class _HomePageState extends State<HomePage> {
       info.setDistance(data["distance"]);
     }
 
-    if ((10 <= info.getData().length && info.getDistance() > 50) ||
-        data["uuid"] == 1234567890) {
-      _currentPeers.remove(data["uuid"]);
+    // If the peer is farther than 5 meters, remove
+    if (info.getDistance() > 5 || data["uuid"] == 1234567890) {
+      _sendRemovalCommand(data["uuid"]);
+      setState(() {
+        _currentPeers.remove(data["uuid"]);
+      });
     }
   }
 
@@ -130,7 +133,7 @@ class _HomePageState extends State<HomePage> {
     for (int id in _currentPeers.keys) {
       PeerInfo? info = _currentPeers[id];
 
-      if (10 <= info!.getData().length) {
+      if (info!.getData().isNotEmpty) {
         txt += "->" +
             id.toString() +
             ":CODE=" +
@@ -181,8 +184,8 @@ class _HomePageState extends State<HomePage> {
       //difference between dates is in seconds
       int difference =
           _generateDate.differenceBetweenDates(lastSeen, newDateTime);
-      //if no update in 30 minutes remove peer from peers map
-      if (difference >= 1800) {
+      //if no update in 2 minutes remove peer from peers map
+      if (difference >= 120) {
         print("Removing UUID " + e.key.toString());
         _sendRemovalCommand(e.key);
         setState(() {
