@@ -45,7 +45,8 @@ public class DistanceEstimator {
 
         var lastUpdated: Date
         var lastDistance: Double
-        var model: SmoothedLinearModel
+        var model: PiecewiseDistanceModel
+        var filter: SimpleKalmanFilter
 
         var window: SampleList
         var minimumWindowSize: Int
@@ -59,7 +60,8 @@ public class DistanceEstimator {
             self.maximumWindowSize = 100
             self.smoothingWindow = TimeInterval(60)
             self.window = SampleList(maximumWindowSize)
-            self.model = SmoothedLinearModel()
+            self.model = PiecewiseDistanceModel()
+            self.filter = SimpleKalmanFilter(1, 1, 0.03)
             
             self.lastDistance = 0
         }
@@ -83,7 +85,10 @@ public class DistanceEstimator {
                     self.model.map(value: sample)
                 }
             }
-            return self.model.reduce()
+            
+            let distanceMeasurement = self.model.reduce()
+            let distanceEstimation =  self.filter.updateEstimate(distanceMeasurement)
+            return distanceEstimation
         }
     }
 
