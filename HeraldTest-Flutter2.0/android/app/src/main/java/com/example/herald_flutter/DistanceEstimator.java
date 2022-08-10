@@ -39,7 +39,7 @@ public class DistanceEstimator {
     public void addRSSI(int UUID, Double rssi) {
         Sample<RSSI> sample = new Sample(new RSSI(rssi));
         ModelWrapper model = modelMap.get(UUID);
-        if (model == null){
+        if (model == null) {
             model = createModel(UUID);
         }
         model.addSample(sample);
@@ -47,7 +47,20 @@ public class DistanceEstimator {
 
     public Double getDistance(int UUID) {
         ModelWrapper model = modelMap.get(UUID);
-        return model.getDistance();
+        if (model != null) {
+            return model.getDistance();
+        } else {
+            return null;
+        }        
+    }
+
+    public int getSampleCount(int UUID) {
+        ModelWrapper model = modelMap.get(UUID);
+        if (model != null) {
+            return model.getSampleCount();
+        } else {
+            return 0;
+        }
     }
 
     private class ModelWrapper {
@@ -63,8 +76,8 @@ public class DistanceEstimator {
 
         public ModelWrapper() {
             lastUpdated = new Date();
-            minimumWindowSize = 25;
-            maximumWindowSize = 100;
+            minimumWindowSize = 10;
+            maximumWindowSize = 50;
             smoothingWindow = new TimeInterval(60);
             window = new SampleList<RSSI>(maximumWindowSize);
             model = new PiecewiseDistanceModel();
@@ -73,6 +86,10 @@ public class DistanceEstimator {
 
         public void addSample(Sample<RSSI> sample) {
             window.push(sample);
+        }
+
+        public int getSampleCount() {
+            return window.size();
         }
 
         public Double getDistance() {

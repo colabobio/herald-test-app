@@ -144,6 +144,7 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
             if let rssi = proximity?.value as? Double {
                 distanceEstimator.addRSSI(identifier, rssi)
                 if let estimatedDistance = distanceEstimator.getDistance(identifier) {
+                    storePeersPayload.updateValue(distanceEstimator.getSampleCount(identifier), forKey: "samples")
                     storePeersPayload.updateValue(estimatedDistance, forKey: "distance")
                 }
                                 

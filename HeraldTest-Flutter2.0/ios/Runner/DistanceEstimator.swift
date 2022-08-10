@@ -39,6 +39,15 @@ public class DistanceEstimator {
         }
     }
 
+    public func getSampleCount(_ UUID: Int) -> Int {
+        if let model = self.modelMap[UUID] {
+            return model.getSampleCount()
+        } else {
+            return 0
+        }
+
+    }    
+
     // This class essentially takes the role of SmoothedLinearModelAnalyzer and is heavily influenced by it
     // I made this class since SmoothedLinearModelAnalyzer is not *quite* what is required for this use
     private class ModelWrapper {
@@ -56,8 +65,8 @@ public class DistanceEstimator {
 
         init() {
             self.lastUpdated = Date()
-            self.minimumWindowSize = 25
-            self.maximumWindowSize = 100
+            self.minimumWindowSize = 10
+            self.maximumWindowSize = 50
             self.smoothingWindow = TimeInterval(60)
             self.window = SampleList(maximumWindowSize)
             self.model = PiecewiseDistanceModel()
@@ -68,6 +77,10 @@ public class DistanceEstimator {
 
         func addSample(_ sample: Sample) {
             window.push(sample: sample)
+        }
+
+        func getSampleCount() -> Int {
+            return window.size()
         }
 
         func getDistance() -> Double? { // TODO fix breaking for very close ranges

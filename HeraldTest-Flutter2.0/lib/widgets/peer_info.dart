@@ -1,3 +1,4 @@
+import 'package:herald_flutter/widgets/generate_date.dart';
 import 'package:intl/intl.dart';
 
 class PeerInfo {
@@ -7,7 +8,10 @@ class PeerInfo {
   /* update count is for keeping track of how many
   times the illness status code changed in the current peer */
   late int _updateCount;
+  late int _sampleCount;
   late double _distance;
+
+  final GenerateDate _generateDate = GenerateDate();
 
   PeerInfo() {
     _data = List<double>.empty(growable: true);
@@ -15,6 +19,8 @@ class PeerInfo {
     _lastseen = DateFormat('yyyy-MM-dd HH:mm:ss')
         .parse(DateTime.now().toUtc().toString());
     _updateCount = 0;
+    _sampleCount = 0;
+    _distance = -1;
   }
 
   void setStatus(int illnessStatusCode) {
@@ -36,14 +42,32 @@ class PeerInfo {
     return _lastseen;
   }
 
+  int secondsSinceLastSeen() {
+    DateTime lastSeen = _lastseen;
+    DateTime newDateTime = DateFormat('yyyy-MM-dd HH:mm:ss')
+        .parse(DateTime.now().toUtc().toString());
+    //difference between dates is in seconds
+    int difference =
+        _generateDate.differenceBetweenDates(lastSeen, newDateTime);
+    return difference;
+  }
+
   String getUpdateCount() {
     return _updateCount.toString();
+  }
+
+  void setSampleCount(int count) {
+    _sampleCount = count;
+  }
+
+  String getSampleCount() {
+    return _sampleCount.toString();
   }
 
   void setRSSI(double rssi) {
     if (-100 <= rssi && rssi < 0) {
       _data.add(rssi);
-      if (25 < _data.length) {
+      if (100 < _data.length) {
         _data.removeAt(0);
       }
     }
@@ -52,7 +76,25 @@ class PeerInfo {
   }
 
   double getRSSI() {
-    return _data.last;
+    if (_data.isEmpty) return 0;
+    if (_data.length == 1) return _data[0];
+
+    //clone list
+    List<double> clonedList = List<double>.empty(growable: true);
+    clonedList.addAll(_data);
+
+    //sort list
+    clonedList.sort((a, b) => a.compareTo(b));
+
+    double median;
+    int middle = clonedList.length ~/ 2;
+    if (clonedList.length % 2 == 1) {
+      median = clonedList[middle];
+    } else {
+      median = (clonedList[middle - 1] + clonedList[middle]) / 2.0;
+    }
+
+    return median;
   }
 
   void setDistance(double distance) {

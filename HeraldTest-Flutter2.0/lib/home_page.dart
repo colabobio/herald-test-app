@@ -27,16 +27,21 @@ class _HomePageState extends State<HomePage> {
 
   String _uuid = '';
   var _randomIllnessStatusCode = _illnessStatusCode.getRandomStatus();
-  String _date = _generateDate.generateDate();
+  String _lastUpdateDate = _generateDate.generateDate();
 
   final Map<int, PeerInfo> _currentPeers = {};
   String _currentPeersTxt = '';
+
+  final double maxContactDistance = 3; // In meters
+  final int maxUpdateWait = 120; // In seconds
+
+  final int statusUpdatePeriod = 30; // In seconds
 
   @override
   initState() {
     super.initState();
     _sendData();
-    _reciveData();
+    _receiveData();
     Timer.periodic(const Duration(milliseconds: 2000), _updateLoop);
   }
 
@@ -48,7 +53,7 @@ class _HomePageState extends State<HomePage> {
       await _methodChannel.invokeMethod(_initalPayload, <String, dynamic>{
         'uuid': uuid,
         'illnessStatusCode': _randomIllnessStatusCode.index,
-        'date': _date
+        'date': _lastUpdateDate
       });
     } on PlatformException catch (e) {
       // ignore: avoid_print
@@ -69,7 +74,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   //Event channel to recieve a stream of peers payload data (UUID, Code, Date, RSSI)
-  Future<void> _reciveData() async {
+  Future<void> _receiveData() async {
     _eventChannel.receiveBroadcastStream().listen((data) {
       setState(() {
         if (data != null) {
@@ -86,6 +91,9 @@ class _HomePageState extends State<HomePage> {
           " ************************");
       print("******************* RSSI: " +
           data['rssi'].toString() +
+          " ************************");
+      print("******************* Samples: " +
+          data['samples'].toString() +
           " ************************");
       print("******************* Distance: " +
           data['distance'].toString() +
@@ -119,8 +127,12 @@ class _HomePageState extends State<HomePage> {
       info.setDistance(data["distance"]);
     }
 
-    // If the peer is farther than 5 meters, remove
-    if (info.getDistance() > 5 || data["uuid"] == 1234567890) {
+    if (data["samples"] != null) {
+      info.setSampleCount(data["samples"]);
+    }
+
+    // If the peer is outside contact range, remove
+    if (info.getDistance() > maxContactDistance || data["uuid"] == 1234567890) {
       _sendRemovalCommand(data["uuid"]);
       setState(() {
         _currentPeers.remove(data["uuid"]);
@@ -132,29 +144,31 @@ class _HomePageState extends State<HomePage> {
     String txt = '';
     for (int id in _currentPeers.keys) {
       PeerInfo? info = _currentPeers[id];
-
       if (info!.getData().isNotEmpty) {
         txt += "->" +
             id.toString() +
-            ":CODE=" +
+            ":Status=" +
             info.getIllnessStatus().toString() +
-            ":UPC=" +
+            ":UpdCount:=" +
             info.getUpdateCount() +
             ":RSSI=" +
             info.getRSSI().toString() +
-            "\n" +
-            ":DIST=" +
-            info.getDistance().toString() +
+            ":Samples=" +
+            info.getSampleCount() +
+            ":LastSeen=" +
+            info.secondsSinceLastSeen().toString() +
+            ":Distance=" +
+            info.getDistance().toStringAsFixed(2) +
             "\n";
       }
-      _currentPeersTxt = txt;
     }
+    _currentPeersTxt = txt;
   }
 
   void _updateLoop(Timer t) {
-    setState(() {
-      _date = _generateDate.generateDate();
-    });
+    // setState(() {
+    //   _lastUpdateDate = _generateDate.generateDate();
+    // });
     _updateIllnessStatusCode();
     _removeLostPeers();
   }
@@ -163,12 +177,12 @@ class _HomePageState extends State<HomePage> {
     String newDate = _generateDate.generateDate();
 
     int difference = _generateDate.differenceBetweenDates(
-        DateFormat('yyyy-MM-dd HH:mm:ss').parse(_date),
+        DateFormat('yyyy-MM-dd HH:mm:ss').parse(_lastUpdateDate),
         DateFormat('yyyy-MM-dd HH:mm:ss').parse(newDate));
 
-    if (difference >= 120) {
+    if (difference >= statusUpdatePeriod) {
       setState(() {
-        _date = newDate;
+        _lastUpdateDate = newDate;
         _randomIllnessStatusCode = _illnessStatusCode.getRandomStatus();
       });
       _sendData();
@@ -176,22 +190,20 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _removeLostPeers() {
+    List<int> keysToRemove = List<int>.empty(growable: true);
     for (MapEntry e in _currentPeers.entries) {
       PeerInfo info = e.value;
-      DateTime lastSeen = info.getLastSeen();
-      DateTime newDateTime = DateFormat('yyyy-MM-dd HH:mm:ss')
-          .parse(DateTime.now().toUtc().toString());
-      //difference between dates is in seconds
-      int difference =
-          _generateDate.differenceBetweenDates(lastSeen, newDateTime);
-      //if no update in 2 minutes remove peer from peers map
-      if (difference >= 120) {
-        print("Removing UUID " + e.key.toString());
-        _sendRemovalCommand(e.key);
-        setState(() {
-          _currentPeers.remove(e.key);
-        });
+      int difference = info.secondsSinceLastSeen();
+      //if no update within the maximum waiting, remove peer from peers map
+      if (difference >= maxUpdateWait) {
+        keysToRemove.add(e.key);
       }
+    }
+    for (int key in keysToRemove) {
+      _sendRemovalCommand(key);
+      setState(() {
+        _currentPeers.remove(key);
+      });
     }
   }
 
