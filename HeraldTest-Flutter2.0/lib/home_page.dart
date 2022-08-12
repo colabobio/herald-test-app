@@ -131,6 +131,10 @@ class _HomePageState extends State<HomePage> {
       info.setSampleCount(data["samples"]);
     }
 
+    if (data["phone"] != null) {
+      info.setPhoneCode(data["phone"]);
+    }
+
     // If the peer is outside contact range, remove
     if (info.getDistance() > maxContactDistance || data["uuid"] == 1234567890) {
       _sendRemovalCommand(data["uuid"]);
@@ -147,6 +151,8 @@ class _HomePageState extends State<HomePage> {
       if (info!.getData().isNotEmpty) {
         txt += "->" +
             id.toString() +
+            ":Phone=" +
+            info.getPhoneCode() +
             ":Status=" +
             info.getIllnessStatus().toString() +
             ":UpdCount:=" +

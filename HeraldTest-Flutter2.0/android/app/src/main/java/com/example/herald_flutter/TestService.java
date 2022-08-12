@@ -204,16 +204,18 @@ public class TestService extends Service implements SensorDelegate, EventChannel
                 statusPayloadResults statusPayload = PayloadDataSupplier.getIllnessStatusFromPayload(payloadData);
                 int identifier = PayloadDataSupplier.getIdentifierFromPayload(payloadData);
                 int illnessStatusCode = statusPayload.getIllnessStatusCode();
+                int phoneCode = statusPayload.getPhoneCode();
                 Date date = statusPayload.getDate();
 
                 storePeersPayload.put("uuid", identifier);
                 storePeersPayload.put("code", illnessStatusCode);
                 storePeersPayload.put("date", date.toString());
+                storePeersPayload.put("phone", phoneCode);
                 Double rssi = proximity.value;
                 if (rssi != null) {
                     storePeersPayload.put("rssi", rssi);
 
-                    distanceEstimator.addRSSI(identifier, rssi);                                        
+                    distanceEstimator.addRSSI(identifier, rssi, phoneCode);
                     Double estimatedDistance = distanceEstimator.getDistance(identifier);               
                     storePeersPayload.put("samples", distanceEstimator.getSampleCount(identifier));
                     if (estimatedDistance != null) {

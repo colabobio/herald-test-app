@@ -29,18 +29,18 @@ public class DistanceEstimator {
     }
     
     // Creates a model for a given UUID
-    private ModelWrapper createModel(int UUID) {
-        ModelWrapper model = new ModelWrapper();
+    private ModelWrapper createModel(int UUID, int phone) {
+        ModelWrapper model = new ModelWrapper(phone);
         modelMap.put(UUID, model);
         return model;
     }
 
     // Adds a RSSI value to the model handling the given UUID (will create a new model if needed)
-    public void addRSSI(int UUID, Double rssi) {
+    public void addRSSI(int UUID, Double rssi, int phone) {
         Sample<RSSI> sample = new Sample(new RSSI(rssi));
         ModelWrapper model = modelMap.get(UUID);
         if (model == null) {
-            model = createModel(UUID);
+            model = createModel(UUID, phone);
         }
         model.addSample(sample);
     }
@@ -67,21 +67,21 @@ public class DistanceEstimator {
 
         Date lastUpdated;
         Double lastDistance;
-        private SimpleKalmanFilter filter;
-        private PiecewiseDistanceModel model;
+//        private SimpleKalmanFilter filter;
+        private CoarseDistanceModel model;
         private SampleList<RSSI> window;
         int minimumWindowSize;
         int maximumWindowSize;
         TimeInterval smoothingWindow;
 
-        public ModelWrapper() {
+        public ModelWrapper(int phoneCode) {
             lastUpdated = new Date();
             minimumWindowSize = 10;
             maximumWindowSize = 50;
             smoothingWindow = new TimeInterval(60);
             window = new SampleList<RSSI>(maximumWindowSize);
-            model = new PiecewiseDistanceModel();
-            filter = new SimpleKalmanFilter(1, 1, 0.03);
+            model = new CoarseDistanceModel(phoneCode);
+//            filter = new SimpleKalmanFilter(1, 1, 0.03);
         }
 
         public void addSample(Sample<RSSI> sample) {
@@ -107,9 +107,10 @@ public class DistanceEstimator {
                 model.map(sample);
             }
 
-            Double distanceMeasurement = model.reduce();
-            Double distanceEstimation = filter.updateEstimate(distanceMeasurement);
-            return distanceEstimation;
+            Double distanceBucket = model.reduce();
+            return distanceBucket;
+//            Double distanceEstimation = filter.updateEstimate(distanceMeasurement);
+//            return distanceEstimation;
         }
     }
 }

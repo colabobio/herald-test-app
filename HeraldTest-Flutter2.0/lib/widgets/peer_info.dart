@@ -10,6 +10,7 @@ class PeerInfo {
   late int _updateCount;
   late int _sampleCount;
   late double _distance;
+  late int _phoneCode;
 
   final GenerateDate _generateDate = GenerateDate();
 
@@ -21,6 +22,7 @@ class PeerInfo {
     _updateCount = 0;
     _sampleCount = 0;
     _distance = -1;
+    _phoneCode = 0;
   }
 
   void setStatus(int illnessStatusCode) {
@@ -62,6 +64,14 @@ class PeerInfo {
 
   String getSampleCount() {
     return _sampleCount.toString();
+  }
+
+  void setPhoneCode(int phone) {
+    _phoneCode = phone;
+  }
+
+  String getPhoneCode() {
+    return _phoneCode.toString();
   }
 
   void setRSSI(double rssi) {
