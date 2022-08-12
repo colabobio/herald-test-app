@@ -135,14 +135,18 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
         
         let date: Date = statusPayload.getDate()
         
+        let phoneCode: Int = statusPayload.getPhoneCode()
+        
         storePeersPayload.updateValue(identifier, forKey: "uuid")
         storePeersPayload.updateValue(illnessStatusCode, forKey: "code")
         storePeersPayload.updateValue(String(describing: date), forKey: "date")
+        storePeersPayload.updateValue(phoneCode, forKey: "phone")
+        
         if (proximity?.value != nil) {
             storePeersPayload.updateValue(proximity?.value as Any, forKey: "rssi")
 
             if let rssi = proximity?.value as? Double {
-                distanceEstimator.addRSSI(identifier, rssi)
+                distanceEstimator.addRSSI(identifier, rssi, phoneCode)
                 if let estimatedDistance = distanceEstimator.getDistance(identifier) {
                     storePeersPayload.updateValue(distanceEstimator.getSampleCount(identifier), forKey: "samples")
                     storePeersPayload.updateValue(estimatedDistance, forKey: "distance")

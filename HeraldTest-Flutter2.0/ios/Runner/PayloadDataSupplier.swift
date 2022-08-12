@@ -13,11 +13,13 @@ class IllnessPayloadDataSupplier: PayloadDataSupplier {
     fileprivate var identifier: Int
     fileprivate var illnessStatusCode: Int
     fileprivate var date : Date
+    fileprivate var phoneCode: Int
     
     init(identifier: Int, illnessStatusCode: Int, date: Date) {
         self.identifier = identifier
         self.illnessStatusCode = illnessStatusCode
         self.date = date
+        self.phoneCode = 0
     }
     
     func setIdentifier(identifier: Int) {
@@ -32,6 +34,10 @@ class IllnessPayloadDataSupplier: PayloadDataSupplier {
         self.date = date
     }
     
+    func setPhoneCode(phone: Int) {
+        self.phoneCode = phone
+    }
+    
     func getIdentifier() -> Int{
         return identifier
     }
@@ -42,6 +48,10 @@ class IllnessPayloadDataSupplier: PayloadDataSupplier {
     
     func getDate() -> Date{
         return date
+    }
+    
+    func getPhoneCode() -> Int {
+        return phoneCode
     }
     
     func payload(_ timestamp: PayloadTimestamp, device: Device?) -> PayloadData? {
@@ -65,6 +75,7 @@ class IllnessPayloadDataSupplier: PayloadDataSupplier {
         let result = PayloadData()
         result.append(UInt64(self.date.timeIntervalSince1970))
         result.append(UInt8(self.illnessStatusCode))
+        result.append(UInt8(self.phoneCode))
         return result
     }
     
@@ -72,18 +83,21 @@ class IllnessPayloadDataSupplier: PayloadDataSupplier {
         
         let date : Date = Date(timeIntervalSince1970: Double(raw.uint64(0)!))
         let illnessStatusCode : Int = Int(raw.uint8(8)!)
+        let phoneCode : Int = Int(raw.uint8(9)!)
         
-        return StatusPayloadResults(date: date, illnessStatusCode: illnessStatusCode)
+        return StatusPayloadResults(date: date, illnessStatusCode: illnessStatusCode, phoneCode: phoneCode)
     }
 }
 
 class StatusPayloadResults {
     fileprivate var date : Date
     fileprivate var illnessStatusCode : Int
-    
-    init(date: Date, illnessStatusCode: Int) {
+    fileprivate var phoneCode : Int
+        
+    init(date: Date, illnessStatusCode: Int, phoneCode: Int) {
         self.date = date
         self.illnessStatusCode = illnessStatusCode
+        self.phoneCode = phoneCode
     }
     
     func getDate() -> Date {
@@ -92,6 +106,10 @@ class StatusPayloadResults {
     
     func getIllnessStatusCode() -> Int {
         return illnessStatusCode
+    }
+    
+    func getPhoneCode() -> Int {
+        return phoneCode
     }
     
 }

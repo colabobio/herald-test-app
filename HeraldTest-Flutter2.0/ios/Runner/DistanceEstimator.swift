@@ -18,16 +18,16 @@ public class DistanceEstimator {
     }
 
     // Creates a model for a given UUID
-    private func createModel(_ UUID: Int) -> ModelWrapper {
-        let model = ModelWrapper()
+    private func createModel(_ UUID: Int, _ phone: Int) -> ModelWrapper {
+        let model = ModelWrapper(phoneCode: phone)
         self.modelMap[UUID] = model
         return model
     }
 
     // Adds a RSSI value to the model handling the given UUID (will create a new model if needed)
-    public func addRSSI(_ UUID: Int, _ rssi: Double) {
+    public func addRSSI(_ UUID: Int, _ rssi: Double, _ phone: Int) {
         let sample = Sample(value: RSSI(rssi))
-        let model = self.modelMap[UUID] ?? self.createModel(UUID)
+        let model = self.modelMap[UUID] ?? self.createModel(UUID, phone)
         model.addSample(sample)
     }
 
@@ -54,8 +54,8 @@ public class DistanceEstimator {
 
         var lastUpdated: Date
         var lastDistance: Double
-        var model: PiecewiseDistanceModel
-        var filter: SimpleKalmanFilter
+        var model: CoarseDistanceModel
+//        var filter: SimpleKalmanFilter
 
         var window: SampleList
         var minimumWindowSize: Int
@@ -63,14 +63,14 @@ public class DistanceEstimator {
         var smoothingWindow: TimeInterval
 
 
-        init() {
+        init(phoneCode: Int) {
             self.lastUpdated = Date()
             self.minimumWindowSize = 10
             self.maximumWindowSize = 50
             self.smoothingWindow = TimeInterval(60)
             self.window = SampleList(maximumWindowSize)
-            self.model = PiecewiseDistanceModel()
-            self.filter = SimpleKalmanFilter(1, 1, 0.03)
+            self.model = CoarseDistanceModel(phoneCode: phoneCode)
+//            self.filter = SimpleKalmanFilter(1, 1, 0.03)
             
             self.lastDistance = 0
         }
@@ -99,9 +99,9 @@ public class DistanceEstimator {
                 }
             }
             
-            let distanceMeasurement = self.model.reduce()
-            let distanceEstimation =  self.filter.updateEstimate(distanceMeasurement)
-            return distanceEstimation
+            let distanceBucket = self.model.reduce()
+//            let distanceEstimation =  self.filter.updateEstimate(distanceMeasurement)
+            return distanceBucket
         }
     }
 
