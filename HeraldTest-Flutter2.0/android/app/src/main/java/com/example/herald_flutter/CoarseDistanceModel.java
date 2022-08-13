@@ -14,7 +14,13 @@ public class CoarseDistanceModel <T extends DoubleValue> implements Aggregate<T>
     private final SensorLogger logger = new ConcreteSensorLogger("Analysis", "PiecewiseDistanceModel");
     private final Median<T> median = new Median<>();
 
-    private int phoneCode;
+    private SimpleKalmanFilter filter;
+
+    private int phoneCode;    
+    private int thresholds[][] = {
+      {-55, -65, -75}, // Thresholds for code = 0 (iPhone)
+      {-65, -75, -85}  // Thresholds for code = 1 (Android phone)
+    };
 
     public CoarseDistanceModel() {
         this(0);
@@ -22,6 +28,7 @@ public class CoarseDistanceModel <T extends DoubleValue> implements Aggregate<T>
 
     public CoarseDistanceModel(final int phoneCode) {
         this.phoneCode = phoneCode;
+        this.filter = new SimpleKalmanFilter(1, 1, 0.001);
     }
 
     public void setParameters(final int phoneCode) {
@@ -51,19 +58,22 @@ public class CoarseDistanceModel <T extends DoubleValue> implements Aggregate<T>
             logger.debug("reduce, medianOfRssi is null");
             return null;
         }
+        Double smoothedRssi = filter.updateEstimate(medianOfRssi);
+        if (null == smoothedRssi) {
+            logger.debug("reduce, smoothedRssi is null");
+            return null;
+        }
 
-        if (phoneCode == 0) {
-            // An iPhone
-            if (-55 < medianOfRssi) return 0.5; // Very close [0, 1]
-            else if (-65 < medianOfRssi) return 1.5; // Close [1, 2]
-            else if (-75 < medianOfRssi) return 3.5; // Relatively close [2, 5]
-            else return 8.0; // Far (more than 5)
-        } else if (phoneCode == 1) {
-            // An Android phone
-            if (-65 < medianOfRssi) return 0.5; // Very close [0, 1]
-            else if (-75 < medianOfRssi) return 1.5; // Close [1, 2]
-            else if (-85 < medianOfRssi) return 3.5; // Relatively close [2, 5]
-            else return 8.0; // Far (more than 5)
+        if (phoneCode < thresholds.length) {
+            if (thresholds[phoneCode][0] < smoothedRssi) {
+                return 0.5; // Immediate [0, 1]
+            } else if (thresholds[phoneCode][1] < smoothedRssi) {
+                return 1.5; // Close [1, 2]
+            } else if (thresholds[phoneCode][2] < smoothedRssi) {
+                return 3.5; // Medium [2, 5]
+            } else {
+                return 8.0; // Far (more than 5)
+            }
         } else {
             return null;
         }
