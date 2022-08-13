@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   final Map<int, PeerInfo> _currentPeers = {};
   String _currentPeersTxt = '';
 
-  final double maxContactDistance = 3; // In meters
+  final double maxContactDistance = 5; // In meters
   final int maxUpdateWait = 120; // In seconds
 
   final int statusUpdatePeriod = 30; // In seconds
