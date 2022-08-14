@@ -54,6 +54,14 @@ public class DistanceEstimator {
             return nil
         }
     }
+    
+    public func getKalmanRSSI(_ UUID: Int) -> Double? {
+        if let model = self.modelMap[UUID] {
+            return model.getKalmanRSSI()
+        } else {
+            return nil
+        }
+    }
 
     // This class essentially takes the role of SmoothedLinearModelAnalyzer and is heavily influenced by it
     // I made this class since SmoothedLinearModelAnalyzer is not *quite* what is required for this use
@@ -62,7 +70,6 @@ public class DistanceEstimator {
         var lastUpdated: Date
         var lastDistance: Double
         var model: CoarseDistanceModel
-//        var filter: SimpleKalmanFilter
 
         var window: SampleList
         var minimumWindowSize: Int
@@ -77,8 +84,6 @@ public class DistanceEstimator {
             self.smoothingWindow = TimeInterval(60)
             self.window = SampleList(maximumWindowSize)
             self.model = CoarseDistanceModel(phoneCode: phoneCode)
-//            self.filter = SimpleKalmanFilter(1, 1, 0.03)
-            
             self.lastDistance = 0
         }
 
@@ -92,6 +97,10 @@ public class DistanceEstimator {
         
         func getMedianRSSI() -> Double? {
             return self.model.medianOfRssi()
+        }
+        
+        func getKalmanRSSI() -> Double? {
+            return self.model.kalmanOfRssi()
         }
 
         func getDistance() -> Double? { // TODO fix breaking for very close ranges
@@ -111,7 +120,6 @@ public class DistanceEstimator {
             }
             
             let distanceBucket = self.model.reduce()
-//            let distanceEstimation =  self.filter.updateEstimate(distanceMeasurement)
             return distanceBucket
         }
     }

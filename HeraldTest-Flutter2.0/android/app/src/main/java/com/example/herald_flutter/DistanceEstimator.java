@@ -72,11 +72,19 @@ public class DistanceEstimator {
         }          
     }
 
+    public Double getKalmandRSSI(int UUID) {
+        ModelWrapper model = modelMap.get(UUID);
+        if (model != null) {
+            return model.getKalmanRSSI();
+        } else {
+            return null;
+        }          
+    }
+
     private class ModelWrapper {
 
         Date lastUpdated;
         Double lastDistance;
-//        private SimpleKalmanFilter filter;
         private CoarseDistanceModel model;
         private SampleList<RSSI> window;
         int minimumWindowSize;
@@ -90,7 +98,6 @@ public class DistanceEstimator {
             smoothingWindow = new TimeInterval(60);
             window = new SampleList<RSSI>(maximumWindowSize);
             model = new CoarseDistanceModel(phoneCode);
-//            filter = new SimpleKalmanFilter(1, 1, 0.03);
         }
 
         public void addSample(Sample<RSSI> sample) {
@@ -103,6 +110,10 @@ public class DistanceEstimator {
 
         public Double getMedianRSSI() {
             return model.medianOfRssi();
+        }
+
+        public Double getKalmanRSSI() {
+            return model.kalmanOfRssi();
         }
 
         public Double getDistance() {
@@ -122,8 +133,6 @@ public class DistanceEstimator {
 
             Double distanceBucket = model.reduce();
             return distanceBucket;
-//            Double distanceEstimation = filter.updateEstimate(distanceMeasurement);
-//            return distanceEstimation;
         }
     }
 }

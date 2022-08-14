@@ -81,7 +81,7 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
     }
     
     func initLog() {
-        dataLog.write("id,phone,rssi_raw,rssi_median,distance\n")
+        dataLog.write("id,phone,rssi_raw,rssi_median,rssi_kalman,distance\n")
     }
     
     // MARK:- SensorDelegate
@@ -157,8 +157,9 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
                 if let estimatedDistance = distanceEstimator.getDistance(identifier) {
                     storePeersPayload.updateValue(distanceEstimator.getSampleCount(identifier), forKey: "samples")
                     storePeersPayload.updateValue(estimatedDistance, forKey: "distance")
-                    if let rssiMedian = distanceEstimator.getMedianRSSI(identifier) {
-                        dataLog.write("\(identifier),\(phoneCode),\(rssi),\(rssiMedian),\(estimatedDistance)\n")
+                    if let rssiMedian = distanceEstimator.getMedianRSSI(identifier),
+                       let rssiKalman = distanceEstimator.getKalmanRSSI(identifier) {
+                        dataLog.write("\(identifier),\(phoneCode),\(rssi),\(rssiMedian),\(rssiKalman),\(estimatedDistance)\n")
                     }                    
                 }
                                 
