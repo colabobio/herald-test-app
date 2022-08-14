@@ -31,6 +31,8 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
 
     var distanceEstimator: DistanceEstimator = DistanceEstimator()
     
+    var dataLog = DataLog()
+    
     static var shared: TestService {
         if let service = TestService.instance { return service }
         let service = TestService()
@@ -41,6 +43,7 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
     func start() {
         payloadDataSupplier = IllnessPayloadDataSupplier(identifier: 1234567890, illnessStatusCode: 1, date: date)
         initSensor()
+        initLog()
         startTimer()
     }
     
@@ -75,6 +78,10 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
         sensor = SensorArray(payloadDataSupplier!)
         sensor?.add(delegate: self)
         sensor?.start()
+    }
+    
+    func initLog() {
+        dataLog.write("id,phone,rssi_raw,rssi_median,distance\n")
     }
     
     // MARK:- SensorDelegate
@@ -150,6 +157,9 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
                 if let estimatedDistance = distanceEstimator.getDistance(identifier) {
                     storePeersPayload.updateValue(distanceEstimator.getSampleCount(identifier), forKey: "samples")
                     storePeersPayload.updateValue(estimatedDistance, forKey: "distance")
+                    if let rssiMedian = distanceEstimator.getMedianRSSI(identifier) {
+                        dataLog.write("\(identifier),\(phoneCode),\(rssi),\(rssiMedian),\(estimatedDistance)\n")
+                    }                    
                 }
                                 
             }
@@ -179,4 +189,29 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
         payloadTimer?.invalidate()
         return nil
     }
+}
+
+struct DataLog: TextOutputStream {
+
+    /// Appends the given string to the stream.
+    mutating func write(_ string: String) {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)
+        let documentDirectoryPath = paths.first!
+        let log = documentDirectoryPath.appendingPathComponent("rssi-distance.csv")
+        do {
+            let handle = try FileHandle(forWritingTo: log)
+            handle.seekToEndOfFile()
+            handle.write(string.data(using: .utf8)!)
+            handle.closeFile()
+        } catch {
+            print(error.localizedDescription)
+            do {
+                try string.data(using: .utf8)?.write(to: log)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+
+    }
+
 }

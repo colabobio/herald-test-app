@@ -45,8 +45,15 @@ public class DistanceEstimator {
         } else {
             return 0
         }
-
-    }    
+    }
+    
+    public func getMedianRSSI(_ UUID: Int) -> Double? {
+        if let model = self.modelMap[UUID] {
+            return model.getMedianRSSI()
+        } else {
+            return nil
+        }
+    }
 
     // This class essentially takes the role of SmoothedLinearModelAnalyzer and is heavily influenced by it
     // I made this class since SmoothedLinearModelAnalyzer is not *quite* what is required for this use
@@ -81,6 +88,10 @@ public class DistanceEstimator {
 
         func getSampleCount() -> Int {
             return window.size()
+        }
+        
+        func getMedianRSSI() -> Double? {
+            return self.model.medianOfRssi()
         }
 
         func getDistance() -> Double? { // TODO fix breaking for very close ranges

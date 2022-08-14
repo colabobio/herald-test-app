@@ -2,6 +2,7 @@ package com.example.herald_flutter;
 
 import android.app.Notification;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
@@ -12,6 +13,9 @@ import androidx.core.app.NotificationCompat;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -54,6 +58,8 @@ public class TestService extends Service implements SensorDelegate, EventChannel
     private EventChannel.EventSink peersPayloadEventSink;
     public DistanceEstimator distanceEstimator = new DistanceEstimator();
 
+    private FileWriter writer;
+
     private ConcurrentHashMap<String, Object> storePeersPayload = null;
 
     @Override
@@ -64,6 +70,7 @@ public class TestService extends Service implements SensorDelegate, EventChannel
         payloadDataSupplier = new PayloadDataSupplier(1234567890, 1, newTempDate);
         goToForeground();
         initSensor();
+        initLog();
         updateLoop();
     }
 
@@ -114,6 +121,26 @@ public class TestService extends Service implements SensorDelegate, EventChannel
         // Add appDelegate as listener for detection events for logging and start sensor
         sensor.add(this);
         sensor.start();
+    }
+
+    private void initLog() {
+        Context context = getApplicationContext();
+        try {
+            writer = new FileWriter(new File(getStorageDir(), "rssi-distance.csv"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            writer.write("id,phone,rssi_raw,rssi_median,distance\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getStorageDir() {
+        return this.getExternalFilesDir(null).getAbsolutePath();
+        //  return "/storage/emulated/0/Android/data/com.iam360.sensorlog/";
     }
 
     @Override
@@ -220,6 +247,15 @@ public class TestService extends Service implements SensorDelegate, EventChannel
                     storePeersPayload.put("samples", distanceEstimator.getSampleCount(identifier));
                     if (estimatedDistance != null) {
                         storePeersPayload.put("distance", estimatedDistance);
+                        Double rssiMedian = distanceEstimator.getMedianRSSI(identifier);
+                        if (rssiMedian != null) {
+                            try {
+                                writer.write(String.format("%d,%d,%f,%f,%f\n", identifier, phoneCode, rssi, rssiMedian, estimatedDistance));
+                                writer.flush();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     }
                 }
 

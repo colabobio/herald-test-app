@@ -63,6 +63,15 @@ public class DistanceEstimator {
         }
     }
 
+    public Double getMedianRSSI(int UUID) {
+        ModelWrapper model = modelMap.get(UUID);
+        if (model != null) {
+            return model.getMedianRSSI();
+        } else {
+            return null;
+        }          
+    }
+
     private class ModelWrapper {
 
         Date lastUpdated;
@@ -90,6 +99,10 @@ public class DistanceEstimator {
 
         public int getSampleCount() {
             return window.size();
+        }
+
+        public Double getMedianRSSI() {
+            return model.medianOfRssi();
         }
 
         public Double getDistance() {
