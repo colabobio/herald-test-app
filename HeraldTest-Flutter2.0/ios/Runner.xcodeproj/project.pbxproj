@@ -10,6 +10,8 @@
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		41727F43289A1CF8001301D9 /* DistanceEstimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41727F42289A1CF8001301D9 /* DistanceEstimator.swift */; };
+		41AC894028AB46400053FFB5 /* SimpleKalmanFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC893E28AB46400053FFB5 /* SimpleKalmanFilter.swift */; };
+		41AC894128AB46400053FFB5 /* CoarseDistanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AC893F28AB46400053FFB5 /* CoarseDistanceModel.swift */; };
 		4F4A47C6129F07F057226005 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BCD4BAB2ED32C9EE134316F /* Pods_Runner.framework */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 		1CF3DC2719648FAD561BAB81 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		41727F42289A1CF8001301D9 /* DistanceEstimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceEstimator.swift; sourceTree = "<group>"; };
+		41AC893E28AB46400053FFB5 /* SimpleKalmanFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleKalmanFilter.swift; sourceTree = "<group>"; };
+		41AC893F28AB46400053FFB5 /* CoarseDistanceModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoarseDistanceModel.swift; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				41AC893F28AB46400053FFB5 /* CoarseDistanceModel.swift */,
+				41AC893E28AB46400053FFB5 /* SimpleKalmanFilter.swift */,
 				41727F42289A1CF8001301D9 /* DistanceEstimator.swift */,
 				A98CB832287CA28100499E35 /* Runner.entitlements */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
@@ -287,6 +293,8 @@
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 				41727F43289A1CF8001301D9 /* DistanceEstimator.swift in Sources */,
 				D633544527613D1E006045F7 /* PayloadDataSupplier.swift in Sources */,
+				41AC894028AB46400053FFB5 /* SimpleKalmanFilter.swift in Sources */,
+				41AC894128AB46400053FFB5 /* CoarseDistanceModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
