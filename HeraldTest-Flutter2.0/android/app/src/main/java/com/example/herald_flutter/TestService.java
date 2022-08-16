@@ -132,7 +132,7 @@ public class TestService extends Service implements SensorDelegate, EventChannel
         }
 
         try {
-            writer.write("id,phone,rssi_raw,rssi_median,rssi_kalman,distance\n");
+            writer.write("id,phone,timestamp,rssi_raw,rssi_median,rssi_kalman,distance\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -251,7 +251,8 @@ public class TestService extends Service implements SensorDelegate, EventChannel
                         Double rssiKalman = distanceEstimator.getKalmandRSSI(identifier);
                         if (rssiMedian != null && rssiKalman != null) {
                             try {
-                                writer.write(String.format("%d,%d,%.1f,%.1f,%.1f,%.1f\n", identifier, phoneCode, rssi, rssiMedian, rssiKalman, estimatedDistance));
+                                long timestamp = new Date().getTime() / 1000;
+                                writer.write(String.format("%d,%d,%d,%.1f,%.1f,%.1f,%.1f\n", identifier, phoneCode, timestamp, rssi, rssiMedian, rssiKalman, estimatedDistance));
                                 writer.flush();
                             } catch (IOException e) {
                                 e.printStackTrace();
