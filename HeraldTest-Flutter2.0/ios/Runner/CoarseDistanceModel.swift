@@ -1,14 +1,15 @@
 //
 //  CoarseDistanceModel.swift
+//  Runner
 //
-//  Copyright 2021 Herald Project Contributors
-//  SPDX-License-Identifier: Apache-2.0
+//  Created by Andrés Colubri on 8/9/22.
 //
 
 import Foundation
+import Herald
 
 public class CoarseDistanceModel: Aggregate {
-    override var runs: Int { get { 1 }}
+    open override var runs: Int { get { 1 }}
     private var run: Int = 1
     private let median: Median = Median()
     
