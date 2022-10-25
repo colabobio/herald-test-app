@@ -172,7 +172,8 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
         print("RECEIVED PAYLOAD IDENTIFIER: ",  String(describing: identifier))
         print("RECEIVED ILLNESS STATUS CODE: ",  String(describing: illnessStatusCode))
         print("RECEIVED DATE: ",  String(describing: date))
-        
+
+        sendPeersPayload()        
     }
     
     @objc public func sendPeersPayload() {
@@ -182,7 +183,6 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
     
     public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         sink = events
-        payloadTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(sendPeersPayload), userInfo: nil, repeats: true)
         return nil
     }
     
