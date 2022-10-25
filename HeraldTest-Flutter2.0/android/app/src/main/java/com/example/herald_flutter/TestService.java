@@ -54,7 +54,6 @@ public class TestService extends Service implements SensorDelegate, EventChannel
 
     private final Handler updateLoopHandler = new Handler();
     private final Handler peersPayloadHandler = new Handler();
-    private final Runnable peersPayloadRunnable = this::sendPeersPayload;
     private EventChannel.EventSink peersPayloadEventSink;
     public DistanceEstimator distanceEstimator = new DistanceEstimator();
 
@@ -229,37 +228,40 @@ public class TestService extends Service implements SensorDelegate, EventChannel
             // Likely an Illness payload
             try {
                 statusPayloadResults statusPayload = PayloadDataSupplier.getIllnessStatusFromPayload(payloadData);
-                int identifier = PayloadDataSupplier.getIdentifierFromPayload(payloadData);
-                int illnessStatusCode = statusPayload.getIllnessStatusCode();
-                int phoneCode = statusPayload.getPhoneCode();
-                Date date = statusPayload.getDate();
 
-                storePeersPayload.put("uuid", identifier);
-                storePeersPayload.put("code", illnessStatusCode);
-                storePeersPayload.put("date", date.toString());
-                storePeersPayload.put("phone", phoneCode);
-                Double rssi = proximity.value;
-                if (rssi != null) {
-                    storePeersPayload.put("rssi", rssi);
+                final int identifier = PayloadDataSupplier.getIdentifierFromPayload(payloadData);
+                final int illnessStatusCode = statusPayload.getIllnessStatusCode();
+                final int phoneCode = statusPayload.getPhoneCode();
+                final Date date = statusPayload.getDate();
+                final Integer samples = distanceEstimator.getSampleCount(identifier);
+                final Double rssi = proximity != null && proximity.value != null ? proximity.value : null;                
+                final Double peerDist = estimatePeerDistance(identifier, rssi, phoneCode);
 
-                    distanceEstimator.addRSSI(identifier, rssi, phoneCode);
-                    Double estimatedDistance = distanceEstimator.getDistance(identifier);               
-                    storePeersPayload.put("samples", distanceEstimator.getSampleCount(identifier));
-                    if (estimatedDistance != null) {
-                        storePeersPayload.put("distance", estimatedDistance);
-                        Double rssiMedian = distanceEstimator.getMedianRSSI(identifier);
-                        Double rssiKalman = distanceEstimator.getKalmandRSSI(identifier);
-                        if (rssiMedian != null && rssiKalman != null) {
-                            try {
-                                long timestamp = new Date().getTime() / 1000;
-                                writer.write(String.format("%d,%d,%d,%.1f,%.1f,%.1f,%.1f\n", identifier, phoneCode, timestamp, rssi, rssiMedian, rssiKalman, estimatedDistance));
-                                writer.flush();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                peersPayloadHandler.post(new Runnable() { 
+                    @Override
+                    public void run () {
+                        storePeersPayload.put("uuid", identifier);
+                        storePeersPayload.put("code", illnessStatusCode);
+                        storePeersPayload.put("date", date.toString());
+                        storePeersPayload.put("phone", phoneCode);
+                        storePeersPayload.put("rssi", rssi);
+                        storePeersPayload.put("samples", samples);
+                        storePeersPayload.put("distance", peerDist);
+                        if (peerDist != null) {
+                            Double rssiMedian = distanceEstimator.getMedianRSSI(identifier);
+                            Double rssiKalman = distanceEstimator.getKalmandRSSI(identifier);
+                            if (rssiMedian != null && rssiKalman != null) {
+                                try {
+                                    long timestamp = new Date().getTime() / 1000;
+                                    writer.write(String.format("%d,%d,%d,%.1f,%.1f,%.1f,%.1f\n", identifier, phoneCode, timestamp, rssi, rssiMedian, rssiKalman, peerDist));
+                                    writer.flush();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }                            
                         }
                     }
-                }
+                });
 
             } catch (Exception e) {
                 Log.e(tag, "Error parsing payload data", e);
@@ -267,21 +269,22 @@ public class TestService extends Service implements SensorDelegate, EventChannel
         }
     }
 
-    void sendPeersPayload() {
-        peersPayloadEventSink.success(storePeersPayload);
-        storePeersPayload.clear();
-        peersPayloadHandler.postDelayed(peersPayloadRunnable, 1000);
+    protected Double estimatePeerDistance(int identifier, Double rssi, int devCode) {
+        if (rssi != null) {
+           distanceEstimator.addRSSI(identifier, rssi, devCode);
+           return distanceEstimator.getDistance(identifier);
+        }
+        return null;
     }
 
     @Override
     public void onListen(Object arguments, EventChannel.EventSink events) {
         peersPayloadEventSink = events;
-        peersPayloadHandler.post(peersPayloadRunnable);
     }
 
     @Override
     public void onCancel(Object arguments) {
         peersPayloadEventSink = null;
-        peersPayloadHandler.removeCallbacks(peersPayloadRunnable);
+        peersPayloadHandler.removeCallbacksAndMessages(null);
     }
 }
