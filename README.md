@@ -1,4 +1,4 @@
-# HeraldTest-Flutter2.0
+# Herald Test Flutter app
 
 Herald & Services in Native. Method & Event channels to communicate. Functionality & UI in Flutter.
 
