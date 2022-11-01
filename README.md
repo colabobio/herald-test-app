@@ -18,3 +18,11 @@ Herald & Services in Native. Method & Event channels to communicate. Functionali
 10. Head back to VS Code & navigate to the main.dart file in: HeraldTest-Flutter2.0/lib
 
 Project should be able to run now with no issues. Use play button in the top right in VS Code to run the project in debug mode. If you want to run the release version run " **flutter run --release** " in the terminal
+
+## Herald logging
+
+On Android, the log file is saved in
+
+/storage/emulated/0/Android/media/com.example.herald_flutter/Sensor/log.txt
+
+On iOS, go to "Devices and Emulators" in Xcode and then download the container for the installed HeraldTest-Flutter app
