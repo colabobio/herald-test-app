@@ -13,9 +13,9 @@ Herald & Services in Native. Method & Event channels to communicate. Functionali
 7. Navigate to ios folder: " **cd ios** " and run " **pod install** "
 - If you have an issue with pod install, add this line to the top of the pod file: " **source ‘https://github.com/CocoaPods/Specs.git’** " and run " **pod install** " again then navigate back: " **cd ..** "
 
-8. Open up the project in Xcode: herald-test/HeraldTest-Flutter2.0/ios/Runner.xcworkspace
+8. Open up the project in Xcode: ```ios/Runner.xcworkspace```
 9. Navigate to Runner --> Runner under targets --> Signing & Capabilities and select your team
-10. Head back to VS Code & navigate to the main.dart file in: HeraldTest-Flutter2.0/lib
+10. Head back to VS Code & navigate to the main.dart file in: ```lib```
 
 Project should be able to run now with no issues. Use play button in the top right in VS Code to run the project in debug mode. If you want to run the release version run " **flutter run --release** " in the terminal
 
