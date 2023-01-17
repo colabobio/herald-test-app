@@ -1,7 +1,8 @@
 import 'package:intl/intl.dart';
 
-//date format in android stuido java: "yyyy-MM-dd HH:mm:ss"
-//herald uses UTC time for dates
+//* Date format in android studio java: "yyyy-MM-dd HH:mm:ss"
+//* Herald uses UTC time for dates
+
 class GenerateDate {
   String generateDate() {
     DateTime date = DateTime.now().toUtc();

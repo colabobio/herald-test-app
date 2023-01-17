@@ -1,11 +1,13 @@
 import 'dart:async';
-import 'package:intl/intl.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:herald_flutter/widgets/peer_info.dart';
-import 'package:herald_flutter/widgets/shared_prefs.dart';
-import 'package:herald_flutter/widgets/generate_date.dart';
-import 'package:herald_flutter/widgets/illness_status_code.dart';
+import 'package:intl/intl.dart';
+
+import '../data/shared_prefs.dart';
+import '../logic/peer_info.dart';
+import '../utilities/generate_date.dart';
+import '../utilities/illness_status_code.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

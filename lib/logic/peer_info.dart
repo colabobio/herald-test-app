@@ -1,5 +1,6 @@
-import 'package:herald_flutter/widgets/generate_date.dart';
 import 'package:intl/intl.dart';
+
+import '../utilities/generate_date.dart';
 
 class PeerInfo {
   late List<double> _data;

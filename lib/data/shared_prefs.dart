@@ -1,6 +1,7 @@
 import 'package:nanoid/nanoid.dart';
-import 'package:herald_flutter/constants/strings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../constants/strings.dart';
 
 class SharedPrefs {
   static late SharedPreferences _sharedPrefs;

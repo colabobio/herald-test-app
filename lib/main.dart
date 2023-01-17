@@ -1,7 +1,8 @@
-import 'home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:herald_flutter/widgets/shared_prefs.dart';
-import 'package:herald_flutter/widgets/app_retain_widget.dart';
+
+import 'data/shared_prefs.dart';
+import 'presentation/home_page.dart';
+import 'widgets/app_retain_widget.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
