@@ -113,7 +113,7 @@ public class TestService extends Service implements SensorDelegate, EventChannel
         // This allow us to have multiple teams playing in the same area and not
         // interfering each other
         // https://www.uuidgenerator.net/version4
-        BLESensorConfiguration.serviceUUID = UUID.fromString(SIMULATION_ID);
+        BLESensorConfiguration.linuxFoundationServiceUUID = UUID.fromString(SIMULATION_ID);
 
         sensor = new SensorArray(getApplicationContext(), payloadDataSupplier);
 
@@ -140,6 +140,16 @@ public class TestService extends Service implements SensorDelegate, EventChannel
     private String getStorageDir() {
         return this.getExternalFilesDir(null).getAbsolutePath();
         //  return "/storage/emulated/0/Android/data/com.iam360.sensorlog/";
+    }
+
+    @Override
+    public void sensor(@NonNull SensorType sensor, boolean available, @NonNull TargetIdentifier didDeleteOrDetect) {
+        String avail = "N";
+        if (available) {
+            avail = "Y";
+        }
+        Log.i(tag, sensor.name() + ",didDeleteOrDetect=" + didDeleteOrDetect +
+                ",available=" + avail);
     }
 
     @Override
