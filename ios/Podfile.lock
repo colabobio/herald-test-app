@@ -1,12 +1,12 @@
 PODS:
   - Flutter (1.0.0)
-  - Herald (2.1.0-beta3)
+  - Herald (2.1.0)
   - shared_preferences_ios (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - Herald (~> 2.1.0-beta3)
+  - Herald (~> 2.1.0)
   - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
 
 SPEC REPOS:
@@ -21,9 +21,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  Herald: 08495a0e52a351c2f6195b89ee5a5aa67db59b28
+  Herald: 2d89ec2676a50ba60df5705b831e4c0e0cfc629d
   shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
 
-PODFILE CHECKSUM: 25a5361f8f4525edf32b6c40453415f4d5156000
+PODFILE CHECKSUM: c74a0c9d6cf0f5ee7e28e08e51c08c7c756013c0
 
 COCOAPODS: 1.11.3
