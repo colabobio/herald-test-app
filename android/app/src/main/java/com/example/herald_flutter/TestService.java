@@ -59,7 +59,7 @@ public class TestService extends Service implements SensorDelegate, EventChannel
 
     private FileWriter writer;
 
-    private ConcurrentHashMap<String, Object> storePeersPayload = null;
+    private ConcurrentHashMap<String, Object> storePeersPayload;
 
     @Override
     public void onCreate() {
@@ -254,9 +254,15 @@ public class TestService extends Service implements SensorDelegate, EventChannel
                         storePeersPayload.put("code", illnessStatusCode);
                         storePeersPayload.put("date", date.toString());
                         storePeersPayload.put("phone", phoneCode);
-                        storePeersPayload.put("rssi", rssi);
-                        storePeersPayload.put("samples", samples);
-                        storePeersPayload.put("distance", peerDist);
+                        if (rssi != null){
+                            storePeersPayload.put("rssi", rssi);
+                        }
+                        if (samples != null){
+                            storePeersPayload.put("samples", samples);
+                        }
+                        if (peerDist != null){
+                            storePeersPayload.put("distance", peerDist);
+                        }
                         if (peerDist != null) {
                             Double rssiMedian = distanceEstimator.getMedianRSSI(identifier);
                             Double rssiKalman = distanceEstimator.getKalmandRSSI(identifier);
@@ -270,6 +276,7 @@ public class TestService extends Service implements SensorDelegate, EventChannel
                                 }
                             }                            
                         }
+                        peersPayloadEventSink.success(storePeersPayload);
                     }
                 });
 
