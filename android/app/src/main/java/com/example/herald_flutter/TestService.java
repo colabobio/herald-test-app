@@ -2,7 +2,7 @@ package com.example.herald_flutter;
 
 import android.app.Notification;
 import android.app.Service;
-import android.content.Context;
+//import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
@@ -13,9 +13,9 @@ import androidx.core.app.NotificationCompat;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+//import java.io.File;
+//import java.io.FileWriter;
+//import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -25,6 +25,11 @@ import io.flutter.plugin.common.EventChannel;
 import io.heraldprox.herald.sensor.SensorArray;
 import io.heraldprox.herald.sensor.SensorDelegate;
 import io.heraldprox.herald.sensor.ble.BLESensorConfiguration;
+import io.heraldprox.herald.sensor.data.BatteryLog;
+import io.heraldprox.herald.sensor.data.ContactLog;
+import io.heraldprox.herald.sensor.data.DetectionLog;
+import io.heraldprox.herald.sensor.data.EventTimeIntervalLog;
+import io.heraldprox.herald.sensor.data.SensorDelegateLogger;
 import io.heraldprox.herald.sensor.datatype.Date;
 import io.heraldprox.herald.sensor.datatype.ImmediateSendData;
 import io.heraldprox.herald.sensor.datatype.LegacyPayloadData;
@@ -57,7 +62,7 @@ public class TestService extends Service implements SensorDelegate, EventChannel
     private EventChannel.EventSink peersPayloadEventSink;
     public DistanceEstimator distanceEstimator = new DistanceEstimator();
 
-    private FileWriter writer;
+//    private FileWriter writer;
 
     private ConcurrentHashMap<String, Object> storePeersPayload;
 
@@ -123,24 +128,41 @@ public class TestService extends Service implements SensorDelegate, EventChannel
     }
 
     private void initLog() {
-        Context context = getApplicationContext();
-        try {
-            writer = new FileWriter(new File(getStorageDir(), "rssi-distance.csv"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        Context context = getApplicationContext();
+//        try {
+//            writer = new FileWriter(new File(getStorageDir(), "rssi-distance.csv"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        try {
+//            writer.write("id,phone,timestamp,rssi_raw,rssi_median,rssi_kalman,distance\n");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-        try {
-            writer.write("id,phone,timestamp,rssi_raw,rssi_median,rssi_kalman,distance\n");
-        } catch (IOException e) {
-            e.printStackTrace();
+        final PayloadData payloadData = sensor.payloadData();
+        final List<SensorDelegateLogger> sensorDelegateLoggers = new ArrayList<>();
+        sensorDelegateLoggers.add(new ContactLog(this, "contacts.csv"));
+        // Removed due to performance issues on old phone for https://github.com/theheraldproject/herald-for-android/issues/239
+        //sensorDelegateLoggers.add(new StatisticsLog(this, "statistics.csv",payloadData));
+        sensorDelegateLoggers.add(new DetectionLog(this,"detection.csv", payloadData));
+        // Removed due to performance issues on old phone for https://github.com/theheraldproject/herald-for-android/issues/239
+        //sensorDelegateLoggers.add(new RssiLog(this, "rssi.csv"));
+        sensorDelegateLoggers.add(new BatteryLog(this, "battery.csv"));
+        if (BLESensorConfiguration.payloadDataUpdateTimeInterval != TimeInterval.never ||
+                (BLESensorConfiguration.interopOpenTraceEnabled && BLESensorConfiguration.interopOpenTracePayloadDataUpdateTimeInterval != TimeInterval.never)) {
+            sensorDelegateLoggers.add(new EventTimeIntervalLog(this, "statistics_didRead.csv", payloadData, EventTimeIntervalLog.EventType.read));
+        }
+        for (final SensorDelegateLogger sensorDelegateLogger : sensorDelegateLoggers) {
+            sensor.add(sensorDelegateLogger);
         }
     }
 
-    private String getStorageDir() {
-        return this.getExternalFilesDir(null).getAbsolutePath();
-        //  return "/storage/emulated/0/Android/data/com.iam360.sensorlog/";
-    }
+//    private String getStorageDir() {
+//        return this.getExternalFilesDir(null).getAbsolutePath();
+//        //  return "/storage/emulated/0/Android/data/com.iam360.sensorlog/";
+//    }
 
     @Override
     public void sensor(@NonNull SensorType sensor, boolean available, @NonNull TargetIdentifier didDeleteOrDetect) {
@@ -266,15 +288,15 @@ public class TestService extends Service implements SensorDelegate, EventChannel
                         if (peerDist != null) {
                             Double rssiMedian = distanceEstimator.getMedianRSSI(identifier);
                             Double rssiKalman = distanceEstimator.getKalmandRSSI(identifier);
-                            if (rssiMedian != null && rssiKalman != null) {
-                                try {
-                                    long timestamp = new Date().getTime() / 1000;
-                                    writer.write(String.format("%d,%d,%d,%.1f,%.1f,%.1f,%.1f\n", identifier, phoneCode, timestamp, rssi, rssiMedian, rssiKalman, peerDist));
-                                    writer.flush();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            }                            
+//                            if (rssiMedian != null && rssiKalman != null) {
+//                                try {
+//                                    long timestamp = new Date().getTime() / 1000;
+//                                    writer.write(String.format("%d,%d,%d,%.1f,%.1f,%.1f,%.1f\n", identifier, phoneCode, timestamp, rssi, rssiMedian, rssiKalman, peerDist));
+//                                    writer.flush();
+//                                } catch (IOException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
                         }
                         peersPayloadEventSink.success(storePeersPayload);
                     }

@@ -31,7 +31,7 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
 
     var distanceEstimator: DistanceEstimator = DistanceEstimator()
     
-    var dataLog = DataLog()
+//    var dataLog = DataLog()
     
     static var shared: TestService {
         if let service = TestService.instance { return service }
@@ -81,7 +81,23 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
     }
     
     func initLog() {
-        dataLog.write("id,phone,timestamp,rssi_raw,rssi_median,rssi_kalman,distance\n")
+//        dataLog.write("id,phone,timestamp,rssi_raw,rssi_median,rssi_kalman,distance\n")
+        if let payloadData = sensor?.payloadData {
+            // Loggers
+            var sensorDelegateLoggers: [SensorDelegateLogger] = []
+            sensorDelegateLoggers.append(ContactLog(filename: "contacts.csv"))
+            // Removed to align with removal in Android for bug https://github.com/theheraldproject/herald-for-android/issues/239
+            // sensorDelegateLoggers.append(StatisticsLog(filename: "statistics.csv", payloadData: payloadData))
+            sensorDelegateLoggers.append(DetectionLog(filename: "detection.csv", payloadData: payloadData))
+            sensorDelegateLoggers.append(BatteryLog(filename: "battery.csv"))
+            if (BLESensorConfiguration.payloadDataUpdateTimeInterval != .never ||
+                (BLESensorConfiguration.interopOpenTraceEnabled && BLESensorConfiguration.interopOpenTracePayloadDataUpdateTimeInterval != .never)) {
+                sensorDelegateLoggers.append(EventTimeIntervalLog(filename: "statistics_didRead.csv", payloadData: payloadData, eventType: .read))
+            }
+            for sensorDelegateLogger in sensorDelegateLoggers {
+                sensor?.add(delegate: sensorDelegateLogger)
+            }
+        }
     }
     
     // MARK:- SensorDelegate
@@ -157,11 +173,11 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
                 if let estimatedDistance = distanceEstimator.getDistance(identifier) {
                     storePeersPayload.updateValue(distanceEstimator.getSampleCount(identifier), forKey: "samples")
                     storePeersPayload.updateValue(estimatedDistance, forKey: "distance")
-                    if let rssiMedian = distanceEstimator.getMedianRSSI(identifier),
-                       let rssiKalman = distanceEstimator.getKalmanRSSI(identifier) {
-                        let timestamp = Int(Date().timeIntervalSince1970)
-                        dataLog.write("\(identifier),\(phoneCode),\(timestamp),\(rssi),\(rssiMedian),\(rssiKalman),\(estimatedDistance)\n")
-                    }                    
+//                    if let rssiMedian = distanceEstimator.getMedianRSSI(identifier),
+//                       let rssiKalman = distanceEstimator.getKalmanRSSI(identifier) {
+//                        let timestamp = Int(Date().timeIntervalSince1970)
+//                        dataLog.write("\(identifier),\(phoneCode),\(timestamp),\(rssi),\(rssiMedian),\(rssiKalman),\(estimatedDistance)\n")
+//                    }
                 }
                                 
             }
@@ -193,27 +209,27 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
     }
 }
 
-struct DataLog: TextOutputStream {
-
-    /// Appends the given string to the stream.
-    mutating func write(_ string: String) {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)
-        let documentDirectoryPath = paths.first!
-        let log = documentDirectoryPath.appendingPathComponent("rssi-distance.csv")
-        do {
-            let handle = try FileHandle(forWritingTo: log)
-            handle.seekToEndOfFile()
-            handle.write(string.data(using: .utf8)!)
-            handle.closeFile()
-        } catch {
-            print(error.localizedDescription)
-            do {
-                try string.data(using: .utf8)?.write(to: log)
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-
-    }
-
-}
+//struct DataLog: TextOutputStream {
+//
+//    /// Appends the given string to the stream.
+//    mutating func write(_ string: String) {
+//        let paths = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)
+//        let documentDirectoryPath = paths.first!
+//        let log = documentDirectoryPath.appendingPathComponent("rssi-distance.csv")
+//        do {
+//            let handle = try FileHandle(forWritingTo: log)
+//            handle.seekToEndOfFile()
+//            handle.write(string.data(using: .utf8)!)
+//            handle.closeFile()
+//        } catch {
+//            print(error.localizedDescription)
+//            do {
+//                try string.data(using: .utf8)?.write(to: log)
+//            } catch {
+//                print(error.localizedDescription)
+//            }
+//        }
+//
+//    }
+//
+//}
