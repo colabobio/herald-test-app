@@ -25,6 +25,6 @@ This test app has Herald efficiency logging enabled by default to collect data t
 
 * On Android, the log files are saved in the following external storage folder: ```/storage/emulated/0/Android/media/com.example.herald_flutter/Sensor``` so the adb tool from the Android SDK can be used to download those files to the computer:
 
-```$ adb -s <device> pull /storage/emulated/0/Android/media/com.example.herald_flutter/Sensor
+```$ adb -s <device> pull /storage/emulated/0/Android/media/com.example.herald_flutter/Sensor```
 
 * On iOS, go to "Devices and Emulators" in Xcode and then download the container for the installed HeraldTest-Flutter app. The log files will be inside the ```AppData/Documents``` subfolder inside the package's folder. 
