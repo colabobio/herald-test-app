@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -42,9 +43,16 @@ class _HomePageState extends State<HomePage> {
   @override
   initState() {
     super.initState();
-    _sendData();
-    _receiveData();
+    _initAsyncData();
     Timer.periodic(const Duration(milliseconds: 2000), _updateLoop);
+  }
+
+  //* TEMP FIX (will use a better method later on...)
+  Future<void> _initAsyncData() async {
+    await Future.delayed(const Duration(seconds: 15));
+    if (kDebugMode) print("Flutter Delay: 15 seconds passed");
+    await _sendData();
+    await _receiveData();
   }
 
   //Method channel to send initial payload data (UUID, code, date)
@@ -64,10 +72,10 @@ class _HomePageState extends State<HomePage> {
     SharedPrefs().setIdentifier(uuid);
   }
 
-  Future<void> _sendRemovalCommand(int UUID) async {
+  Future<void> _sendRemovalCommand(int uuid) async {
     try {
       await _methodChannel.invokeMethod(_removePeer, <String, dynamic>{
-        'uuid': UUID,
+        'uuid': uuid,
       });
     } on PlatformException catch (e) {
       // ignore: avoid_print
