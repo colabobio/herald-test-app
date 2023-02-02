@@ -64,10 +64,6 @@ public class MainActivity extends FlutterActivity {
         super.configureFlutterEngine(flutterEngine);
         new MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), METHOD_CHANNEL_NAME)
                 .setMethodCallHandler((call, result) -> {
-                    if (TestService.instance == null) {
-                        result.notImplemented();
-                        return;
-                    }
                     if (call.method.equals("sendToBackground")) {
                         moveTaskToBack(true);
                         result.success(null);
