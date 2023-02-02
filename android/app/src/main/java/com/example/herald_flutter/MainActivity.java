@@ -64,6 +64,10 @@ public class MainActivity extends FlutterActivity {
         super.configureFlutterEngine(flutterEngine);
         new MethodChannel(flutterEngine.getDartExecutor().getBinaryMessenger(), METHOD_CHANNEL_NAME)
                 .setMethodCallHandler((call, result) -> {
+                    if (TestService.instance == null) {
+                        result.notImplemented();
+                        return;
+                    }
                     if (call.method.equals("sendToBackground")) {
                         moveTaskToBack(true);
                         result.success(null);
@@ -101,11 +105,11 @@ public class MainActivity extends FlutterActivity {
                 new EventChannel.StreamHandler() {
                     @Override
                     public void onListen(Object arguments, EventChannel.EventSink events) {
-                        TestService.instance.onListen(arguments, events);
+                        if (TestService.instance != null) TestService.instance.onListen(arguments, events);
                     }
                     @Override
                     public void onCancel(Object arguments) {
-                        TestService.instance.onCancel(arguments);
+                        if (TestService.instance != null) TestService.instance.onCancel(arguments);
                     }
                 });
     }
