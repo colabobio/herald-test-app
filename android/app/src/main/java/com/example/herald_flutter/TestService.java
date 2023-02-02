@@ -298,7 +298,9 @@ public class TestService extends Service implements SensorDelegate, EventChannel
 //                                }
 //                            }
                         }
-                        peersPayloadEventSink.success(storePeersPayload);
+                        if (peersPayloadEventSink != null) {
+                            peersPayloadEventSink.success(storePeersPayload);
+                        }
                     }
                 });
 
