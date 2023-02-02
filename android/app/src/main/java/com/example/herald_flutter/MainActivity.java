@@ -132,8 +132,15 @@ public class MainActivity extends FlutterActivity {
     protected void onStart() {
         super.onStart();
 
-        initNotifications(this);
+        initNotifications(this);        
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    protected void initService() {
         Context context = getApplicationContext();
         Intent startIntent = new Intent(context, TestService.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -141,11 +148,6 @@ public class MainActivity extends FlutterActivity {
         } else {
             context.startService(startIntent);
         }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
     }
 
     protected void initNotifications(Context context) {
@@ -225,6 +227,7 @@ public class MainActivity extends FlutterActivity {
                     permissionsGranted = false;
                 } else {
                     Log.d(tag, "Permission granted (permission=" + permission + ")");
+                    initService();  
                 }
             }
 
