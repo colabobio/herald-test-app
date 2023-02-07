@@ -18,9 +18,9 @@ class SharedPrefs {
   int get getIdentifier => _sharedPrefs.getInt(identifier) ?? getRandomUuid();
 
   int getRandomUuid() {
-    var uuid = Uuid();
-    var num = uuid.v4().hashCode;
-    return num;
+    var uuid = const Uuid().v4();
+    var hash = uuid.hashCode;
+    return hash;
   }
 
   setIdentifier(int value) async {
