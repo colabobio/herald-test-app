@@ -1,0 +1,171 @@
+plugins {
+    id 'maven-publish'
+    id 'signing'
+    id 'com.github.spotbugs' version '4.2.3'
+}
+
+group = 'io.heraldprox'
+version = '2.2.0'
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 31
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode 2
+        versionName "2.2.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        disable 'ObsoleteLintCustomCheck'
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    testImplementation 'junit:junit:4.12'
+    testImplementation "org.json:json:20201115"
+    testImplementation project(path: ':herald')
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
+}
+
+ext["signing.gnupg.passphrase"] = System.getenv('GPG_PASSPHRASE') 
+ext["signing.gnupg.keyName"] = System.getenv('GPG_KEYID') 
+
+signing {
+    useGpgCmd()
+    sign publishing.publications
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                //artifact sourcesJar
+                //artifact javadocJar
+
+                groupId = 'io.heraldprox'
+                artifactId = 'herald'
+                pom {
+                    name = 'Herald'
+                    description = 'Reliable consumer device Bluetooth library'
+                    url = 'https://heraldprox.io/'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'adamfowleruk'
+                            name = 'Adam Fowler'
+                            email = 'adam@adamfowler.org'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git://github.com/theheraldproject/herald-for-android.git'
+                        developerConnection = 'scm:git:ssh://github.com/theheraldproject/herald-for-android.git'
+                        url = 'https://heraldprox.io/'
+                    }
+                }
+            }
+            debug(MavenPublication) {
+                // Applies the component for the debug build variant.
+                from components.debug
+                //artifact sourcesJar
+                //artifact javadocJar
+
+                groupId = 'io.heraldprox'
+                artifactId = 'herald-debug'
+                pom {
+                    name = 'Herald'
+                    description = 'Reliable consumer device Bluetooth library'
+                    url = 'https://heraldprox.io/'
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'adamfowleruk'
+                            name = 'Adam Fowler'
+                            email = 'adam@adamfowler.org'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git://github.com/theheraldproject/herald-for-android.git'
+                        developerConnection = 'scm:git:ssh://github.com/theheraldproject/herald-for-android.git'
+                        url = 'https://heraldprox.io/'
+                    }
+                }
+            }
+        }
+
+        repositories {
+            maven {
+                name = "OSSRH"
+                url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                credentials {
+                    username = System.getenv("MAVEN_USERNAME")
+                    password = System.getenv("MAVEN_PASSWORD")
+                }
+            }
+            maven {
+                name = "GitHubPackages"
+                url = "https://maven.pkg.github.com/theheraldproject/herald-for-android"
+                credentials {
+                    username = System.getenv("GITHUB_ACTOR")
+                    password = System.getenv("GITHUB_TOKEN")
+                }
+            }
+        }
+    }
+}
+
+task javadoc(type: Javadoc) {
+
+    doFirst {
+        configurations.implementation
+                .filter { it.name.endsWith('.aar') }
+        .each { aar ->
+            copy {
+                from zipTree(aar)
+                include "**/classes.jar"
+                into "$buildDir/tmp/aarsToJars/${aar.name.replace('.aar', '')}/"
+            }
+        }
+    }
+
+    configurations.implementation.setCanBeResolved(true)
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    classpath += configurations.implementation
+    classpath += fileTree(dir: "$buildDir/tmp/aarsToJars/")
+    destinationDir = file("${project.buildDir}/outputs/javadoc/")
+    failOnError false
+    exclude '**/BuildConfig.java'
+    exclude '**/R.java'
+}

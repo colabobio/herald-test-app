@@ -1,0 +1,26 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.heraldprox.herald">
+
+    <!-- Must support Bluetooth LE -->
+    <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
+
+    <!-- Permissions for Bluetooth LE as background process -->
+    <!-- Android 12+ Only -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" /> <!-- for v2.1 pairing with wearables -->
+    <!-- Android 12 and earlier -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- THIS IS STILL needed on Android 12+ -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- THIS IS STILL needed on Android 12+ -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Foreground service for Bluetooth LE as background process -->
+    <application>
+        <service
+            android:name="io.heraldprox.herald.sensor.service.ForegroundService"
+            android:foregroundServiceType="location" />
+   </application>
+</manifest>

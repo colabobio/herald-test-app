@@ -118,7 +118,7 @@ public class TestService extends Service implements SensorDelegate, EventChannel
         // This allow us to have multiple teams playing in the same area and not
         // interfering each other
         // https://www.uuidgenerator.net/version4
-        BLESensorConfiguration.linuxFoundationServiceUUID = UUID.fromString(SIMULATION_ID);
+        BLESensorConfiguration.customServiceUUID = UUID.fromString(SIMULATION_ID);
 
         sensor = new SensorArray(getApplicationContext(), payloadDataSupplier);
 
