@@ -1,5 +1,6 @@
 import 'package:nanoid/nanoid.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 
 import '../constants/strings.dart';
 
@@ -14,9 +15,13 @@ class SharedPrefs {
     _sharedPrefs = await SharedPreferences.getInstance();
   }
 
-  int get getIdentifier =>
-      _sharedPrefs.getInt(identifier) ??
-      int.parse(customAlphabet('1234567890', 9));
+  int get getIdentifier => _sharedPrefs.getInt(identifier) ?? getRandomUuid();
+
+  int getRandomUuid() {
+    var uuid = Uuid();
+    var num = uuid.v4().hashCode;
+    return num;
+  }
 
   setIdentifier(int value) async {
     await _sharedPrefs.setInt(identifier, value);
