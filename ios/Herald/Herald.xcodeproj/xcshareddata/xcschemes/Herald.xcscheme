@@ -27,7 +27,7 @@
             buildForArchiving = "NO"
             buildForAnalyzing = "NO">
             <TestPlanReference
-               reference = "container:Herald.xctestplan">
+               reference = "container:../Herald/Herald.xctestplan">
             </TestPlanReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -54,7 +54,7 @@
       codeCoverageEnabled = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:Herald.xctestplan"
+            reference = "container:../Herald/Herald.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>

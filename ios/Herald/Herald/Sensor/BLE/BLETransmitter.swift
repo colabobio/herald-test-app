@@ -1,7 +1,7 @@
 //
 //  BLETransmitter.swift
 //
-//  Copyright 2020-2021 Herald Project Contributors
+//  Copyright 2020-2023 Herald Project Contributors
 //  SPDX-License-Identifier: Apache-2.0
 //
 
@@ -86,6 +86,11 @@ class ConcreteBLETransmitter : NSObject, BLETransmitter, CBPeripheralManagerDele
         }
     }
     
+    public func coordinationProvider() -> CoordinationProvider? {
+        // BLETransmitter does not have a coordination provider
+        return nil
+    }
+    
     func add(delegate: SensorDelegate) {
         delegates.append(delegate)
     }
@@ -127,7 +132,11 @@ class ConcreteBLETransmitter : NSObject, BLETransmitter, CBPeripheralManagerDele
             } else {
                 queue.async {
                     self.peripheral.stopAdvertising()
-                    self.peripheral.startAdvertising([CBAdvertisementDataServiceUUIDsKey : [BLESensorConfiguration.linuxFoundationServiceUUID]])
+                    if BLESensorConfiguration.customServiceAdvertisingEnabled && nil != BLESensorConfiguration.customServiceUUID {
+                        self.peripheral.startAdvertising([CBAdvertisementDataServiceUUIDsKey : [BLESensorConfiguration.customServiceUUID]])
+                    } else if BLESensorConfiguration.standardHeraldServiceAdvertisingEnabled {
+                        self.peripheral.startAdvertising([CBAdvertisementDataServiceUUIDsKey : [BLESensorConfiguration.linuxFoundationServiceUUID]])
+                    }
                 }
             }
         } else {
@@ -148,20 +157,28 @@ class ConcreteBLETransmitter : NSObject, BLETransmitter, CBPeripheralManagerDele
             payloadCharacteristic = CBMutableCharacteristic(type: BLESensorConfiguration.payloadCharacteristicUUID, properties: [.read], value: nil, permissions: [.readable])
             legacyPayloadCharacteristic = (BLESensorConfiguration.interopOpenTraceEnabled ? CBMutableCharacteristic(type: BLESensorConfiguration.interopOpenTracePayloadCharacteristicUUID, properties: [.read, .write, .writeWithoutResponse], value: nil, permissions: [.readable, .writeable]) : nil)
         }
-        let service = CBMutableService(type: BLESensorConfiguration.linuxFoundationServiceUUID, primary: true)
         signalCharacteristic?.value = nil
         payloadCharacteristic?.value = nil
-	if let legacyPayloadCharacteristic = legacyPayloadCharacteristic {
-            legacyPayloadCharacteristic.value = nil
-            service.characteristics = [signalCharacteristic!, payloadCharacteristic!, legacyPayloadCharacteristic]
-	} else {
-            service.characteristics = [signalCharacteristic!, payloadCharacteristic!]
-	}
+        legacyPayloadCharacteristic?.value = nil
+        // We do characteristics via GATT only now
+//        if let legacyPayloadCharacteristic = legacyPayloadCharacteristic {
+//            legacyPayloadCharacteristic.value = nil
+//            service.characteristics = [signalCharacteristic!, payloadCharacteristic!, legacyPayloadCharacteristic]
+//        } else {
+//            service.characteristics = [signalCharacteristic!, payloadCharacteristic!]
+//        }
         queue.async {
             self.peripheral.stopAdvertising()
             self.peripheral.removeAllServices()
-            self.peripheral.add(service)
-            self.peripheral.startAdvertising([CBAdvertisementDataServiceUUIDsKey : [BLESensorConfiguration.linuxFoundationServiceUUID]])
+            if let csuuid = BLESensorConfiguration.customServiceUUID, BLESensorConfiguration.customServiceAdvertisingEnabled {
+                let service = CBMutableService(type: csuuid, primary: true)
+                self.peripheral.add(service)
+                self.peripheral.startAdvertising([CBAdvertisementDataServiceUUIDsKey : [csuuid]])
+            } else if BLESensorConfiguration.standardHeraldServiceAdvertisingEnabled {
+                let service = CBMutableService(type: BLESensorConfiguration.linuxFoundationServiceUUID, primary: true)
+                self.peripheral.add(service)
+                self.peripheral.startAdvertising([CBAdvertisementDataServiceUUIDsKey : [BLESensorConfiguration.linuxFoundationServiceUUID]])
+            }
         }
     }
     
