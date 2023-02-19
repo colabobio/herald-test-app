@@ -157,25 +157,30 @@ class ConcreteBLETransmitter : NSObject, BLETransmitter, CBPeripheralManagerDele
             payloadCharacteristic = CBMutableCharacteristic(type: BLESensorConfiguration.payloadCharacteristicUUID, properties: [.read], value: nil, permissions: [.readable])
             legacyPayloadCharacteristic = (BLESensorConfiguration.interopOpenTraceEnabled ? CBMutableCharacteristic(type: BLESensorConfiguration.interopOpenTracePayloadCharacteristicUUID, properties: [.read, .write, .writeWithoutResponse], value: nil, permissions: [.readable, .writeable]) : nil)
         }
-        signalCharacteristic?.value = nil
-        payloadCharacteristic?.value = nil
-        legacyPayloadCharacteristic?.value = nil
-        // We do characteristics via GATT only now
-//        if let legacyPayloadCharacteristic = legacyPayloadCharacteristic {
-//            legacyPayloadCharacteristic.value = nil
-//            service.characteristics = [signalCharacteristic!, payloadCharacteristic!, legacyPayloadCharacteristic]
-//        } else {
-//            service.characteristics = [signalCharacteristic!, payloadCharacteristic!]
-//        }
         queue.async {
             self.peripheral.stopAdvertising()
             self.peripheral.removeAllServices()
+            self.signalCharacteristic?.value = nil
+            self.payloadCharacteristic?.value = nil
             if let csuuid = BLESensorConfiguration.customServiceUUID, BLESensorConfiguration.customServiceAdvertisingEnabled {
                 let service = CBMutableService(type: csuuid, primary: true)
+                service.characteristics = [self.signalCharacteristic!, self.payloadCharacteristic!]
+                if let legacyPayloadCharacteristic = self.legacyPayloadCharacteristic {
+                    legacyPayloadCharacteristic.value = nil
+                    service.characteristics = [self.signalCharacteristic!, self.payloadCharacteristic!, legacyPayloadCharacteristic]
+                } else {
+                    service.characteristics = [self.signalCharacteristic!, self.payloadCharacteristic!]
+                }
                 self.peripheral.add(service)
                 self.peripheral.startAdvertising([CBAdvertisementDataServiceUUIDsKey : [csuuid]])
             } else if BLESensorConfiguration.standardHeraldServiceAdvertisingEnabled {
                 let service = CBMutableService(type: BLESensorConfiguration.linuxFoundationServiceUUID, primary: true)
+                if let legacyPayloadCharacteristic = self.legacyPayloadCharacteristic {
+                    legacyPayloadCharacteristic.value = nil
+                    service.characteristics = [self.signalCharacteristic!, self.payloadCharacteristic!, legacyPayloadCharacteristic]
+                } else {
+                    service.characteristics = [self.signalCharacteristic!, self.payloadCharacteristic!]
+                }
                 self.peripheral.add(service)
                 self.peripheral.startAdvertising([CBAdvertisementDataServiceUUIDsKey : [BLESensorConfiguration.linuxFoundationServiceUUID]])
             }
@@ -353,7 +358,7 @@ class ConcreteBLETransmitter : NSObject, BLETransmitter, CBPeripheralManagerDele
                                 logger.debug("didReceiveWrite -> didRead=\(payloadData.shortName),fromTarget=\(targetIdentifier)")
                                 queue.async { peripheral.respond(to: request, withResult: .success) }
                                 targetDevice.operatingSystem = .android
-                                targetDevice.receiveOnly = true
+//                                targetDevice.receiveOnly = true // Not true since v2.2 where all android devices write their payload
                                 targetDevice.payloadData = payloadData
                             } else {
                                 logger.fault("didReceiveWrite, invalid payload (central=\(targetIdentifier),action=writePayload)")
@@ -451,6 +456,7 @@ class ConcreteBLETransmitter : NSObject, BLETransmitter, CBPeripheralManagerDele
     func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
         // Read -> Notify subscribers
         let central = database.device(TargetIdentifier(request.central.identifier.uuidString))
+        
         switch request.characteristic.uuid {
         case BLESensorConfiguration.payloadCharacteristicUUID:
             logger.debug("Read (central=\(central.description),characteristic=payload,offset=\(request.offset))")
