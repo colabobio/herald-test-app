@@ -2,6 +2,16 @@
 
 Herald & Services in Native. Method & Event channels to communicate. Functionality & UI in Flutter.
 
+This branch includes the Herald source code directly into the android and ios native folders of the project, to facilitate testing and debugging new versions for Herald before they are released. The develpment code of Herald can be retrieved from the following repos/branches:
+
+* https://github.com/theheraldproject/herald-for-ios/tree/develop (iOS, main dev branch)
+* https://github.com/adamfowleruk/herald-for-ios (iOS, feature dev branches)
+
+* https://github.com/theheraldproject/herald-for-android/tree/develop (Android, main dev branch)
+* https://github.com/adamfowleruk/herald-for-android (Android, feature dev branches)
+
+Just copy the contents of ```herald-for-android/herald``` into ```android/herald``` and ```herald-for-ios/tree/develop/Herald``` into ```ios/Herald```.
+
 ## Getting Started
 
 1. Install Flutter: [Flutter](https://docs.flutter.dev/get-started/install)
