@@ -72,7 +72,7 @@ class TestService: NSObject, SensorDelegate, FlutterStreamHandler {
         
         // This allow us to have multiple teams playing in the same area and not interfering each other
         // https://www.uuidgenerator.net/version4
-        BLESensorConfiguration.linuxFoundationServiceUUID = CBUUID(string: TestService.SIMULATION_ID)
+        BLESensorConfiguration.customServiceUUID = CBUUID(string: TestService.SIMULATION_ID)
         
         BLESensorConfiguration.logLevel = .debug
         sensor = SensorArray(payloadDataSupplier!)
